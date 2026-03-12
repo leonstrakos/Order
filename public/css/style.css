@@ -1,0 +1,496 @@
+/* =========================
+   RESET + BASE
+========================= */
+
+#loginBtn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #c6a96a;
+  color: #c6a96a;
+  padding: 10px 25px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#loginBtn:hover {
+  background: #c8dbde;
+  color: #0b0b0f;
+}
+
+
+.divider-symbol{
+display:flex;
+justify-content:center;
+margin:30px 0;
+opacity:1;
+color: #c6a96a;
+}
+
+.order-rule{
+width:120px;
+margin:30px auto;
+border:none;
+border-top:1px solid rgba(198,169,106,0.5);
+}
+
+.order-title{
+color:#c6a96a;
+text-shadow:
+  0 0 6px rgba(198,169,106,0.5),
+  0 0 16px rgba(198,169,106,0.25);
+}
+
+h1 {
+  animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow:
+      0 0 4px rgba(198,169,106,0.3),
+      0 0 10px rgba(198,169,106,0.2);
+  }
+
+  to {
+    text-shadow:
+      0 0 8px rgba(198,169,106,0.6),
+      0 0 18px rgba(198,169,106,0.35);
+  }
+}
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0b0b0f;
+  --bg-panel: rgba(10, 10, 14, 0.75);
+  --text-main: #e6e6e6;
+  --text-soft: rgba(255, 255, 255, 0.78);
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --lion-gold: #c6a96a;
+  --border-soft: rgba(198, 169, 106, 0.18);
+  --border-footer: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-main);
+  font-family: "Cinzel", serif;
+  min-height: 100vh;
+}
+
+/* =========================
+   FONTS
+========================= */
+
+@font-face {
+  font-family: "Cicero";
+  src: url("/fonts/HamletCicero12.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tertia";
+  src: url("/fonts/HamletTertia18.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+#header.scrolled {
+  background: rgba(10, 10, 14, 0.9);
+  border-bottom: 1px solid rgba(198, 169, 106, 0.3);
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--lion-gold);
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  opacity: 0.75;
+  color: #ffffff;
+}
+
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.logo-img {
+  display: block;
+  width: 110px;
+  max-width: 100%;
+  height: auto;
+  animation: glow 3s infinite alternate;
+}
+
+/* =========================
+   HOME / HERO
+========================= */
+
+.hero.home {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background:
+    linear-gradient(rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.95)),
+    url("/images/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-media {
+  margin-bottom: 24px;
+}
+
+.hero-video {
+  width: min(420px, 90vw);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+.hero-content h1,
+h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.motto {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: -80px;
+  color: var(--lion-gold);
+  font-style: italic;
+  font-family: Tertia;
+}
+
+button {
+  background: transparent;
+  border: 1px solid var(--lion-gold);
+  color: var(--lion-gold);
+  padding: 10px 28px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: var(--lion-gold);
+  color: var(--bg-dark);
+}
+
+/* =========================
+   ABOUT + BELL SHARED PAGE LAYOUT
+========================= */
+
+.about-section {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 20px;
+}
+
+.about-inner {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.about-title {
+  font-style: italic;
+  color: var(--lion-gold);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+}
+
+.about-text {
+  font-style: italic;
+  text-align: left;
+  line-height: 1.9;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  letter-spacing: 0.4px;
+  font-family: "Cicero", serif;
+  color: var(--text-soft);
+  margin-bottom: 22px;
+}
+
+.accent {
+  color: var(--lion-gold);
+}
+
+/* =========================
+   BELL PAGE QUOTE
+========================= */
+
+.about-quote {
+  margin-top: 30px;
+  text-align: center;
+  color: var(--lion-gold);
+  font-style: italic;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.about-quote span {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+/* =========================
+   GENERIC CONTENT SECTION
+========================= */
+
+.content {
+  padding: 120px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.content h2 {
+  color: var(--lion-gold);
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.content p {
+  color: var(--text-soft);
+  font-family: "Cicero", serif;
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid var(--border-footer);
+  margin-top: 80px;
+}
+
+.footer-title {
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  margin: 10px 0;
+}
+
+.footer-motto {
+  font-style: italic;
+  opacity: 0.8;
+  margin: 20px 0;
+  color: var(--lion-gold);
+}
+
+.footer-note {
+  font-style: italic;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin: 20px 0;
+  line-height: 1.7;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.footer-nav a {
+  color: #c6a96a;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.footer-nav a:hover {
+  opacity: .7;
+}
+
+.footer-nav .divider {
+  margin: 0 10px;
+  opacity: .4;
+}
+
+.footer-seal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#seal {
+  width: 50px;
+  height: auto;
+  opacity: 0.8;
+  filter: grayscale(100%) ;
+  opacity: 0.7;
+}
+
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 2px var(--lion-gold));
+  }
+  to {
+    filter: drop-shadow(0 0 12px var(--lion-gold));
+  }
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  #header {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    text-align: center;
+    padding: 18px 16px;
+  }
+
+  .nav-left,
+  .nav-right {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .logo-img {
+    width: 88px;
+  }
+
+  .about-section,
+  .hero.home {
+    min-height: auto;
+    padding: 56px 16px;
+  }
+
+
+
+  .about-inner,
+  .hero-content,
+  .content {
+    max-width: 100%;
+  }
+
+  .about-text,
+  .content p {
+    text-align: left;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+  nav a {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  .about-title {
+    letter-spacing: 1px;
+  }
+
+  .about-text,
+  .content p {
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  .hero-content h1,
+  h1 {
+    letter-spacing: 2px;
+  }
+
+  .motto {
+    font-size: 0.95rem;
+  }
+
+  button {
+    padding: 10px 22px;
+    font-size: 0.9rem;
+  }
+
+  .site-footer {
+    padding: 48px 16px;
+  }
+}

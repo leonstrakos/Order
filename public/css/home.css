@@ -1,0 +1,399 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body {
+  background: #0b0b0f;
+  color: #e6e6e6;
+  font-family: "Cinzel", serif;
+  min-height: 100vh;
+}
+
+/*
+var(--bell-blue, rgba(201, 219, 222));
+*/
+/* fonts */
+@font-face {
+  font-family: "Cicero";
+  src: url("/fonts/HamletCicero12.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tertia";
+  src: url("/fonts/HamletTertia18.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+/*HOME*/
+
+.hero.home {
+  background:
+    linear-gradient(rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.966)),
+    url("/images/background.png");
+  background-position: cover;
+  background-repeat: no-repeat;
+}
+
+
+/* HEADER */
+
+/* header */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(10, 10, 14, 0.75);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(198, 169, 106, 0.18);
+}
+
+
+#header.scrolled{
+background:rgba(10,10,14,0.85);
+backdrop-filter:blur(6px);
+border-bottom:1px solid rgba(198,169,106,0.3);
+}
+
+nav a{
+margin-left:24px;
+text-decoration:none;
+color:#c6a96a;;
+letter-spacing:1px;
+}
+
+nav a:hover{
+opacity:.7;
+}
+
+.logo{
+font-size:22px;
+max-width: 140px;
+animation:glow 3s infinite alternate;
+}
+
+
+/* HERO */
+
+.hero{
+height:110vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+/* ABOUT */
+
+section.about{
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+h2.about{
+font-style: italic;
+color:#c6a96a;
+font-size:30px;
+letter-spacing:2px;
+margin-bottom:10px;
+}
+
+p.about{
+    font-style: italic;
+    text-align: left;
+    line-height:1.7;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-family: cicero;
+    margin-left: 200px;
+    margin-right: 200px;
+    color:rgba(255, 255, 255, 0.685);
+}
+
+p.about.italic{
+    color:#c6a96a;
+}
+
+b.about {
+color:#c6a96a;
+}
+
+/*BELL*/
+
+
+
+
+
+h1{
+font-size:48px;
+letter-spacing:4px;
+margin-bottom:10px;
+}
+
+
+
+.motto{
+font-size:14px;
+opacity:.7;
+margin-bottom:30px;
+}
+
+button{
+background:transparent;
+border:1px solid #c6a96a;
+color:#c6a96a;
+padding:10px 28px;
+font-family:"Cinzel";
+letter-spacing:2px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#c6a96a;
+color:#0b0b0f;
+}
+
+
+
+
+
+/*FOOTER*/
+
+
+.site-footer {
+  text-align:center;
+  padding:60px 20px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  margin-top:80px;
+}
+
+.footer-title {
+  font-family: "Cinzel", serif;
+  letter-spacing:2px;
+  margin:10px 0;
+}
+
+.footer-motto {
+  font-style:italic;
+  opacity:0.8;
+  margin:20px 0;
+}
+
+.footer-note {
+  font-style:italic;
+  font-size: 0.7rem;
+  opacity:0.8;
+  margin:20px 0;
+}
+
+
+.footer-nav a {
+  margin:0 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CONTENT */
+
+.content{
+padding:120px 20%;
+line-height:1.7;
+}
+
+
+/* ANIMATION */
+
+@keyframes glow{
+from{
+filter:drop-shadow(0 0 2px #c6a96a);
+}
+to{
+filter:drop-shadow(0 0 12px #c6a96a);
+}
+
+
+}.fade-out {
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+////////////////////////////////
+          LOGIN
+///////////////////////////
+*/
+
+.login-page {
+  overflow: hidden;
+}
+
+.login-hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(10, 10, 15, 0.78),
+    rgba(10, 10, 15, 0.88)
+  );
+  z-index: 1;
+}
+
+.login-overlay {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 460px);
+  margin: 0 auto;
+  text-align: center;
+  padding: 36px 28px;
+  background: rgba(8, 8, 12, 0.55);
+  border: 1px solid rgba(198, 169, 106, 0.22);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+}
+
+.login-seal {
+  width: 82px;
+  height: auto;
+  margin-bottom: 18px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 10px rgba(198, 169, 106, 0.2));
+}
+
+.login-overlay h1 {
+  color: #c6a96a;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  text-shadow:
+    0 0 6px rgba(198, 169, 106, 0.35),
+    0 0 16px rgba(198, 169, 106, 0.18);
+}
+
+.login-overlay .motto {
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 28px;
+  font-style: italic;
+  letter-spacing: 1px;
+  font-family: Cicero;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(11, 11, 15, 0.85);
+  border: 1px solid rgba(198, 169, 106, 0.25);
+  color: #e6e6e6;
+  font-family: "Cinzel", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: rgba(198, 169, 106, 0.6);
+  box-shadow: 0 0 0 1px rgba(198, 169, 106, 0.2);
+}
+
+.login-form button {
+  margin-top: 6px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid #c6a96a;
+  color: #c6a96a;
+  padding: 12px 20px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #c6a96a;
+  color: #0b0b0f;
+}
+
+.login-note {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (max-width: 520px) {
+  .login-overlay {
+    padding: 28px 18px;
+  }
+
+  .login-seal {
+    width: 68px;
+  }
+
+  .login-overlay h1 {
+    letter-spacing: 2px;
+  }
+}

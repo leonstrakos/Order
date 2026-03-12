@@ -1,0 +1,233 @@
+
+     <!--   
+    <h1>Order of the Heralds of the Lion's Bell</h1>
+    <h1></h1>
+
+
+    secret tradition and revelation of awakening
+    stil working on LEKISTRA
+    The Lexicon of Esoteric Knowledge Institute for Symbolic Tradition and Revelation of Awakening
+
+
+
+Non a nobis.
+Non pro nobis.
+Sed per nos sonat campana.
+
+-------------------
+Sol lucet omnibus .
+Campana sonat omnibus 
+
+Sol lucet omnibus, sed non omnes audiunt
+------------------
+
+Qui audiunt vident - those to hear, see
+
+___________
+
+
+Unum est omnia
+
+
+Cave eos qui dona falsa et promissa fracta ferunt. - bewae the bearers
+
+Obliviscere.
+Aude. | Esto fortis | Noli cedere
+Obliviscere.
+
+
+
+
+
+
+    talk about shame 
+
+
+Consciousness Stage	Order Symbolism
+To Me	The Seeker hears the Bell
+By Me	The Seeker becomes a student of knowledge
+Through Me	The Herald proclaims truth
+As Me	Unity with the Lion (truth itself)
+
+That structure is actually very elegant.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yes — **Campana sonat omnibus** can actually be connected to **all three traditions** you mentioned (Hermetic, Pythagorean, and Christian), but in slightly different ways. That’s part of why the phrase works well: it’s **symbolic enough to resonate across traditions without belonging to just one**.
+
+Let’s look at how each worldview might interpret it.
+
+---
+
+# Hermetic Interpretation
+
+Associated with the teachings attributed to Hermes Trismegistus.
+
+Hermetic philosophy emphasizes:
+
+* universal divine mind
+* hidden knowledge revealed to the awakened
+* truth present everywhere but rarely perceived
+
+Your motto could be interpreted Hermetically as:
+
+> **The call of awakening exists everywhere in the cosmos.
+> Only those who become aware perceive it.**
+
+The bell becomes a symbol of **gnosis** — the moment when hidden knowledge becomes audible.
+
+It fits well with Hermetic ideas like:
+
+> the divine speaks constantly through the world, but few recognize it.
+
+---
+
+# Pythagorean Interpretation
+
+Connected to Pythagoras.
+
+Pythagorean philosophy emphasizes:
+
+* cosmic harmony
+* the universe structured by number and proportion
+* listening as a path to wisdom
+
+Their followers were divided into groups, including the **akousmatikoi**, meaning:
+
+> “those who listen.”
+
+In that context your motto could mean:
+
+> **The harmony of the cosmos calls to everyone.
+> Wisdom belongs to those who listen.**
+
+The bell becomes a metaphor for **cosmic harmony** — like the famous idea of the **music of the spheres**.
+
+---
+
+# Christian Interpretation
+
+Associated with teachings attributed to Jesus Christ.
+
+Christian scripture frequently uses **hearing** as a metaphor for spiritual awakening:
+
+> “He who has ears to hear, let him hear.”
+
+Your motto could be understood as:
+
+> **The call to spiritual awakening is offered to all people.**
+
+In Christian symbolism bells historically:
+
+* call people to prayer
+* mark sacred moments
+* gather a community
+
+So the bell ringing “for all” can symbolize **the universal invitation to salvation or truth**.
+
+---
+
+# Why It Works Across Traditions
+
+Your phrase works because it expresses three universal ideas:
+
+**1. Truth exists everywhere**
+(Hermetic / metaphysical)
+
+**2. Wisdom belongs to those who listen**
+(Pythagorean / philosophical)
+
+**3. Awakening is offered to everyone**
+(Christian / spiritual)
+
+Those themes appear repeatedly across ancient traditions.
+
+---
+
+# The Hidden Second Line
+
+Even though you chose not to include it explicitly, your motto almost naturally suggests a silent continuation:
+
+> **Campana sonat omnibus — sed non omnes audiunt.**
+
+“The bell rings for all — but not all hear.”
+
+That subtle tension between **universal truth and limited perception** is exactly what many mystical traditions emphasize.
+
+---
+
+# Overall Tone
+
+Your motto feels:
+
+* **Hermetic** in its idea of hidden knowledge
+* **Pythagorean** in its emphasis on listening
+* **Christian** in its universal call
+
+But it doesn’t belong exclusively to any one of them, which actually makes it **very appropriate for a philosophical order that studies multiple traditions symbolically**.
+
+---
+
+If you want, I can also show you a small linguistic tweak that medieval orders sometimes used which would make **Campana sonat omnibus** sound even more like something from an ancient philosophical brotherhood while keeping the exact meaning.
+
+
+
+
+
+MEMBER HIERARCHY
+
+
+
+seeker 1 - correspondence only 
+AKUSMATIKOI / MATHEMATIKOI/ ACADEMIKOI  - those who study start to listen (could be students researachsrs based opn their areas) 2
+HERALDS (3) - whose who heard and got the idea and are awakened
+THE LION (4) - lion - me 
+
+
+
+
+
+
+
+
+
+
+
+Before putting it on a real server:
+
+change the session secret
+
+change the seeded password
+
+add .gitignore for:
+order.db
+.env 
+
+
+
+node_modules
+order.db
+.env
+
+
+
+heraldsofthelion.org
+ordopraeconum.org
+praeconum.org
+
+
+
+sudo apt install certbot python3-certbot-nginx
+
+sudo apt install certbot python3-certbot-nginx
