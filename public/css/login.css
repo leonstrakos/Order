@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.login-page {
+  min-height: 100vh;
+  color: #e6e6e6;
+  font-family: "Cinzel", serif;
+  background: #0b0b0f;
+}
+
+/* PAGE */
+.login-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(rgba(10, 10, 15, 0.7), rgba(10, 10, 15, 0.95)),
+    url("/images/city.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* CONTENT CARD */
+.login-shell {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 500px);
+  text-align: center;
+  padding: 42px 30px;
+  border: none;
+}
+
+/* ORNAMENTS */
+
+
+
+
+.motto {
+  color:  #e6e6e6;
+  margin-bottom: 28px;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-family: Tertia;
+  letter-spacing: 1px;
+}
+
+/* FORM */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(11, 11, 15, 0.72);
+  border: 1px solid rgba(198, 169, 106, 0.568);
+  color: #e6e6e6;
+  font-family: "Cinzel", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+}
+
+.login-form input::placeholder {
+  color: rgba(255, 255, 255, 0.774);
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: rgba(198, 169, 106, 0.55);
+  box-shadow: 0 0 0 1px rgba(198, 169, 106, 0.18);
+  background: rgba(11, 11, 15, 0.88);
+}
+
+.login-form button {
+  margin-top: 8px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 1px solid #c6a96a;
+  background: rgba(198, 169, 106, 0.06);
+  color: #c6a96a;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #c6a96a;
+  color: #0b0b0f;
+  box-shadow: 0 0 18px rgba(198, 169, 106, 0.22);
+}
+
+.login-note {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* TWINKLE */
+@keyframes starTwinkle {
+  0% { opacity: 0.28; }
+  25% { opacity: 0.42; }
+  50% { opacity: 0.34; }
+  75% { opacity: 0.5; }
+  100% { opacity: 0.3; }
+}
+
+/* MOBILE */
+@media (max-width: 520px) {
+  .login-hero {
+    padding: 18px;
+  }
+
+  .login-shell {
+    width: min(94vw, 460px);
+    padding: 34px 18px;
+  }
+
+  .motto {
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+  }
+
+  .login-form input,
+  .login-form button {
+    padding: 13px 14px;
+  }
+}

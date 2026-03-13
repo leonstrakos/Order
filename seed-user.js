@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const db = require("./db");
 
-const chosenName = "";
-const email = "";
-const plainPassword = ""; 
+const chosenName = "Lekistra";
+const email = "leondrewop@gmail.com";
+const plainPassword = "Campana"; 
 
 const existing = db
   .prepare("SELECT id FROM users WHERE email = ?")

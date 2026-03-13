@@ -10,6 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set("trust proxy", 1);
+app.set("view engine", "ejs");
+
+app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -21,11 +24,19 @@ app.use(
 );
 
 app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+  res.locals.user = req.session?.user || null;
+  next();
+});
+
+app.use((req, res, next) => {
   if (req.headers.host === "www.heraldsofthelion.org") {
     return res.redirect(301, "https://heraldsofthelion.org" + req.url);
   }
   next();
 });
+
+
 
 app.use(
   session({
@@ -33,13 +44,14 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: true,
+      httpOnly: false,
       sameSite: "lax",
-      secure: true,
+      secure: process.env.NODE_ENV === "development",
       maxAge: 1000 * 60 * 60 * 4
     }
   })
 );
+
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -51,32 +63,39 @@ function requireAuth(req, res, next) {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "home.html"));
+  res.render("home");
 });
 
 app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
+  res.render("index");
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "about.html"));
+  res.render("about");
 });
 
 app.get("/bell", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "bell.html"));
+  res.render("bell");
 });
 
 app.get("/copyright", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "copyrights.html"));
+  res.render("copyrights");
 });
 
 app.get("/join", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "join.html"));
+  res.render("join");
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "login.html"));
+  res.render("login");
 });
+
+app.get("/members", requireAuth, (req, res) => {
+  res.render("members");
+});
+
+
+
 
 app.post("/login", async (req, res) => {
   try {
@@ -118,9 +137,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/members", requireAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "members.html"));
-});
 
 app.get("/logout", (req, res) => {
   req.session.destroy(() => {
