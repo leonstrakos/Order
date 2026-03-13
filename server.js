@@ -44,9 +44,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: false,
+      httpOnly: true,
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "development",
+      secure: process.env.NODE_ENV === "production",
       maxAge: 1000 * 60 * 60 * 4
     }
   })
@@ -69,6 +69,7 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
   res.render("index");
 });
+
 
 app.get("/about", (req, res) => {
   res.render("about");

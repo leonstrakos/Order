@@ -81,7 +81,7 @@ var(--bell-blue, rgba(201, 219, 222));
   inset: 0;
   background:
     linear-gradient(rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.966)),
-    url("/images/background.png");
+    url("/images/background.webp");
   background-size: cover;
   background-position: center;
   animation: starTwinkle 6s ease-in-out infinite alternate;
