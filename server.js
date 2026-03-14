@@ -4,6 +4,8 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const db = require("./db");
 const helmet = require("helmet");
+const { SitemapStream, streamToPromise } = require('sitemap');
+const { Readable } = require('stream');
 require("dotenv").config();
 
 const app = express();
@@ -163,6 +165,42 @@ app.get("/api/me", (req, res) => {
     role: req.session.user.role
   });
 });
+
+
+
+
+
+
+
+
+
+app.get('/sitemap.xml', async (req, res) => {
+  try {
+    const links = [
+      { url: '/', changefreq: 'daily', priority: 1.0 },
+      { url: '/about', changefreq: 'monthly', priority: 0.7 },
+      { url: '/contact', changefreq: 'monthly', priority: 0.7 }
+    ];
+
+    const stream = new SitemapStream({
+      hostname: 'https://heraldsofthelion.org'
+    });
+
+    const xml = await streamToPromise(
+      Readable.from(links).pipe(stream)
+    ).then(data => data.toString());
+
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).end();
+  }
+});
+
+
+
 
 app.listen(PORT, () => {
   console.log(`⚜ Server running at http://localhost:${PORT}`);
