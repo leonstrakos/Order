@@ -1,0 +1,36 @@
+/* =========================
+   ORDER STRUCTURE
+========================= */
+
+.order-structure{
+margin:30px 0;
+}
+
+.order-rank{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:8px 0;
+font-family:"Cicero", serif;
+color:var(--text-soft);
+}
+
+.rank-symbol{
+width:30px;
+text-align:left;
+color:var(--lion-gold);
+}
+
+.rank-name{
+flex:1;
+text-align:left;
+padding-left:10px;
+}
+
+.rank-circle{
+text-align:right;
+margin-right: vw;
+opacity:0.6;
+font-style:italic;
+color:var(--lion-gold);
+}
