@@ -9,6 +9,30 @@ body {
   color: #e6e6e6;
   font-family: "Cinzel", serif;
   min-height: 100vh;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+.img-wrap {
+  position: relative;
+  display: inline-block;
+  opacity: 1
+}
+
+.img-wrap img {
+  display: block;
+  max-width: 100%;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.img-shield {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  z-index: 2;
 }
 
 
@@ -145,7 +169,6 @@ button:hover{
 background:#c6a96a;
 color:#0b0b0f;
 }
-
 
 
 /* ANIMATION */

@@ -68,3 +68,45 @@ if ("serviceWorker" in navigator) {
 }
 
 
+
+ // Block right click
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+
+  // Block drag on images
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
+  // Block double click
+  document.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+  });
+
+  // Block some keyboard shortcuts
+  document.addEventListener('keydown', function (e) {
+    const blocked =
+      e.key === 'F12' ||
+      (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
+      (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase()));
+
+    if (blocked) {
+      e.preventDefault();
+    }
+  });
+
+  // Mobile long-press rough deterrent
+  document.addEventListener('touchstart', function (e) {
+    if (e.target.tagName === 'IMG') {
+      e.target.style.webkitTouchCallout = 'none';
+      e.target.style.userSelect = 'none';
+    }
+  }, { passive: true });
+
+
+
+
+
