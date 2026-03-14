@@ -56,15 +56,15 @@ body.login-page {
 /* ORNAMENTS */
 
 
-
-
 .motto {
-  color:  #e6e6e6;
-  margin-bottom: 28px;
+  color: rgba(198, 169, 106, 0.568);
+  margin-bottom: 20px;
   font-size: 1.2rem;
   font-style: italic;
   font-family: Tertia;
   letter-spacing: 1px;
+  margin-top: 20px;
+  opacity: 0.5;
 }
 
 /* FORM */
