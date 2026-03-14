@@ -26,11 +26,6 @@ app.use(
 );
 
 
-app.use((req, res, next) => {
-  res.setHeader('X-Robots-Tag', 'noindex, noimageindex, noarchive');
-  next();
-});
-
 
 app.use((req, res, next) => {
   res.locals.currentPath = req.path;
