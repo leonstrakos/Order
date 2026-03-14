@@ -84,6 +84,11 @@ app.get("/constitution", (req, res) => {
   res.render("constitution");
 });
 
+app.get("/document", (req, res) => {
+  res.render("document");
+});
+
+
 app.get("/bell", (req, res) => {
   res.render("bell");
 });
