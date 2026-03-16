@@ -1,627 +1,681 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Order of the Sun Bell</title>
+  <title>Lion's Bell</title>
   <style>
     :root {
-      --bg: #040404;
-      --ink: #f5f1e8;
-      --muted: #cfc6b1;
-      --gold: #e4c77a;
-      --gold-soft: #b5964d;
-      --violet: #7a74ff;
-      --violet-soft: rgba(122, 116, 255, 0.28);
-      --crimson: #d93636;
-      --line: rgba(255, 241, 214, 0.22);
-      --panel: rgba(12, 9, 18, 0.72);
-      --shadow: 0 0 40px rgba(122, 116, 255, 0.18), 0 0 100px rgba(228, 199, 122, 0.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 50% 20%, rgba(122,116,255,0.16), transparent 24%),
-        radial-gradient(circle at 20% 10%, rgba(228,199,122,0.10), transparent 18%),
-        radial-gradient(circle at 80% 15%, rgba(228,199,122,0.08), transparent 16%),
-        linear-gradient(180deg, #020202 0%, #07050c 45%, #030303 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle at 8% 14%, rgba(255,255,255,0.95) 0 1px, transparent 2px),
-        radial-gradient(circle at 18% 32%, rgba(228,199,122,0.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 24% 72%, rgba(255,255,255,0.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 78% 20%, rgba(255,255,255,0.92) 0 1px, transparent 2px),
-        radial-gradient(circle at 88% 66%, rgba(228,199,122,0.95) 0 1px, transparent 2px),
-        radial-gradient(circle at 66% 78%, rgba(255,255,255,0.8) 0 1px, transparent 2px),
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.5) 0 1px, transparent 2px);
-      opacity: 0.8;
-      z-index: 0;
-    }
-
-    .sigil-ring,
-    .sigil-ring::before,
-    .sigil-ring::after {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(228, 199, 122, 0.26);
-      content: "";
-    }
-
-    .sigil-ring {
-      width: 28rem;
-      height: 28rem;
-      left: 50%;
-      top: 8rem;
-      transform: translateX(-50%);
-      filter: drop-shadow(0 0 25px rgba(122,116,255,0.18));
-      opacity: 0.7;
-      z-index: 0;
-    }
-
-    .sigil-ring::before {
-      inset: 2.5rem;
-    }
-
-    .sigil-ring::after {
-      inset: 5rem;
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-      width: min(1160px, calc(100% - 2rem));
-      margin: 0 auto;
-      padding: 1.2rem 0 5rem;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .brand small {
-      font-size: 0.68rem;
-      color: var(--muted);
-    }
-
-    .brand strong {
-      font-size: 0.9rem;
-      color: var(--ink);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a,
-    .ghost-btn,
-    .primary-btn {
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    .hero {
-      min-height: 86vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 4rem 0 2rem;
-      position: relative;
-    }
-
-    .hero-card {
-      position: relative;
-      width: min(980px, 100%);
-      padding: 3rem 1.4rem 2.6rem;
-      background: linear-gradient(180deg, rgba(17,14,24,0.32), rgba(6,6,10,0.15));
-      border: 1px solid rgba(255, 242, 212, 0.16);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(5px);
-      overflow: hidden;
-    }
-
-    .hero-card::before,
-    .hero-card::after {
-      content: "✦ ✦ ✦";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      letter-spacing: 1rem;
-      color: rgba(228, 199, 122, 0.75);
-      font-size: 0.95rem;
-      white-space: nowrap;
-    }
-
-    .hero-card::before { top: 1rem; }
-    .hero-card::after { bottom: 1rem; }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--gold);
-      letter-spacing: 0.34em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      margin-bottom: 1rem;
-    }
-
-    .title {
-      margin: 0;
-      font-size: clamp(3rem, 9vw, 6.9rem);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      text-shadow: 0 0 18px rgba(122,116,255,0.38), 0 0 2px rgba(255,255,255,0.8);
-    }
-
-    .title span {
-      display: block;
-    }
-
-    .subtitle {
-      width: min(760px, 100%);
-      margin: 1.4rem auto 0;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.8;
-      letter-spacing: 0.03em;
-    }
-
-    .hero-ornaments {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.7rem 0;
-      color: var(--gold);
-      opacity: 0.9;
-      font-size: 1.2rem;
-    }
-
-    .hero-ornaments .line {
-      width: min(180px, 18vw);
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(228,199,122,0.7), transparent);
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.8rem;
-    }
-
-    .primary-btn,
-    .ghost-btn {
-      padding: 0.95rem 1.2rem;
-      border-radius: 999px;
-      border: 1px solid rgba(228, 199, 122, 0.34);
-      transition: 180ms ease;
-    }
-
-    .primary-btn {
-      background: linear-gradient(180deg, rgba(228,199,122,0.20), rgba(122,116,255,0.12));
-      box-shadow: 0 0 24px rgba(122,116,255,0.15);
-    }
-
-    .ghost-btn {
-      background: rgba(255,255,255,0.02);
-    }
-
-    .primary-btn:hover,
-    .ghost-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(228, 199, 122, 0.6);
-      color: var(--gold);
-    }
-
-    .section {
-      margin-top: 4.5rem;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .section-header h2 {
-      margin: 0 0 0.7rem;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .section-header p {
-      width: min(680px, 100%);
-      margin: 0 auto;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      position: relative;
-      background: var(--panel);
-      border: 1px solid rgba(255, 243, 219, 0.12);
-      border-radius: 24px;
-      padding: 1.4rem;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(122,116,255,0.08), transparent 30%, transparent 70%, rgba(228,199,122,0.05));
-      pointer-events: none;
-    }
-
-    .glyph {
-      font-size: 1.55rem;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-    }
-
-    .card h3 {
-      margin: 0 0 0.7rem;
-      font-size: 1.15rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 0.97rem;
-    }
-
-    .manifesto {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 1rem;
-      align-items: stretch;
-    }
-
-    .scroll-panel,
-    .ritual-panel {
-      background: linear-gradient(180deg, rgba(15,12,22,0.86), rgba(7,7,11,0.82));
-      border: 1px solid rgba(255, 244, 220, 0.12);
-      border-radius: 28px;
-      padding: 1.6rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scroll-panel::after,
-    .ritual-panel::after {
-      content: "";
-      position: absolute;
-      inset: 1rem;
-      border: 1px solid rgba(228, 199, 122, 0.12);
-      border-radius: 20px;
-      pointer-events: none;
-    }
-
-    .quote {
-      font-size: clamp(1.3rem, 2.6vw, 2.1rem);
-      line-height: 1.5;
-      margin: 0;
-      color: var(--ink);
-    }
-
-    .quote strong {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .list {
-      display: grid;
-      gap: 0.9rem;
-      margin-top: 1.3rem;
-    }
-
-    .list-item {
-      display: flex;
-      gap: 0.8rem;
-      align-items: flex-start;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .list-item span:first-child {
-      color: var(--gold);
-    }
-
-    .seal {
-      margin-top: 1.2rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      border: 1px solid rgba(228,199,122,0.22);
-      border-radius: 999px;
-      padding: 0.7rem 1rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-      color: var(--gold);
-    }
-
-    .ritual-panel h3 {
-      margin-top: 0;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .ritual-panel .symbol {
-      font-size: 5rem;
-      line-height: 1;
-      text-align: center;
-      margin: 1rem 0;
-      text-shadow: 0 0 20px rgba(122,116,255,0.35);
-    }
-
-    .ritual-panel p {
-      color: var(--muted);
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    .footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-    }
-
-    @media (max-width: 900px) {
-      .grid,
-      .manifesto {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        flex-direction: column;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 3rem;
-      }
-
-      .hero-card {
-        padding-inline: 1rem;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .page {
-        width: min(100% - 1rem, 1160px);
-      }
-
-      .nav-links {
-        justify-content: center;
-      }
-
-      .title {
-        font-size: clamp(2.6rem, 16vw, 4.2rem);
-      }
-
-      .subtitle {
-        font-size: 0.94rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .hero-ornaments .line {
-        width: 20vw;
-      }
-    }
+      --bg: #050505;
+      --ink: #f6f0e3;
+      --muted: #d1c5af;
+      --gold: #d8b469;
+      --gold-deep: #8d6a2f;
+      --violet: #6f67ff;
+      --violet-soft: rgba(111, 103, 255, 0.16);
+      --red: #8f2f2f;
+      --panel: rgba(13, 10, 18, 0.84);
+      --line: rgba(244, 229, 193, 0.16);
+      --shadow: 0 0 32px rgba(111, 103, 255, 0.14), 0 0 100px rgba(216, 180, 105, 0.08);
+    }* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(111,103,255,0.11), transparent 24%),
+    radial-gradient(circle at 17% 12%, rgba(216,180,105,0.09), transparent 18%),
+    radial-gradient(circle at 82% 14%, rgba(216,180,105,0.07), transparent 16%),
+    linear-gradient(180deg, #020202 0%, #08050c 48%, #030303 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 8% 14%, rgba(255,255,255,0.95) 0 1px, transparent 2px),
+    radial-gradient(circle at 18% 36%, rgba(216,180,105,0.95) 0 1px, transparent 2px),
+    radial-gradient(circle at 24% 74%, rgba(255,255,255,0.84) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 18%, rgba(255,255,255,0.9) 0 1px, transparent 2px),
+    radial-gradient(circle at 87% 69%, rgba(216,180,105,0.9) 0 1px, transparent 2px),
+    radial-gradient(circle at 65% 83%, rgba(255,255,255,0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 50% 54%, rgba(255,255,255,0.4) 0 1px, transparent 2px);
+  opacity: 0.85;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 180px, rgba(255,255,255,0.01) 180px 181px),
+    linear-gradient(180deg, transparent, rgba(255,255,255,0.02), transparent);
+  opacity: 0.2;
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+.sigil,
+.sigil::before,
+.sigil::after {
+  position: absolute;
+  border-radius: 50%;
+  content: "";
+  border: 1px solid rgba(216, 180, 105, 0.2);
+}
+
+.sigil {
+  width: 33rem;
+  height: 33rem;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.72;
+  filter: drop-shadow(0 0 22px rgba(111,103,255,0.2));
+  z-index: 0;
+}
+
+.sigil::before { inset: 2.8rem; }
+.sigil::after { inset: 5.6rem; }
+
+.sigil-mark {
+  position: absolute;
+  left: 50%;
+  top: 14.7rem;
+  transform: translateX(-50%);
+  z-index: 0;
+  color: rgba(216,180,105,0.85);
+  font-size: 2rem;
+  letter-spacing: 0.4rem;
+  text-shadow: 0 0 16px rgba(111,103,255,0.25);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(1160px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.2rem 0 5rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.14rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.brand strong {
+  font-size: 0.96rem;
+  color: var(--ink);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a,
+.primary-btn,
+.ghost-btn {
+  text-decoration: none;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+}
+
+.nav-links a:hover,
+.primary-btn:hover,
+.ghost-btn:hover {
+  color: var(--gold);
+}
+
+.hero {
+  min-height: 88vh;
+  display: grid;
+  place-items: center;
+  padding: 4rem 0 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero-card {
+  position: relative;
+  width: min(1020px, 100%);
+  padding: 3.3rem 1.5rem 2.9rem;
+  background: linear-gradient(180deg, rgba(19,14,24,0.44), rgba(8,8,11,0.22));
+  border: 1px solid rgba(255, 241, 214, 0.15);
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+}
+
+.hero-card::before,
+.hero-card::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(216,180,105,0.82);
+  white-space: nowrap;
+  font-size: 0.92rem;
+  letter-spacing: 0.72rem;
+}
+
+.hero-card::before {
+  content: "♌ ✦ 🛡 ✦ ☾";
+  top: 1rem;
+}
+
+.hero-card::after {
+  content: "🛸 ✦ ⟁ ✦ 🔔";
+  bottom: 1rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.78rem;
+}
+
+.crest {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 1.1rem;
+  border-radius: 50%;
+  border: 1px solid rgba(216,180,105,0.34);
+  display: grid;
+  place-items: center;
+  position: relative;
+  font-size: 2rem;
+  color: var(--gold);
+  box-shadow: inset 0 0 24px rgba(216,180,105,0.06), 0 0 24px rgba(111,103,255,0.1);
+}
+
+.crest::before,
+.crest::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(216,180,105,0.18);
+}
+
+.crest::before { inset: 10px; }
+.crest::after {
+  inset: 25px;
+  border-style: dashed;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(111,103,255,0.34), 0 0 2px rgba(255,255,255,0.8);
+}
+
+.title span { display: block; }
+
+.subtitle {
+  width: min(790px, 100%);
+  margin: 1.4rem auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+.hero-ornaments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.75rem 0;
+  color: var(--gold);
+  font-size: 1.08rem;
+}
+
+.hero-ornaments .line {
+  width: min(180px, 18vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216,180,105,0.75), transparent);
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.8rem;
+}
+
+.primary-btn,
+.ghost-btn {
+  padding: 0.95rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(216,180,105,0.34);
+  transition: 180ms ease;
+}
+
+.primary-btn {
+  background: linear-gradient(180deg, rgba(216,180,105,0.18), rgba(111,103,255,0.12));
+  box-shadow: 0 0 24px rgba(111,103,255,0.14);
+}
+
+.ghost-btn { background: rgba(255,255,255,0.02); }
+
+.primary-btn:hover,
+.ghost-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(216,180,105,0.58);
+}
+
+.section {
+  margin-top: 4.7rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  margin: 0 0 0.7rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.section-header p {
+  width: min(700px, 100%);
+  margin: 0 auto;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid rgba(255,243,219,0.12);
+  border-radius: 24px;
+  padding: 1.45rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(111,103,255,0.08), transparent 30%, transparent 70%, rgba(216,180,105,0.05));
+  pointer-events: none;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(216,180,105,0.08);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.glyph {
+  color: var(--gold);
+  font-size: 1.55rem;
+  margin-bottom: 0.8rem;
+}
+
+.card h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 0.97rem;
+}
+
+.manifesto {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.scroll-panel,
+.ritual-panel {
+  background: linear-gradient(180deg, rgba(15,12,22,0.9), rgba(7,7,11,0.84));
+  border: 1px solid rgba(255,244,220,0.12);
+  border-radius: 28px;
+  padding: 1.6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-panel::after,
+.ritual-panel::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border: 1px solid rgba(216,180,105,0.12);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.quote {
+  font-size: clamp(1.3rem, 2.7vw, 2.15rem);
+  line-height: 1.5;
+  margin: 0;
+  color: var(--ink);
+}
+
+.quote strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.list {
+  display: grid;
+  gap: 0.92rem;
+  margin-top: 1.3rem;
+}
+
+.list-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.list-item span:first-child {
+  color: var(--gold);
+}
+
+.seal {
+  margin-top: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(216,180,105,0.22);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+
+.ritual-panel h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.ritual-panel .symbol {
+  text-align: center;
+  font-size: 5rem;
+  line-height: 1;
+  margin: 1rem 0;
+  text-shadow: 0 0 20px rgba(111,103,255,0.35);
+}
+
+.ritual-panel p {
+  color: var(--muted);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 900px) {
+  .grid,
+  .manifesto {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    flex-direction: column;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 3rem;
+  }
+
+  .hero-card {
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .page {
+    width: min(100% - 1rem, 1160px);
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .title {
+    font-size: clamp(2.6rem, 16vw, 4.3rem);
+  }
+
+  .subtitle {
+    font-size: 0.94rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-ornaments .line {
+    width: 20vw;
+  }
+}
+
   </style>
 </head>
 <body>
-  <div class="sigil-ring" aria-hidden="true"></div>
-
-  <main class="page">
+  <div class="sigil" aria-hidden="true"></div>
+  <div class="sigil-mark" aria-hidden="true">♌ ✦ 🛡 ✦ 🛸</div>  <main class="page">
     <nav class="nav">
       <div class="brand">
-        <small>Borderline Sciences Research Archive</small>
-        <strong>Order of the Sun Bell</strong>
+        <small>Borderline Sciences Research Observatory</small>
+        <strong>Lion's Bell</strong>
+      </div><div class="nav-links">
+    <a href="#doctrine">Doctrine</a>
+    <a href="#watch">Skywatch</a>
+    <a href="#archive">Archive</a>
+    <a href="#initiation">Initiation</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-card">
+    <div class="eyebrow">Chivalric Esoterica · Celestial Inquiry · Hidden Observatory</div>
+    <div class="crest">♌</div>
+
+    <h1 class="title">
+      <span>Lion's</span>
+      <span>Bell</span>
+    </h1>
+
+    <div class="hero-ornaments" aria-hidden="true">
+      <div class="line"></div>
+      <div>🛡 ✦ ☾ ✦ 🛸 ✦ 🔔</div>
+      <div class="line"></div>
+    </div>
+
+    <p class="subtitle">
+      A veiled order of knight-observers devoted to the study of celestial omens, unidentified craft, and sacred resonance. In Lion's Bell, the sword, the star map, and the transmission log are kept side by side. We do not separate myth from signal. We guard both until the sky speaks clearly.
+    </p>
+
+    <div class="hero-actions">
+      <a class="primary-btn" href="#initiation">Seek Admission</a>
+      <a class="ghost-btn" href="#archive">Open the Archive</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="doctrine">
+  <div class="section-header">
+    <h2>The Lion Doctrine</h2>
+    <p>
+      Lion's Bell unites mystical discipline, heraldic ceremony, and ufological research into a single hidden order. Every anomaly is treated as both evidence and omen.
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <div class="glyph">🛡</div>
+      <h3>Chivalric Vigil</h3>
+      <p>
+        Members stand as sworn guardians of forbidden knowledge, keeping watch over skyborne signs, ancient reports, and sealed field observations.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="glyph">🛸</div>
+      <h3>Ufological Inquiry</h3>
+      <p>
+        Our observatory catalogues impossible lights, silent craft, geometric apparitions, and transmissions that behave more like intelligence than weather.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="glyph">🔔</div>
+      <h3>The Bell Oath</h3>
+      <p>
+        The bell is struck when the unseen nears. It signifies awakening, summons, and the sacred duty to witness what others refuse to name.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="archive">
+  <div class="section-header">
+    <h2>The Sealed Archive</h2>
+    <p>
+      Behind the inner vault lie watch reports, sigil diagrams, knightly vows, encounter transcripts, lunar charts, and annotated sightings gathered beneath oath.
+    </p>
+  </div>
+
+  <div class="manifesto">
+    <div class="scroll-panel">
+      <p class="quote">
+        “We are custodians of the <strong>radiant unknown</strong>, where heraldry meets the heavens, and where every light above may conceal a message, a vessel, or a visitation.”
+      </p>
+
+      <div class="list">
+        <div class="list-item"><span>✦</span><span>Preserve accounts of silent craft, impossible symmetries, and lights that return with intention.</span></div>
+        <div class="list-item"><span>✦</span><span>Maintain ceremonial forms through which observation becomes rite and rite becomes disciplined research.</span></div>
+        <div class="list-item"><span>✦</span><span>Guard the names, coordinates, insignia, and correspondences entrusted to Lion's Bell.</span></div>
       </div>
 
-      <div class="nav-links">
-        <a href="#doctrine">Doctrine</a>
-        <a href="#rites">Rites</a>
-        <a href="#archive">Archive</a>
-        <a href="#initiate">Initiate</a>
-      </div>
-    </nav>
+      <div class="seal">♌ Sanctioned by the Solar Chapter</div>
+    </div>
 
-    <section class="hero" id="top">
-      <div class="hero-card">
-        <div class="eyebrow">Esoteric Division · Celestial Inquiry · Hidden Transmission</div>
+    <aside class="ritual-panel" id="watch">
+      <h3>Current Skywatch Rite</h3>
+      <div class="symbol">🛸</div>
+      <p>
+        At moonrise, face the eastern dark. Ring the bell once for warning, once for passage, and once for the intelligences that drift just beyond common sight.
+      </p>
+    </aside>
+  </div>
+</section>
 
-        <h1 class="title">
-          <span>The Order of the</span>
-          <span>Sun Bell</span>
-        </h1>
+<section class="section" id="initiation">
+  <div class="section-header">
+    <h2>Initiation into the Bell</h2>
+    <p>
+      Admission is offered only to those who can hold silence, endure mystery, and witness the sky without demanding that wonder become ordinary.
+    </p>
+  </div>
 
-        <div class="hero-ornaments" aria-hidden="true">
-          <div class="line"></div>
-          <div>☾ ✦ ⟁ ✦ ☼</div>
-          <div class="line"></div>
-        </div>
+  <div class="grid">
+    <article class="card">
+      <div class="glyph">I</div>
+      <h3>The Report</h3>
+      <p>
+        Present one worthy anomaly: a dream, a signal, a sighting, or an event whose pattern cannot be dismissed by habit alone.
+      </p>
+    </article>
 
-        <p class="subtitle">
-          A secret society devoted to the study of liminal astronomy, forgotten frequencies, and the veiled mechanics between mysticism and borderline science. We do not chase proof alone. We listen for the resonance beneath it.
-        </p>
+    <article class="card">
+      <div class="glyph">II</div>
+      <h3>The Vow</h3>
+      <p>
+        Swear upon the bell and crest that no rite, archive, location, or witness name shall be surrendered to the uninitiated.
+      </p>
+    </article>
 
-        <div class="hero-actions">
-          <a class="primary-btn" href="#initiate">Request Initiation</a>
-          <a class="ghost-btn" href="#archive">Enter the Archive</a>
-        </div>
-      </div>
-    </section>
+    <article class="card">
+      <div class="glyph">III</div>
+      <h3>The Summons</h3>
+      <p>
+        If accepted, you will be marked by sign: in dream, in static, in sealed correspondence, or in a light crossing the midnight field.
+      </p>
+    </article>
+  </div>
+</section>
 
-    <section class="section" id="doctrine">
-      <div class="section-header">
-        <h2>The Doctrine</h2>
-        <p>
-          Inspired by occult illustration, cosmic iconography, and ceremonial research aesthetics, the Order preserves a mythic atmosphere while framing itself as an elite observatory of impossible phenomena.
-        </p>
-      </div>
+<footer class="footer">
+  Lion's Bell · Borderline Sciences Research Observatory · Established Beyond Public Record
+</footer>
 
-      <div class="grid">
-        <article class="card">
-          <div class="glyph">☼</div>
-          <h3>Solar Memory</h3>
-          <p>
-            We study the theory that sunlight may carry encoded remnants of prior ages—signals trapped in heat, reflection, and ritual architecture.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="glyph">🛸</div>
-          <h3>Liminal Craft</h3>
-          <p>
-            Through archived sightings and symbolic geometry, we examine the possibility that visitors announce themselves through pattern long before form.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="glyph">🔔</div>
-          <h3>The Bell Principle</h3>
-          <p>
-            Every revelation arrives as resonance. The bell represents awakening: the strike that separates the ordinary world from the hidden one.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="archive">
-      <div class="section-header">
-        <h2>The Hidden Archive</h2>
-        <p>
-          Fragments of field notes, lunar charts, transmission logs, and ceremonial diagrams remain sealed behind the inner vault. Only initiates may view the complete record.
-        </p>
-      </div>
-
-      <div class="manifesto">
-        <div class="scroll-panel">
-          <p class="quote">
-            “We stand at the border of <strong>science and omen</strong>, where measurement becomes myth, and myth becomes method.”
-          </p>
-
-          <div class="list">
-            <div class="list-item"><span>✦</span><span>Catalog apparitions, celestial anomalies, and impossible correspondences.</span></div>
-            <div class="list-item"><span>✦</span><span>Translate symbolic events into research protocols and ritual practice.</span></div>
-            <div class="list-item"><span>✦</span><span>Guard the names, coordinates, and frequencies entrusted to the Order.</span></div>
-          </div>
-
-          <div class="seal">☼ Authorized by the Ninth Chamber</div>
-        </div>
-
-        <aside class="ritual-panel" id="rites">
-          <h3>Current Rite</h3>
-          <div class="symbol">☾</div>
-          <p>
-            At moonrise, ring the bell once for memory, once for warning, once for the unknown intelligence that listens back.
-          </p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="initiate">
-      <div class="section-header">
-        <h2>Initiation Protocol</h2>
-        <p>
-          Membership is extended only to those who demonstrate discipline, secrecy, and a willingness to observe phenomena without demanding ordinary explanations.
-        </p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="glyph">I</div>
-          <h3>Observation</h3>
-          <p>
-            Submit one anomaly, dream, signal, or field occurrence worthy of preservation in the central record.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="glyph">II</div>
-          <h3>Silence</h3>
-          <p>
-            Swear never to reveal the rites, names, or coordinates of the Order to the uninitiated.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="glyph">III</div>
-          <h3>Resonance</h3>
-          <p>
-            Await the bell. If accepted, you will receive a sign in dream, static, or sealed correspondence.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <footer class="footer">
-      The Order of the Sun Bell · Borderline Sciences Research · Established Beyond Record
-    </footer>
   </main>
 </body>
 </html>
