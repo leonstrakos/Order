@@ -1,205 +1,627 @@
-export default function BSRAMysticLanding() { const sections = [ { title: "The Foundation", text: "The Borderline Sciences Research Foundation studies the threshold where forgotten mathematics, celestial anomalies, ritual acoustics, and buried civilizations begin to overlap. Officially, the archives do not exist. Unofficially, they are older than the first library.", }, { title: "Active Domains", text: "Field divisions include Pythagorean harmonics, Sumerian sky tablets, impossible geometries, mnemonic rites, encoded bell frequencies, and cold-case phenomena filed under lunar interference.", }, { title: "Restricted Inquiry", text: "Candidates are admitted only after demonstrating tolerance for paradox, symbolic logic, and silence. The final initiation is said to begin when the bell rings where no bell was ever cast.", }, ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Order of the Sun Bell</title>
+  <style>
+    :root {
+      --bg: #040404;
+      --ink: #f5f1e8;
+      --muted: #cfc6b1;
+      --gold: #e4c77a;
+      --gold-soft: #b5964d;
+      --violet: #7a74ff;
+      --violet-soft: rgba(122, 116, 255, 0.28);
+      --crimson: #d93636;
+      --line: rgba(255, 241, 214, 0.22);
+      --panel: rgba(12, 9, 18, 0.72);
+      --shadow: 0 0 40px rgba(122, 116, 255, 0.18), 0 0 100px rgba(228, 199, 122, 0.08);
+    }
 
-const dossiers = [ "The Order of the Sun's Bell", "Project Black Tablet", "The Ninth Harmonic Chamber", "Codex of the Hollow Constellation", ];
+    * { box-sizing: border-box; }
 
-const symbols = ["✶", "☾", "✦", "⟁", "◬", "✷", "☉", "✺"];
+    html {
+      scroll-behavior: smooth;
+    }
 
-return ( <div className="min-h-screen bg-black text-stone-100 overflow-hidden relative"> <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(90,90,180,0.18),transparent_35%),radial-gradient(circle_at_bottom,rgba(255,255,255,0.08),transparent_28%)]" /> <div className="absolute inset-0 opacity-30 pointer-events-none"> <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" /> </div>
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(122,116,255,0.16), transparent 24%),
+        radial-gradient(circle at 20% 10%, rgba(228,199,122,0.10), transparent 18%),
+        radial-gradient(circle at 80% 15%, rgba(228,199,122,0.08), transparent 16%),
+        linear-gradient(180deg, #020202 0%, #07050c 45%, #030303 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-<div className="absolute inset-0 pointer-events-none">
-    {Array.from({ length: 60 }).map((_, i) => (
-      <span
-        key={i}
-        className="absolute text-[10px] text-indigo-200/60 animate-pulse"
-        style={{
-          left: `${(i * 37) % 100}%`,
-          top: `${(i * 53) % 100}%`,
-          animationDelay: `${(i % 7) * 0.4}s`,
-        }}
-      >
-        {symbols[i % symbols.length]}
-      </span>
-    ))}
-  </div>
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 8% 14%, rgba(255,255,255,0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 18% 32%, rgba(228,199,122,0.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 24% 72%, rgba(255,255,255,0.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 78% 20%, rgba(255,255,255,0.92) 0 1px, transparent 2px),
+        radial-gradient(circle at 88% 66%, rgba(228,199,122,0.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 66% 78%, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.5) 0 1px, transparent 2px);
+      opacity: 0.8;
+      z-index: 0;
+    }
 
-  <main className="relative z-10 max-w-7xl mx-auto px-6 py-10 md:px-10 lg:px-16">
-    <header className="border border-indigo-200/20 rounded-[2rem] bg-white/5 backdrop-blur-sm shadow-2xl shadow-indigo-500/10 overflow-hidden">
-      <div className="px-6 py-5 md:px-10 md:py-8 border-b border-indigo-100/10 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.45em] text-indigo-200/70">Unauthorized Archive 03</p>
-          <p className="text-sm text-stone-300/80 mt-2">Borderline Sciences Research Foundation</p>
-        </div>
-        <div className="text-right">
-          <p className="text-xs uppercase tracking-[0.35em] text-stone-400">Status</p>
-          <p className="text-sm text-emerald-300/80">Observing the Threshold</p>
-        </div>
+    .sigil-ring,
+    .sigil-ring::before,
+    .sigil-ring::after {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(228, 199, 122, 0.26);
+      content: "";
+    }
+
+    .sigil-ring {
+      width: 28rem;
+      height: 28rem;
+      left: 50%;
+      top: 8rem;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 0 25px rgba(122,116,255,0.18));
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .sigil-ring::before {
+      inset: 2.5rem;
+    }
+
+    .sigil-ring::after {
+      inset: 5rem;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1160px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.2rem 0 5rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand small {
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .brand strong {
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a,
+    .ghost-btn,
+    .primary-btn {
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 4rem 0 2rem;
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      width: min(980px, 100%);
+      padding: 3rem 1.4rem 2.6rem;
+      background: linear-gradient(180deg, rgba(17,14,24,0.32), rgba(6,6,10,0.15));
+      border: 1px solid rgba(255, 242, 212, 0.16);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "✦ ✦ ✦";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      letter-spacing: 1rem;
+      color: rgba(228, 199, 122, 0.75);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .hero-card::before { top: 1rem; }
+    .hero-card::after { bottom: 1rem; }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 1rem;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(3rem, 9vw, 6.9rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(122,116,255,0.38), 0 0 2px rgba(255,255,255,0.8);
+    }
+
+    .title span {
+      display: block;
+    }
+
+    .subtitle {
+      width: min(760px, 100%);
+      margin: 1.4rem auto 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-ornaments {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.7rem 0;
+      color: var(--gold);
+      opacity: 0.9;
+      font-size: 1.2rem;
+    }
+
+    .hero-ornaments .line {
+      width: min(180px, 18vw);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(228,199,122,0.7), transparent);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.8rem;
+    }
+
+    .primary-btn,
+    .ghost-btn {
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(228, 199, 122, 0.34);
+      transition: 180ms ease;
+    }
+
+    .primary-btn {
+      background: linear-gradient(180deg, rgba(228,199,122,0.20), rgba(122,116,255,0.12));
+      box-shadow: 0 0 24px rgba(122,116,255,0.15);
+    }
+
+    .ghost-btn {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .primary-btn:hover,
+    .ghost-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(228, 199, 122, 0.6);
+      color: var(--gold);
+    }
+
+    .section {
+      margin-top: 4.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      margin: 0 0 0.7rem;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-header p {
+      width: min(680px, 100%);
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid rgba(255, 243, 219, 0.12);
+      border-radius: 24px;
+      padding: 1.4rem;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(122,116,255,0.08), transparent 30%, transparent 70%, rgba(228,199,122,0.05));
+      pointer-events: none;
+    }
+
+    .glyph {
+      font-size: 1.55rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.97rem;
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .scroll-panel,
+    .ritual-panel {
+      background: linear-gradient(180deg, rgba(15,12,22,0.86), rgba(7,7,11,0.82));
+      border: 1px solid rgba(255, 244, 220, 0.12);
+      border-radius: 28px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-panel::after,
+    .ritual-panel::after {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border: 1px solid rgba(228, 199, 122, 0.12);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .quote {
+      font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+      line-height: 1.5;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .quote strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .list {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.3rem;
+    }
+
+    .list-item {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .list-item span:first-child {
+      color: var(--gold);
+    }
+
+    .seal {
+      margin-top: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid rgba(228,199,122,0.22);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--gold);
+    }
+
+    .ritual-panel h3 {
+      margin-top: 0;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .ritual-panel .symbol {
+      font-size: 5rem;
+      line-height: 1;
+      text-align: center;
+      margin: 1rem 0;
+      text-shadow: 0 0 20px rgba(122,116,255,0.35);
+    }
+
+    .ritual-panel p {
+      color: var(--muted);
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .manifesto {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 3rem;
+      }
+
+      .hero-card {
+        padding-inline: 1rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 1rem, 1160px);
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .title {
+        font-size: clamp(2.6rem, 16vw, 4.2rem);
+      }
+
+      .subtitle {
+        font-size: 0.94rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-ornaments .line {
+        width: 20vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sigil-ring" aria-hidden="true"></div>
+
+  <main class="page">
+    <nav class="nav">
+      <div class="brand">
+        <small>Borderline Sciences Research Archive</small>
+        <strong>Order of the Sun Bell</strong>
       </div>
 
-      <section className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 px-6 py-10 md:px-10 md:py-14">
-        <div className="space-y-6">
-          <div className="flex items-center gap-4 text-indigo-100/80 text-sm tracking-[0.3em] uppercase">
-            <span>☾</span>
-            <span>The Hidden Collegium</span>
-            <span>✶</span>
-          </div>
+      <div class="nav-links">
+        <a href="#doctrine">Doctrine</a>
+        <a href="#rites">Rites</a>
+        <a href="#archive">Archive</a>
+        <a href="#initiate">Initiate</a>
+      </div>
+    </nav>
 
-          <h1 className="text-5xl md:text-7xl xl:text-8xl leading-[0.95] font-serif tracking-tight text-stone-100 drop-shadow-[0_0_22px_rgba(150,150,255,0.18)]">
-            BSRA
-            <span className="block text-2xl md:text-4xl xl:text-5xl mt-5 text-indigo-100/90">
-              Borderline Sciences Research Foundation
-            </span>
-          </h1>
+    <section class="hero" id="top">
+      <div class="hero-card">
+        <div class="eyebrow">Esoteric Division · Celestial Inquiry · Hidden Transmission</div>
 
-          <p className="max-w-2xl text-base md:text-lg leading-8 text-stone-300/85">
-            A clandestine institution for the study of mystical evidence, fringe cosmology,
-            sacred number systems, anomalous bells, vanished empires, and the disciplined
-            crossing point between science and forbidden memory.
-          </p>
+        <h1 class="title">
+          <span>The Order of the</span>
+          <span>Sun Bell</span>
+        </h1>
 
-          <div className="flex flex-wrap gap-4 pt-2">
-            <button className="rounded-full border border-indigo-200/30 bg-indigo-200/10 px-6 py-3 text-sm uppercase tracking-[0.25em] text-indigo-50 shadow-lg shadow-indigo-500/10 hover:bg-indigo-200/15 transition">
-              Request Admission
-            </button>
-            <button className="rounded-full border border-stone-200/20 px-6 py-3 text-sm uppercase tracking-[0.25em] text-stone-200/80 hover:bg-white/5 transition">
-              View Dossiers
-            </button>
-          </div>
+        <div class="hero-ornaments" aria-hidden="true">
+          <div class="line"></div>
+          <div>☾ ✦ ⟁ ✦ ☼</div>
+          <div class="line"></div>
         </div>
 
-        <div className="relative">
-          <div className="absolute -inset-4 rounded-[2rem] bg-indigo-300/10 blur-3xl" />
-          <div className="relative rounded-[2rem] border border-indigo-100/20 bg-black/50 p-6 md:p-8 h-full shadow-2xl">
-            <div className="flex items-center justify-between mb-8">
-              <span className="text-xs uppercase tracking-[0.4em] text-indigo-200/70">Primary Seal</span>
-              <span className="text-stone-500">◌</span>
-            </div>
-
-            <div className="aspect-square rounded-full border border-indigo-100/15 flex items-center justify-center relative bg-[radial-gradient(circle,rgba(95,95,220,0.18),rgba(0,0,0,0.1)_35%,transparent_60%)]">
-              <div className="absolute inset-6 rounded-full border border-dashed border-indigo-100/20" />
-              <div className="absolute inset-14 rounded-full border border-indigo-100/15" />
-              <div className="absolute inset-20 rounded-full border border-dashed border-stone-100/10" />
-              <div className="text-center px-8">
-                <div className="text-5xl md:text-6xl mb-3">☉</div>
-                <div className="text-lg uppercase tracking-[0.45em] text-indigo-100/85">Sun Bell</div>
-                <div className="mt-4 text-sm leading-6 text-stone-300/75">
-                  Resonant key for sealed archives and celestial rites.
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-3 mt-8 text-center text-xs uppercase tracking-[0.3em] text-stone-400">
-              <div className="rounded-2xl border border-white/10 py-3">Sky</div>
-              <div className="rounded-2xl border border-white/10 py-3">Number</div>
-              <div className="rounded-2xl border border-white/10 py-3">Ritual</div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </header>
-
-    <section className="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 mt-10">
-      <div className="rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 shadow-xl">
-        <p className="text-xs uppercase tracking-[0.45em] text-indigo-200/70">Foundational Statement</p>
-        <h2 className="text-3xl md:text-4xl font-serif mt-5 text-stone-100">
-          Not occult. Not academic. Both.
-        </h2>
-        <p className="mt-5 text-stone-300/85 leading-8">
-          BSRA operates in the interval between classified research and sacred tradition.
-          Its members collect impossible correspondences: stars echoing old temple ratios,
-          bells reproducing encoded maps, and witnesses describing the same geometry across
-          centuries of unrelated civilizations.
+        <p class="subtitle">
+          A secret society devoted to the study of liminal astronomy, forgotten frequencies, and the veiled mechanics between mysticism and borderline science. We do not chase proof alone. We listen for the resonance beneath it.
         </p>
 
-        <div className="mt-8 rounded-[1.5rem] border border-indigo-100/15 bg-black/40 p-5">
-          <p className="text-xs uppercase tracking-[0.35em] text-stone-500 mb-4">Recovered Motto</p>
-          <p className="font-serif text-2xl text-indigo-50/95 leading-relaxed">
-            “Where reason thins, the pattern begins.”
-          </p>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-6">
-        {sections.map((section) => (
-          <article
-            key={section.title}
-            className="rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/8 to-white/4 p-6 shadow-xl"
-          >
-            <div className="text-indigo-200/80 text-2xl mb-4">✦</div>
-            <h3 className="text-2xl font-serif text-stone-100">{section.title}</h3>
-            <p className="mt-4 text-sm leading-7 text-stone-300/80">{section.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section className="grid lg:grid-cols-[1fr_0.9fr] gap-6 mt-10">
-      <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8 shadow-xl">
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div>
-            <p className="text-xs uppercase tracking-[0.45em] text-indigo-200/70">Current Dossiers</p>
-            <h2 className="text-3xl font-serif mt-4">Restricted Cases</h2>
-          </div>
-          <div className="rounded-full border border-indigo-100/15 px-4 py-2 text-xs uppercase tracking-[0.35em] text-stone-400">
-            Level VII Access
-          </div>
-        </div>
-
-        <div className="mt-8 space-y-4">
-          {dossiers.map((item, idx) => (
-            <div
-              key={item}
-              className="group rounded-[1.5rem] border border-white/10 bg-black/35 px-5 py-4 flex items-center justify-between hover:border-indigo-200/30 hover:bg-white/5 transition"
-            >
-              <div>
-                <p className="text-xs uppercase tracking-[0.35em] text-stone-500">File {String(idx + 1).padStart(2, "0")}</p>
-                <p className="mt-2 text-lg font-serif text-stone-100 group-hover:text-indigo-100 transition">{item}</p>
-              </div>
-              <div className="text-indigo-200/70 text-xl">⟶</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 md:p-8 shadow-xl">
-        <p className="text-xs uppercase tracking-[0.45em] text-indigo-200/70">Transmission</p>
-        <h2 className="text-3xl font-serif mt-4 text-stone-100">Entrance Protocol</h2>
-        <ol className="mt-6 space-y-5 text-stone-300/85">
-          {[
-            "Observe the sky at the hour of second silence.",
-            "Memorize the ratio hidden in the bell sequence.",
-            "Enter only with a name you have never spoken aloud.",
-            "Bring no certainty past the threshold.",
-          ].map((step, i) => (
-            <li key={step} className="flex gap-4">
-              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-indigo-100/20 text-xs text-indigo-100">
-                {i + 1}
-              </span>
-              <span className="leading-7">{step}</span>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-8 rounded-[1.5rem] border border-indigo-100/15 bg-black/40 p-5">
-          <p className="text-xs uppercase tracking-[0.35em] text-stone-500">Field Note</p>
-          <p className="mt-3 text-sm leading-7 text-stone-300/80">
-            Internal references connect Pythagorean interval theory with Sumerian astronomical
-            records and modern anomaly reports formerly dismissed as folklore, hoax, or stress-induced patterning.
-          </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#initiate">Request Initiation</a>
+          <a class="ghost-btn" href="#archive">Enter the Archive</a>
         </div>
       </div>
     </section>
 
-    <footer className="mt-10 rounded-[2rem] border border-white/10 bg-white/5 px-6 py-6 md:px-8 md:py-7 flex flex-col md:flex-row gap-4 md:items-center md:justify-between text-sm text-stone-400">
-      <div>
-        <span className="uppercase tracking-[0.35em] text-indigo-200/70">BSRA</span>
-        <span className="mx-3 text-stone-600">/</span>
-        Borderline Sciences Research Foundation
+    <section class="section" id="doctrine">
+      <div class="section-header">
+        <h2>The Doctrine</h2>
+        <p>
+          Inspired by occult illustration, cosmic iconography, and ceremonial research aesthetics, the Order preserves a mythic atmosphere while framing itself as an elite observatory of impossible phenomena.
+        </p>
       </div>
-      <div className="uppercase tracking-[0.28em] text-xs">
-        Mystical Research · Forbidden Archives · Celestial Evidence
+
+      <div class="grid">
+        <article class="card">
+          <div class="glyph">☼</div>
+          <h3>Solar Memory</h3>
+          <p>
+            We study the theory that sunlight may carry encoded remnants of prior ages—signals trapped in heat, reflection, and ritual architecture.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="glyph">🛸</div>
+          <h3>Liminal Craft</h3>
+          <p>
+            Through archived sightings and symbolic geometry, we examine the possibility that visitors announce themselves through pattern long before form.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="glyph">🔔</div>
+          <h3>The Bell Principle</h3>
+          <p>
+            Every revelation arrives as resonance. The bell represents awakening: the strike that separates the ordinary world from the hidden one.
+          </p>
+        </article>
       </div>
+    </section>
+
+    <section class="section" id="archive">
+      <div class="section-header">
+        <h2>The Hidden Archive</h2>
+        <p>
+          Fragments of field notes, lunar charts, transmission logs, and ceremonial diagrams remain sealed behind the inner vault. Only initiates may view the complete record.
+        </p>
+      </div>
+
+      <div class="manifesto">
+        <div class="scroll-panel">
+          <p class="quote">
+            “We stand at the border of <strong>science and omen</strong>, where measurement becomes myth, and myth becomes method.”
+          </p>
+
+          <div class="list">
+            <div class="list-item"><span>✦</span><span>Catalog apparitions, celestial anomalies, and impossible correspondences.</span></div>
+            <div class="list-item"><span>✦</span><span>Translate symbolic events into research protocols and ritual practice.</span></div>
+            <div class="list-item"><span>✦</span><span>Guard the names, coordinates, and frequencies entrusted to the Order.</span></div>
+          </div>
+
+          <div class="seal">☼ Authorized by the Ninth Chamber</div>
+        </div>
+
+        <aside class="ritual-panel" id="rites">
+          <h3>Current Rite</h3>
+          <div class="symbol">☾</div>
+          <p>
+            At moonrise, ring the bell once for memory, once for warning, once for the unknown intelligence that listens back.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="initiate">
+      <div class="section-header">
+        <h2>Initiation Protocol</h2>
+        <p>
+          Membership is extended only to those who demonstrate discipline, secrecy, and a willingness to observe phenomena without demanding ordinary explanations.
+        </p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="glyph">I</div>
+          <h3>Observation</h3>
+          <p>
+            Submit one anomaly, dream, signal, or field occurrence worthy of preservation in the central record.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="glyph">II</div>
+          <h3>Silence</h3>
+          <p>
+            Swear never to reveal the rites, names, or coordinates of the Order to the uninitiated.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="glyph">III</div>
+          <h3>Resonance</h3>
+          <p>
+            Await the bell. If accepted, you will receive a sign in dream, static, or sealed correspondence.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      The Order of the Sun Bell · Borderline Sciences Research · Established Beyond Record
     </footer>
   </main>
-</div>
-
-); }
+</body>
+</html>
