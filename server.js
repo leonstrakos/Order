@@ -74,6 +74,10 @@ app.get("/home", (req, res) => {
   res.render("index");
 });
 
+app.get("/test", (req, res) => {
+  res.render("test");
+});
+
 
 app.get("/about", (req, res) => {
   res.render("about");
