@@ -78,6 +78,14 @@ app.get("/test", (req, res) => {
   res.render("test");
 });
 
+app.get("/test2", (req, res) => {
+  res.render("test2");
+});
+
+app.get("/test3", (req, res) => {
+  res.render("test3");
+});
+
 
 app.get("/about", (req, res) => {
   res.render("about");
