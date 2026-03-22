@@ -1,67 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order of Lions Bell</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>The Order of the Sun’s Bell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --gold: #d8b36a;
-      --gold-soft: #f1d7a2;
-      --sand: #b8955f;
-      --sand-light: #d9c29a;
-      --crimson: #6d1010;
-      --deep-red: #2b0707;
-      --night: #07060b;
-      --temple: #120d11;
-      --stone: rgba(193, 157, 104, 0.12);
-      --glow: 0 0 22px rgba(216, 179, 106, 0.28);
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
-      min-height: 100vh;
-      color: #f3e7ca;
-      font-family: 'Cormorant Garamond', serif;
-      background:
-        radial-gradient(circle at 50% 8%, rgba(255,255,255,0.14) 0 1px, transparent 2px) 0 0 / 160px 160px,
-        radial-gradient(circle at 20% 15%, rgba(255,255,255,0.65) 0 1px, transparent 2px) 0 0 / 210px 210px,
-        radial-gradient(circle at 75% 18%, rgba(255,255,255,0.35) 0 1px, transparent 2px) 0 0 / 180px 180px,
-        linear-gradient(180deg, #03040a 0%, #0a0710 18%, #12080a 40%, #19110f 100%);
-      overflow-x: hidden;
+      font-family: 'Cinzel', serif;
+      background: radial-gradient(circle at top, #0b0f1a, #000);
+      color: #e6e6e6;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1600') center/cover no-repeat;
       position: relative;
     }
 
-    body::before {
+    .hero::after {
       content: "";
-      position: fixed;
+      position: absolute;
       inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at top, rgba(87, 71, 122, 0.25), transparent 32%),
-        linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.5) 100%);
-      z-index: -2;
+      background: rgba(0,0,0,0.7);
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.48) 100%);
-      z-index: -1;
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
+    h1 {
+      font-size: 3rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px #ffd700, 0 0 30px #ffae00;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    /* GLOW BUTTON */
+    .btn {
+      margin-top: 25px;
+      padding: 12px 30px;
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      background: transparent;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ffd700;
+      color: #000;
+      box-shadow: 0 0 20px #ffd700;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #aaa;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      width: 250px;
+      backdrop-filter: blur(5px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 15px rgba(255,215,0,0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>THE ORDER OF THE SUN’S BELL</h1>
+      <p class="subtitle">Guardians of Light. Witnesses of the Unknown.</p>
+      <button class="btn">Join the Order</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <h2>The Order</h2>
+    <p>
+      A secret brotherhood sworn to protect humanity from forces beyond the stars.
+      Guided by ancient light, forged in cosmic fire.
+    </p>
+  </section>
+
+  <!-- MEMBERS -->
+  <section class="section">
+    <h2>The Knights</h2>
+    <div class="card-container">
+      <div class="card">Commander of Light</div>
+      <div class="card">Watcher of the Sky</div>
+      <div class="card">Bearer of the Bell</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 The Order of the Sun’s Bell
+  </footer>
+
+</body>
+</html>
     .hero {
       position: relative;
       min-height: 100vh;
