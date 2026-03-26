@@ -66,7 +66,7 @@ function requireAuth(req, res, next) {
   next();
 }
 
-app.use((req, res) => {
+app.all("*", (req, res) => {
   res.redirect("/");
 });
 
