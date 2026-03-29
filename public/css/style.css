@@ -86,6 +86,13 @@ h1 {
 }
 
 
+.download {
+  text-decoration: underline;
+ color: var(--text-muted);
+ font-size: small;
+}
+
+
 
 
 
