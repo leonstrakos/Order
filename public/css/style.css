@@ -306,6 +306,15 @@ button:hover {
   margin-bottom: 32px;
 }
 
+
+.about-subtitle {
+  font-style: italic;
+  color: var(--lion-gold);
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+}
+
 .about-text {
   font-style: italic;
   text-align: left;
