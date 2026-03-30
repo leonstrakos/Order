@@ -12,151 +12,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-About
-
-The Order of the Lion’s Bell is established as a philosophical and chivalric fellowship, devoted to awakening, the pursuit of knowledge, and the proclamation of truth.
-
-It draws from the wellsprings of mystical philosophy, ancient cosmology, Hermetic traditions, Gnostic thought, and the symbolic teachings of the mystery schools.
-
-The Order claims no single religious authority, but instead studies these traditions as symbolic paths toward the apprehension of reality and the unveiling of truth.
-
-Those who enter its path are known as Heralds of the Lion.
-
-The History of the Order of the Lion’s Bell
-
-Praecones Leonis Campanaeque Solis
-
-The origins of the tradition are set, in symbol and memory, within the Temple of Sais, and among the sacred precincts of the ancient Mediterranean world.
-
-There are accounts of a priestly brotherhood in Egypt—custodians of knowledge—said to have preserved sacred understanding beneath the great pyramids and within the temples along the Nile.
-
-This knowledge was neither possession nor invention, but inheritance:
-a gift entrusted to humanity, guarded, preserved, and heralded across the ages.
-
-Solon and the Egyptian Priests
-
-Among the earliest surviving testimonies is that recorded by Plato, who recounts the journey of the Athenian lawgiver Solon.
-
-In the dialogues Timaeus and Critias, Solon is said to have conversed with the priests of Sais. They declared unto him that while the Greeks had forgotten the greater part of the ancient past, the Egyptians preserved records extending beyond the memory of nations.
-
-It is held within the tradition that the guardians of this knowledge endure even now.
-
-Their secrecy before the world is the cause of their survival; thus, nothing may be spoken of their place, their number, nor of those things that would betray their existence.
-
-The Pythagorean Influence
-
-In later centuries, the philosopher Pythagoras—our teacher in many things—traveled among the lands of Egypt and the eastern Mediterranean.
-
-There he studied among priests and initiates, learning of number, harmony, and the hidden order of the cosmos.
-
-The Order maintains that he encountered that same current of temple wisdom once revealed to Solon, and that through him, fragments of this knowledge entered into the Pythagorean brotherhood, where they were preserved in altered form.
-
-The Middle Ages
-
-With the passing of ages and the decline of ancient civilizations, the tradition did not perish, but was dispersed.
-
-Fragments endured among philosophical circles, hidden schools, and, in time, among knightly and scholarly orders of the medieval world.
-
-In that age, the tradition assumed a chivalric form.
-
-No longer was the guardian merely a keeper of knowledge, but one who must embody it—through discipline, virtue, and fidelity to the highest ideals of humankind.
-
-Thus was joined the path of the philosopher with the path of the knight.
-
-The Order preserves these fragments still, and directs its purpose toward the great inquiry: the nature of humankind, its origin, and the mystery of consciousness.
-
-The Modern Order
-
-In this present age, the Order of the Lion’s Bell stands not as a restoration, but as a continuation of the lineage.
-
-It seeks to unite the streams of Egyptian temple knowledge, Greek philosophy, and later esoteric traditions, together with the inquiries of the modern world.
-
-Established within the lands of the Mediterranean, the Order makes use of the instruments of the present age for the preservation and dissemination of knowledge.
-
-Its aim is to gather those of diverse disciplines—scientists, historians, philosophers, and seekers—into a common labor:
-to restore what has been forgotten, and to illuminate what remains concealed.
-
-For knowledge is not the possession of the few, but the birthright of all who would seek it.
-
-And to those who step beyond the cave and turn toward the light, the first radiance shall not be denied.
-
-Symbolism
-
-The name of the Order is taken with deliberation.
-
-For we are heralds of the knowledge once spoken within the Temple of Sais—yet let it be clearly understood: we are not its guardians.
-
-Nor is Sais the first, nor the only temple; therefore, we claim no such title, nor any right to it.
-
-The Lion stands as a symbol of solar power, strength, and vigilance. Sacred to deities such as Sekhmet, it was set as guardian before the gates of the temple. It is also the name of our founder.
-
-The Bell is the central emblem of the Order.
-
-It rings for all.
-
-Its sound signifies the universal call to awakening, for every human being lives within reach of that summons toward knowledge, understanding, and truth.
-
-Yet the Bell also speaks of time.
-
-Each moment bears the possibility of awakening, and yet each moment passes. Thus it stands as both invitation and warning—of opportunity, and of its limit.
-
-It calls to gather, to listen, and to awaken, as the Sun illuminates and lifts the Veil of Isis.
-
-For as vibration is the first principle, so the Bell is its sign—
-and a reminder of the race between knowledge and the mortality of man, until the final silence of Sol.
-
-
-
-
-
-
-
-
-
-
-
-
-
-Non a nobis.
-Non pro nobis.
-Sed per nos sonat campana.
-
--------------------
-Sol lucet omnibus .
-Campana sonat omnibus 
-
-Sol lucet omnibus, sed non omnes audiunt
-------------------
-
-Qui audiunt vident - those to hear, see
-
-___________
-
-
-Unum est omnia
-
-
 Cave eos qui dona falsa et promissa fracta ferunt. - bewae the bearers
-
-Obliviscere.
-Aude. | Esto fortis | Noli cedere
-Obliviscere.
-
-
 
 
 
@@ -177,19 +33,13 @@ That structure is actually very elegant.
 
 
 
+Yes — **Campana sonat omnibus** can
+ actually be connected to **all three traditions**
+  you mentioned (Hermetic, Pythagorean, and Christian),
+   but in slightly different ways. That’s part of why the phrase works well:
+    it’s **symbolic enough to resonate across traditions without belonging to just one**.
 
 
-
-
-
-
-
-
-Yes — **Campana sonat omnibus** can actually be connected to **all three traditions** you mentioned (Hermetic, Pythagorean, and Christian), but in slightly different ways. That’s part of why the phrase works well: it’s **symbolic enough to resonate across traditions without belonging to just one**.
-
-Let’s look at how each worldview might interpret it.
-
----
 
 # Hermetic Interpretation
 
@@ -319,36 +169,5 @@ THE LION (4) - lion - me
 
 
 
+praecones.org
 
-
-
-
-
-
-Before putting it on a real server:
-
-change the session secret
-
-change the seeded password
-
-add .gitignore for:
-order.db
-.env 
-
-
-
-node_modules
-order.db
-.env
-
-
-
-heraldsofthelion.org
-ordopraeconum.org
-praeconum.org
-
-
-
-sudo apt install certbot python3-certbot-nginx
-
-sudo apt install certbot python3-certbot-nginx
