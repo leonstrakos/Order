@@ -199,7 +199,7 @@ app.get("/api/me", (req, res) => {
 //const nodemailer = require('nodemailer');
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-app.post('/join', async (req, res) => {
+app.post('/form', async (req, res) => {
   try {
     const { day, life, email, gain, give } = req.body;
 
