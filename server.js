@@ -6,6 +6,7 @@ const db = require("./db");
 const helmet = require("helmet");
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { Readable } = require('stream');
+const { Resend } = require('resend');
 require("dotenv").config();
 
 const app = express();
@@ -101,8 +102,8 @@ app.get("/document", (req, res) => {
 });
 
 
-app.get("/bell", (req, res) => {
-  res.render("bell");
+app.get("/form", (req, res) => {
+  res.render("form");
 });
 
 app.get("/copyright", (req, res) => {
@@ -187,6 +188,75 @@ app.get("/api/me", (req, res) => {
 
 
 
+
+
+
+
+
+
+// mailinggg
+
+//const nodemailer = require('nodemailer');
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+app.post('/join', async (req, res) => {
+  try {
+    const { day, life, email, gain, give } = req.body;
+
+    if (!day || !life || !email || !gain || !give) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: 'Order of the Lions Bell <info@heraldsofthelion.org>',
+      to: ['apply@heraldsofthelion.org'],
+      reply_to: email,
+      subject: 'New Seeker Application',
+      html: `
+        <div style="font-family: Georgia, serif; line-height: 1.6;">
+          <h2>New Secret Society Application</h2>
+          <p><strong>Applicant email:</strong> ${escapeHtml(email)}</p>
+          <hr />
+          <p><strong>Describe your day</strong></p>
+          <p>${nl2br(escapeHtml(day))}</p>
+          <p><strong>Describe your life</strong></p>
+          <p>${nl2br(escapeHtml(life))}</p>
+          <p><strong>What do you expect to gain?</strong></p>
+          <p>${nl2br(escapeHtml(gain))}</p>
+          <p><strong>What are you willing to give up?</strong></p>
+          <p>${nl2br(escapeHtml(give))}</p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Failed to send application.' });
+    }
+
+    return res.json({
+      message: 'Your petition has been delivered.',
+      id: data?.id,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Something went wrong.' });
+  }
+});
+
+function escapeHtml(str = '') {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function nl2br(str = '') {
+  return str.replace(/\n/g, '<br>');
+}
+   
 
 
 
