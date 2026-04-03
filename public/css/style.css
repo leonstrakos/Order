@@ -560,29 +560,6 @@ img, video {
 
 
 
-
-/*
-  #header {
-    max-height: 80px;
-    gap: 0px;
-  }
-
-  .nav-left { 
-    justify-content: flex-start;
-    margin-top: 20px ;
-  }
-  .nav-right { 
-    justify-content: flex-end; 
-    margin-top: -80px;
-  }
-
-  .logo-img {
-    width: 80px;
-    margin-top: -50px;
-  }
-*/
-
-
   #header {
     grid-template-columns: 1fr auto 1fr;
     align-items: start;
