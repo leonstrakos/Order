@@ -422,26 +422,59 @@ label {
 
 
 .heading-text h2 {
-  margin: 60px 0 0px;
-  text-align: left;
-  line-height: 1;
-  font-family: "Cicero", Georgia, serif;
-  font-size: clamp(2.8rem, 5vw, 4rem);
-
+  
+/*
   background: url("/images/background.webp") center center / cover no-repeat;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
   text-shadow: none;
+   */
+}
+
+.heading-text h2 {
+  margin: 60px 0 0;
+  text-align: left;
+  line-height: 1;
+  font-family: "Cicero", Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+
+  background:
+    linear-gradient(rgba(255,255,255,0.04), rgba(120,30,30,0.10)),
+    url("/images/background.webp");
+  background-size: 180% auto;
+  background-position: 0% 50%;
+  background-repeat: repeat;
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+
+animation: titleDrift 28s ease-in-out infinite;
 }
 
 
+@keyframes titleDrift {
+  0% {
+    background-position: 0% 50%, 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%, 0% 50%;
+  }
+}
 
 
-
-
-
+@media (prefers-reduced-motion: reduce) {
+  .heading-text h2 {
+    animation: none;
+  }
+}
 
 
 
