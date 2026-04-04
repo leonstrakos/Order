@@ -31,6 +31,8 @@
 }
 
 
+
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -38,6 +40,13 @@
       color: #f4ead6;
       background:black; /* MAKE IT STARRY*/
       padding: 36px 18px 60px;
+
+
+        background:
+        linear-gradient(to bottom, rgba(10,10,15,0.9) 60%, rgba(10,10,15,0.95) 90%, rgba(10,10,15,1) 100%),
+        url("/images/background.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .page {
@@ -216,7 +225,7 @@ label {
   
     /* Antique Parchment */
     .parchment {
-      background: #e0c286;;
+      background: #e0c286;
       border: 1px solid rgba(188, 157, 106, 0.24);
       box-shadow: 0 18px 44px rgba(0,0,0,0.18);
     }
@@ -284,6 +293,7 @@ label {
       border: 1px solid #6e4f2d;
       border-radius: 999px;
       box-shadow: 0 10px 22px rgba(106, 51, 22, 0.2);
+      
     }
 
 
@@ -301,13 +311,13 @@ label {
 
 .dropcap-box {
   flex: 0 0 auto;
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   display: grid;
   place-items: center;
   position: relative;
   font-family: "Cicero", Georgia, serif;
-  font-size: 4.8rem;
+  font-size: 10rem;
   line-height: 1;
   color: #7f1414;
   background:
@@ -323,9 +333,6 @@ label {
     1px 1px 0 rgba(255, 223, 145, 0.7),
     0 0 10px rgba(159, 31, 31, 0.18);
 }
-
-
-
 
 
 
@@ -398,10 +405,32 @@ label {
 
 
 
+.dropcap-box {
+  /*DELETE FOR BOX*/
+  font-size: 10rem;
+  color: #8f1c1c;
+  margin-top: 40px;
 
 
 
+}
 
+
+
+.heading-text h2 {
+  margin: 60px 0 0px;
+  text-align: left;
+  line-height: 1;
+  font-family: "Cicero", Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+
+  background: url("/images/background.webp") center center / cover no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
 
 
 
@@ -437,20 +466,32 @@ label {
 
 
     .ornate-heading {
-    flex-direction: column;
-    gap: 16px;
+    gap: 0px;
+    margin-bottom: 40px;
     }
 
     .dropcap-box {
     width: 90px;
     height: 90px;
-    font-size: 3.9rem;
+    font-size: 5rem;
+    margin-top: 0px;
+
+    background: none;
+    border: none;
+    box-shadow: none;
     }
 
     .heading-text h2 {
-    margin-top: 0;
+    margin-top: 50px;
+    font-size: 2.8rem;
     }
 
+
+        .parchment {
+      background: #15064125;
+      border: 1px solid rgba(255, 255, 255, 0.233);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
 
 
 
@@ -487,11 +528,10 @@ label {
                 
                 
                             <div class="ornate-heading">
-            <span class="dropcap-box">J</span>
+            <span class="dropcap-box">B</span>
             <div class="heading-text">
-                <h2>oin the Order</h2>
+                <h2>ell's application</h2>
                 <p class="intro">
-                Fill out the application to request access into the Order.
                 </p>
             </div>
             </div>
