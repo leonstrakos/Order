@@ -65,21 +65,22 @@ h2{
 
 
 @media (max-width: 700px) {
-.disc:hover{
+
+  .disc:hover{
   color: #c9a45c;
   scale: 1.2;
-  margin-left: 0px;
+  margin-left: 0px; 
+  }
 
   #disciplines {
   margin-top:-200px;
+  }
+
+.d7 { top: 50%; left: 80%; }
+
+
 }
 
-.d7{ top: 50%; left: 80%; }
-
-
-
-}
-}
 
 
 
