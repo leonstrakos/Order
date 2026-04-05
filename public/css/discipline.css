@@ -68,11 +68,10 @@ h2{
 .disc:hover{
   color: #c9a45c;
   scale: 1.2;
-  margin-left: 50px;
+  margin-left: 0px;
 
   #disciplines {
   margin-top:-200px;
-  margin-bottom: 100px;
 }
 
 .d7{ top: 50%; left: 80%; }
