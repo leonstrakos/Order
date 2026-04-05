@@ -12,7 +12,6 @@ TEST SITE
 
 */
 
-
 :root{
 --bg:#060606;
 --gold:#d6b36a;
@@ -20,7 +19,7 @@ TEST SITE
 --ink:#f4efe6;
 --muted:#cfc6b2;
 --violet:#6e66ff;
---panel:rgba(18,14,26,0.75);
+--panel:rgba(18, 14, 26, 0.438);
 }
 
 *{box-sizing:border-box}
@@ -96,27 +95,21 @@ nav a:hover{color:var(--gold)}
 .hero{
 text-align:center;
 padding:5rem 0 3rem;
-
-  margin-bottom: 60px;
+margin-bottom:60px;
 }
-
-
-
 
 .hero-card{
 background:linear-gradient(180deg,rgba(20,15,30,.6),rgba(8,8,12,.3));
 border:1px solid rgba(255,235,200,.15);
 border-radius:28px;
-padding:3rem 1.5rem;
+padding:2rem 1.5rem;
 backdrop-filter:blur(6px);
 box-shadow:0 0 45px rgba(110,102,255,.18);
 }
 
-
-
 h1{
 margin:.3rem 0;
-font-size:clamp(3rem,8vw,6rem);
+font-size:clamp(4rem,8vw,6rem);
 text-transform:uppercase;
 letter-spacing:.05em;
 text-shadow:0 0 16px rgba(110,102,255,.4);
@@ -127,6 +120,147 @@ max-width:700px;
 margin:1.4rem auto;
 line-height:1.8;
 color:var(--muted);
+}
+
+/* sections */
+section{margin-top:4rem}
+
+.section ul{
+list-style:none;
+padding-left:0;
+margin:0;
+}
+
+.section li{
+position:relative;
+padding-left:18px;
+margin-bottom:14px;
+line-height:1.8;
+color:var(--muted);
+}
+
+.section li::before{
+content:"✶";
+position:absolute;
+left:0;
+top:0;
+color:var(--gold);
+font-size:13px;
+}
+
+.glyph{
+font-size:1.7rem;
+color:var(--gold);
+}
+
+.panel{
+background:linear-gradient(180deg,rgba(16, 13, 22, 0.137),rgba(7, 7, 10, 0));
+border:1px solid rgba(255,235,200,.12);
+border-radius:26px;
+padding:1.5rem;
+}
+
+/* accordion */
+.accordion{
+display:grid;
+gap:24px;
+margin-top:2rem;
+}
+
+.panel-box{
+background:linear-gradient(180deg,rgba(16, 13, 22, 0.137),rgba(7, 7, 10, 0));
+border:1px solid rgba(255,235,200,.12);
+border-radius:26px;
+overflow:hidden;
+transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.panel-box[open]{
+background:linear-gradient(180deg,rgba(20,15,30,.6),rgba(8,8,12,.3));
+border:1px solid rgba(255,235,200,.15);
+backdrop-filter:blur(6px);
+box-shadow:0 0 45px rgba(110,102,255,.18);
+}
+
+.panel-box summary{
+list-style:none;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:14px;
+padding:1.5rem;
+}
+
+.panel-box summary::-webkit-details-marker{
+display:none;
+}
+
+.panel-box h3{
+margin:0;
+text-transform:uppercase;
+font-size:1rem;
+letter-spacing:.08em;
+}
+
+.panel-content{
+padding:0 1.5rem 1.5rem 1.5rem;
+}
+
+.panel-content p{
+margin:0;
+color:var(--muted);
+line-height:1.8;
+}
+
+.records{
+display:grid;
+gap:14px;
+}
+
+.record-block{
+background:rgba(255,255,255,.02);
+border:1px solid rgba(255,235,200,.08);
+border-radius:18px;
+padding:1rem 1.1rem;
+}
+
+.record-block h4{
+margin:0 0 .45rem 0;
+color:var(--ink);
+text-transform:uppercase;
+letter-spacing:.08em;
+font-size:.88rem;
+}
+
+.record-block p{
+margin:0;
+color:var(--muted);
+line-height:1.7;
+}
+
+@media(max-width:900px){
+.hero{
+padding:4rem 0 2rem;
+margin-bottom:40px;
+}
+
+.panel-box summary,
+.panel-content,
+.hero-card{
+padding-left:1.1rem;
+padding-right:1.1rem;
+}
+}
+
+
+.section-title{
+text-align:center;
+margin-bottom:2rem;
+}
+
+.section-title h2{
+text-transform:uppercase;
+letter-spacing:.08em;
 }
 
 
@@ -150,51 +284,6 @@ background:linear-gradient(180deg,rgba(214,179,106,.2),rgba(110,102,255,.1));
 
 
 
-
-/* sections */
-section{margin-top:4rem}
-
-
-.section ul{
-  list-style: none;
-  padding-left: 0;
-}
-
-.section li{
-  position: relative;
-  padding-left: 18px;
-}
-
-.section li::before{
-  content:"✶";
-  position:absolute;
-  left:0;
-  color: var(--gold);
-  font-size: 10px;
-}
-
-
-.section-title{
-text-align:center;
-margin-bottom:2rem;
-}
-
-.section-title h2{
-text-transform:uppercase;
-letter-spacing:.08em;
-}
-
-.section-title p{
-max-width:650px;
-margin:auto;
-color:var(--muted);
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:1rem;
-}
 
 .card{
 background:var(--panel);
@@ -223,79 +312,16 @@ letter-spacing:.08em;
 .card p{
 color:var(--muted);
 line-height:1.7;
-font-size:.95rem;
+font-size: 1.3rem;
 }
-
-.glyph{
-font-size:1.5rem;
-color:var(--gold);
-}
-
-/* manifesto */
-.manifesto{
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:1rem;
-}
-
-.panel{
-background:linear-gradient(180deg,rgba(16,13,22,.9),rgba(7,7,10,.85));
-border:1px solid rgba(255,235,200,.12);
-border-radius:26px;
-padding:1.5rem;
-}
-
-.quote{
-font-size:clamp(1.2rem,2.5vw,2rem);
-line-height:1.5;
-}
-
-.quote strong{color:var(--gold)}
-
-.ritual{
-text-align:center;
-}
-
-.ritual .symbol{
-font-size:4rem;
-margin:1rem 0;
-color:var(--gold);
-text-shadow:0 0 18px rgba(110,102,255,.4);
-}
-
-footer{
-margin-top:4rem;
-padding:1.5rem 0;
-border-top:1px solid rgba(255,235,200,.15);
-text-align:center;
-font-size:.7rem;
-letter-spacing:.12em;
-color:var(--muted);
-text-transform:uppercase;
-}
-
-@media(max-width:900px){
-.grid,.manifesto{grid-template-columns:1fr}
-}
-
-
-
-
-
-
-
-
 
 
   </style>
 </head>
 <body>
 
-
     <!--DIV PAGE-->
 <div class="page">
-
-
 
 <nav>
 <div class="brand">
@@ -309,231 +335,125 @@ text-transform:uppercase;
 </div>
 </nav>
 
+    <!-- BUTTONS , section title, and class card css and comments leave!
+        <a class="btn primary" href="#">Fields of inquiry</a>
+        <a class="btn" href="#">Archive</a>
 
+          <div class="section-title">
+    <h2>random text</h2> <p></p> </div>
 
-
-
-
-
-
-
-
-
-        <!--SECTION HERO
-<section class="hero">
-<div class="hero-card">
-
-    <h1>TITLE</h1>
-
-<p class="subtitle"> subtitle </p>
-
-        <a class="btn primary" href="#initiate">Button 1</a>
-        <a class="btn" href="#archive">Button 2 </a>
- 
-</div>
-</section>
-
--->
-
-
-
-
-        <!--SECTION DOCTRINE
-
-
-<section id="doctrine">
-
-
-<div class="panel ritual" id="watch">
-<h3>PANEL</h3>
-
-<div class="symbol">🛸</div>
-<p class="quote">
-quote
-</p>
-
-</section>
-
--->
-
-
+      -->
 
 <!--
-
-
 <div class="card">
-<div class="glyph">III</div>
-<h3>The Summons</h3>
 <p>
 Those accepted will receive a sign through dream, signal, or correspondence.
 </p>
 </div>
 
-
-
-
-</section>
-</div>
 -->
-
-<!--END ININIATE-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--DIV PAGE-->    <!--DIV PAGE-->    <!--DIV PAGE-->    <!--DIV PAGE-->    <!--DIV PAGE-->
-
 
   <main>
     <section class="hero">
       <h1>Anomalous <br> Phenomena:</h1>
-        <p class="subtitle">This discipline concerns the investigation of phenomena not fully explained by current scientific frameworks. It approaches such subjects through disciplined observation, critical analysis, and resistance to both blind belief and premature dismissal. Its purpose is not to affirm the extraordinary, but to examine it.</p>
+      <p class="subtitle">
+        This discipline concerns the investigation of phenomena not fully explained by current scientific frameworks.
+        It approaches such subjects through disciplined observation, critical analysis, and resistance to both blind belief
+        and premature dismissal. Its purpose is not to affirm the extraordinary, but to examine it.
+      </p>
     </section>
 
 
-    
 
-    <!--
-    <section id="">
+    <section class="section" id="doctrine">
+      <div class="accordion">
 
-    <div class="section-title">
-    <h2>Fields of Inquiry</h2>
-    <p>
-    paragraph
-    </p>
+        <details class="panel-box" open>
+          <summary>
+            <span class="glyph">I</span>
+            <h3>Fields of Inquiry</h3>
+          </summary>
+          <div class="panel-content">
             <ul>
-                <li>The nature and origin of celestial bodies and anomalies within our solar system</li>
-                <li>The limits and potential of human perception, including claims of extrasensory awareness</li>
-                <li>The reliability and transparency of institutional knowledge and authority</li>
-                <li>The possibility of non-human intelligence and its relationship to humanity</li>
-                <li>The historical accuracy and interpretation of ancient texts and traditions</li>
-                <li>The existence of lost or undiscovered civilizations</li>
-                <li>The question of whether humanity has reached its peak—or forgotten previous heights</li>
+              <li>The nature and origin of celestial bodies and anomalies within our solar system</li>
+              <li>The limits and potential of human perception, including claims of extrasensory awareness</li>
+              <li>The reliability and transparency of institutional knowledge and authority</li>
+              <li>The possibility of non-human intelligence and its relationship to humanity</li>
+              <li>The historical accuracy and interpretation of ancient texts and traditions</li>
+              <li>The existence of lost or undiscovered civilizations</li>
+              <li>The question of whether humanity has reached its peak or forgotten previous heights</li>
             </ul>
-    </div>
+          </div>
+        </details>
 
-
-
-
--->
-
-
-
-    <!--DIV PAGE-->    <!--DIV PAGE-->    <!--DIV PAGE-->    <!--DIV PAGE-->    <!--DIV PAGE-->
-
-
-        <section class="section">
-
-
-        <h2>I - Fields of Inquiry</h2>
+        <details class="panel-box">
+          <summary>
+            <span class="glyph">II</span>
+            <h3>Open Questions</h3>
+          </summary>
+          <div class="panel-content">
             <ul>
-                <li>The nature and origin of celestial bodies and anomalies within our solar system</li>
-                <li>The limits and potential of human perception, including claims of extrasensory awareness</li>
-                <li>The reliability and transparency of institutional knowledge and authority</li>
-                <li>The possibility of non-human intelligence and its relationship to humanity</li>
-                <li>The historical accuracy and interpretation of ancient texts and traditions</li>
-                <li>The existence of lost or undiscovered civilizations</li>
-                <li>The question of whether humanity has reached its peak—or forgotten previous heights</li>
+              <li>To what extent is human perception a reliable representation of reality?</li>
+              <li>Can anomalous experiences be reduced to error alone, or do some point to overlooked structures of reality?</li>
+              <li>What distinguishes a meaningful pattern from coincidence?</li>
+              <li>Are there forms of intelligence not yet adequately recognized by current models?</li>
+              <li>Do ancient records preserve observations that remain insufficiently understood?</li>
+              <li>What is ignored when a phenomenon is dismissed before structured examination?</li>
             </ul>
-    </section>
+          </div>
+        </details>
 
+        <details class="panel-box">
+          <summary>
+            <span class="glyph">III</span>
+            <h3>Research Frontiers</h3>
+          </summary>
+          <div class="panel-content">
+            <ul>
+              <li>Cross-analysis of historical and modern reports of unexplained phenomena</li>
+              <li>Integration of anomalous claims with cognitive science and perception studies</li>
+              <li>Structured documentation of subjective experience without surrendering analytical rigor</li>
+              <li>Investigation of institutional bias toward unconventional data</li>
+              <li>Comparative study of mythic, historical, and contemporary reports of non-human intelligence</li>
+              <li>Examination of frontier questions concerning memory, signal, pattern, and interpretation</li>
+            </ul>
+          </div>
+        </details>
 
-        <section class="section">
-          <h2>III — Open Questions</h2>
-          <ul>
-            <li>To what extent is human perception a reliable representation of reality?</li>
-            <li>Can anomalous experiences be reduced to error alone, or do some point to overlooked structures of reality?</li>
-            <li>What distinguishes a meaningful pattern from coincidence?</li>
-            <li>Are there forms of intelligence not yet adequately recognized by current models?</li>
-            <li>Do ancient records preserve observations that remain insufficiently understood?</li>
-            <li>What is ignored when a phenomenon is dismissed before structured examination?</li>
-          </ul>
-        </section>
+        <details class="panel-box" id="archive">
+          <summary>
+            <span class="glyph">IV</span>
+            <h3>Records of the Discipline</h3>
+          </summary>
+          <div class="panel-content">
+            <div class="records">
+              <div class="record-block">
+                <h4>Reports</h4>
+                <p>No reports have yet been entered into the record.</p>
+              </div>
 
-        <section class="section">
-          <h2>IV — Research Frontiers</h2>
-          <ul>
-            <li>Cross-analysis of historical and modern reports of unexplained phenomena</li>
-            <li>Integration of anomalous claims with cognitive science and perception studies</li>
-            <li>Structured documentation of subjective experience without surrendering analytical rigor</li>
-            <li>Investigation of institutional bias toward unconventional data</li>
-            <li>Comparative study of mythic, historical, and contemporary reports of non-human intelligence</li>
-            <li>Examination of frontier questions concerning memory, signal, pattern, and interpretation</li>
-          </ul>
-        </section>
+              <div class="record-block">
+                <h4>Observations</h4>
+                <p>No observations are currently archived under this discipline.</p>
+              </div>
 
-        <section class="section">
-          <h2>V — Records of the Discipline</h2>
+              <div class="record-block">
+                <h4>Essays</h4>
+                <p>No essays have yet been submitted.</p>
+              </div>
 
-          <div class="records">
-            <div class="record-block">
-              <h4>Reports</h4>
-              <p>No reports have yet been entered into the record.</p>
-            </div>
-
-            <div class="record-block">
-              <h4>Observations</h4>
-              <p>No observations are currently archived under this discipline.</p>
-            </div>
-
-            <div class="record-block">
-              <h4>Essays</h4>
-              <p>No essays have yet been submitted.</p>
-            </div>
-
-            <div class="record-block">
-              <h4>Correspondence</h4>
-              <p>No correspondence has yet been preserved in this section.</p>
+              <div class="record-block">
+                <h4>Correspondence</h4>
+                <p>No correspondence has yet been preserved in this section.</p>
+              </div>
             </div>
           </div>
-        </section>
+        </details>
+
       </div>
-
-
-    </div>
+    </section>
   </main>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 </body>
 </html>
