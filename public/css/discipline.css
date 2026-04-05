@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+#disciplines {
+  margin-top:-300px;
+  margin-bottom: 100px;
+}
 
 .disciplines-center{
   text-align: center;
@@ -56,6 +60,11 @@
   color: #c9a45c;
   scale: 1.2;
   margin-left: 50px;
+
+  #disciplines {
+  margin-top:-200px;
+  margin-bottom: 100px;
+}
 }
 }
 
