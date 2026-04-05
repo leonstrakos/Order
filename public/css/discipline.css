@@ -50,3 +50,19 @@
 .d6{ top: 25%; left: 15%; }
 .d7{ top: 50%; left: 100%; }
 
+
+@media (max-width: 520px) {
+.disc:hover{
+  color: #c9a45c;
+  scale: 1.2;
+  margin-left: 50px;
+}
+}
+
+
+
+
+
+
+
+
