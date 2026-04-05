@@ -74,9 +74,10 @@ h2{
 
   #disciplines {
   margin-top:-200px;
+  margin-bottom: 0px;
   }
 
-.d7 { top: 50%; left: 80%; }
+.d7 { top: 50%; left: 90%; }
 
 
 }
