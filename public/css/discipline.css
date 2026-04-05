@@ -64,7 +64,7 @@ h2{
 .d7{ top: 50%; left: 100%; }
 
 
-@media (max-width: 520px) {
+@media (max-width: 700px) {
 .disc:hover{
   color: #c9a45c;
   scale: 1.2;
