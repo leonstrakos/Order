@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phenomena Incognita | Order of the Lion's Bell</title>
+  <style>
+    :root{
+      --bg: #05060a;
+      --panel: #0a0b12;
+      --text: #ddd6c8;
+      --muted: #b8ad97;
+      --gold: #c9a45c;
+      --gold-soft: rgba(201, 164, 92, 0.18);
+      --line: rgba(201, 164, 92, 0.25);
+      --heading: #e2c98d;
+    }
+
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
+      background: radial-gradient(circle at top, #0d1020 0%, var(--bg) 30%, var(--bg) 100%);
+      color: var(--text);
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.8;
+    }
+
+    
+
+
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 28px 100px;
+    }
+
+    .hero{
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .hero h1{
+      color: var(--heading);
+      font-size: clamp(2.3rem, 5vw, 4.3rem);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.15;
+      text-shadow: 0 0 20px rgba(201, 164, 92, 0.2);
+    }
+
+    .hero .subtitle{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+    }
+
+
+      .intro-line{
+      max-width: 760px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .eyebrow{
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    .rule{
+      width: 140px;
+      height: 1px;
+      background: var(--line);
+      margin: 32px auto 0;
+    }
+
+    .page-grid{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .content-column{
+      display: grid;
+      gap: 28px;
+    }
+
+    .side-column{
+      display: grid;
+      gap: 24px;
+    }
+
+    .section,
+    .side-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+      border: 1px solid var(--line);
+      padding: 28px 26px;
+    }
+
+    .section h2,
+    .side-card h3{
+      color: var(--heading);
+      font-size: 1.28rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .section p{
+      color: var(--text);
+      font-size: 1.02rem;
+    }
+
+    .section p + p{
+      margin-top: 14px;
+    }
+
+    .section ul,
+    .side-card ul{
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .section li,
+    .side-card li{
+      position: relative;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+
+
+
+    .records{
+      display: grid;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .record-block{
+      border: 1px solid var(--line);
+      padding: 18px 18px 16px;
+      background: rgba(201, 164, 92, 0.03);
+    }
+
+    .record-block h4{
+      color: var(--heading);
+      font-size: 1rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .record-block p{
+      color: var(--muted);
+      font-size: 0.97rem;
+      margin: 0;
+    }
+
+
+    
+    .tag{
+      display: inline-block;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      padding: 5px 10px;
+      margin: 6px 8px 0 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+
+    @media (max-width: 900px){
+      .page-grid{
+        grid-template-columns: 1fr;
+      }
+
+      main{
+        padding: 50px 18px 70px;
+      }
+
+      .section,
+      .side-card{
+        padding: 22px 18px;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+
+
+
+
+
+<body>
+ 
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Discipline of the Order</div>
+      <h1>Phenomena Incognita</h1>
+      <p class="subtitle">Anomalous Phenomena</p>
+      <p class="intro-line">
+        These matters are not to be believed without evidence, nor dismissed without examination.
+      </p>
+      <div class="rule"></div>
+    </section>
+
+    <div class="page-grid">
+      <div class="content-column">
+        <section class="section">
+          <h2>I — Description</h2>
+          <p>
+            This discipline concerns the investigation of phenomena not fully explained by current scientific frameworks.
+            It approaches such subjects through disciplined observation, critical analysis, and resistance to both blind belief and premature dismissal.
+          </p>
+          <p>
+            Its purpose is not to affirm the extraordinary, but to examine it.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>II — Fields of Inquiry</h2>
+          <ul>
+            <li>The nature and origin of celestial bodies and anomalies within our solar system</li>
+            <li>The limits and potential of human perception, including claims of extrasensory awareness</li>
+            <li>The reliability and transparency of institutional knowledge and authority</li>
+            <li>The possibility of non-human intelligence and its relationship to humanity</li>
+            <li>The historical accuracy and interpretation of ancient texts and traditions</li>
+            <li>The existence of lost or undiscovered civilizations</li>
+            <li>The question of whether humanity has reached its peak—or forgotten previous heights</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>III — Open Questions</h2>
+          <ul>
+            <li>To what extent is human perception a reliable representation of reality?</li>
+            <li>Can anomalous experiences be reduced to error alone, or do some point to overlooked structures of reality?</li>
+            <li>What distinguishes a meaningful pattern from coincidence?</li>
+            <li>Are there forms of intelligence not yet adequately recognized by current models?</li>
+            <li>Do ancient records preserve observations that remain insufficiently understood?</li>
+            <li>What is ignored when a phenomenon is dismissed before structured examination?</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>IV — Research Frontiers</h2>
+          <ul>
+            <li>Cross-analysis of historical and modern reports of unexplained phenomena</li>
+            <li>Integration of anomalous claims with cognitive science and perception studies</li>
+            <li>Structured documentation of subjective experience without surrendering analytical rigor</li>
+            <li>Investigation of institutional bias toward unconventional data</li>
+            <li>Comparative study of mythic, historical, and contemporary reports of non-human intelligence</li>
+            <li>Examination of frontier questions concerning memory, signal, pattern, and interpretation</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>V — Records of the Discipline</h2>
+
+          <div class="records">
+            <div class="record-block">
+              <h4>Reports</h4>
+              <p>No reports have yet been entered into the record.</p>
+            </div>
+
+            <div class="record-block">
+              <h4>Observations</h4>
+              <p>No observations are currently archived under this discipline.</p>
+            </div>
+
+            <div class="record-block">
+              <h4>Essays</h4>
+              <p>No essays have yet been submitted.</p>
+            </div>
+
+            <div class="record-block">
+              <h4>Correspondence</h4>
+              <p>No correspondence has yet been preserved in this section.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

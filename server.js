@@ -127,6 +127,10 @@ app.get("/members", requireAuth, (req, res) => {
 });
 
 
+app.get("/discipline", (req, res) => {
+  res.render("discipline");
+});
+
 
 
 app.post("/login", async (req, res) => {

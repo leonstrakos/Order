@@ -1,0 +1,52 @@
+
+.disciplines{
+  padding: 80px 20px;
+  text-align: center;
+}
+
+
+.disciplines-center{
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.disc-circle{
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 60px auto;
+}
+
+.center-symbol{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: #c9a45c;
+}
+
+.disc{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+  color: #ddd6c8;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.disc:hover{
+  color: #c9a45c;
+  scale: 2;
+  margin-left: 50px;
+}
+
+/* Positioning */
+.d1{ top: 0%; left: 50%; }
+.d2{ top: 25%; left: 85%; }
+.d3{ top: 75%; left: 85%; }
+.d4{ top: 100%; left: 50%; }
+.d5{ top: 75%; left: 15%; }
+.d6{ top: 25%; left: 15%; }
+.d7{ top: 50%; left: 100%; }
+
