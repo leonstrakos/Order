@@ -1,0 +1,122 @@
+<section class="disciplines-center">
+  <h2>The Seven Disciplines</h2>
+  <div class="disc-circle">
+        <div class="center-symbol">✶</div>
+    <a href="/philosophia" class="disc" style="--angle: -90deg;">Philosophia</a>
+    <a href="/scientia" class="disc" style="--angle: -48deg;">Scientia</a>
+    <a href="/cultura" class="disc disc-cultura" style="--angle: 0deg;">Cultura</a>
+    <a href="/traditio" class="disc" style="--angle: 48deg;">Traditio</a>
+    <a href="/conscientia" class="disc" style="--angle: 90deg;">Conscientia</a>
+    <a href="/information" class="disc" style="--angle: 142deg;">Information</a>
+    <a href="/phenomena" class="disc" style="--angle: 218deg;">Phenomena</a>
+  </div>
+</section>
+
+
+:root {
+  --lion-gold: #c6a96a;
+}
+
+#disciplines {
+  margin-top: -300px;
+  margin-bottom: 100px;
+  visibility: hidden;
+}
+
+.disciplines-center {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.disciplines-center h2 {
+  color: var(--lion-gold);
+}
+
+.disc-circle {
+  --size: 420px;
+  --radius: 185px;
+
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  margin: 60px auto;
+}
+
+.disc-circle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 164, 92, 0.08);
+}
+
+.center-symbol {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: #c9a45c;
+  z-index: 2;
+}
+
+.disc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-decoration: none;
+  color: #ddd6c8;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translateY(calc(var(--radius) * -1))
+    rotate(calc(var(--angle) * -1));
+  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.disc:hover {
+  color: #c9a45c;
+  text-shadow: 0 0 10px rgba(201, 164, 92, 0.35);
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translateY(calc((var(--radius) + 4px) * -1))
+    rotate(calc(var(--angle) * -1))
+    scale(1.6);
+}
+
+
+
+@media (max-width: 700px) {
+  #disciplines {
+    margin-top: -200px;
+    margin-bottom: 0;
+  }
+
+  .disc-circle {
+    --size: 320px;
+    --radius: 150px;
+  }
+
+    .disc { 
+    font-size: 14px; 
+
+  } 
+
+  .disc:hover {
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
