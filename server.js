@@ -92,7 +92,6 @@ app.get("/about", (req, res) => {
   res.render("about");
 });
 
-
 app.get("/constitution", (req, res) => {
   res.render("constitution");
 });
@@ -130,6 +129,31 @@ app.get("/members", requireAuth, (req, res) => {
 app.get("/discipline", (req, res) => {
   res.render("discipline");
 });
+
+
+
+const disciplines = [
+  "philosophia",
+  "scientia",
+  "cultura",
+  "traditio",
+  "conscientia",
+  "information",
+  "phenomena"
+];
+
+disciplines.forEach((route) => {
+  app.get(`/${route}`, (req, res) => {
+    res.render(route);
+  });
+});
+
+
+
+
+
+
+
 
 
 
