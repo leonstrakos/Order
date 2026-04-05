@@ -2,7 +2,29 @@
   <title>Contact the Order</title>
   
   <%- include("partials/metadata") %>
-<link rel="stylesheet" href="/css/style.css"></head> <body>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+
+  .contact-block {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+
+  .contact-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0rem;
+}
+
+.email {
+  text-align: right;
+}
+
+
+</style>
+
+</head> <body>
   <%- include("partials/header") %>
 
 
@@ -20,19 +42,22 @@ Not all messages will receive a response.
 <br> <br>
 
 
+<div class="contact-block">
 <p class="about-text">
 <span class="accent"><u>Contact Info</u> </span> </p>
-<p class="about-text">
+
+<p class="about-text contact-row">
 For questions regarding the Order, its structure, or its work:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+<span class="accent">info@heraldsofthelion.org</span>
+</p>
 
-<span class="accent">info@heraldsofthelion.org</span><br>
 
+<p class="about-text contact-row">
 For the submission of observations, essays, or records relevant to the disciplines of the Order:  &nbsp&nbsp&nbsp&nbsp&nbsp 
 <span class="accent">bell@heraldsofthelion.org</span>
 </p>
 
-
-
+</div>
 
 
 
