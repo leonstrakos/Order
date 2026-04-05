@@ -1,3 +1,6 @@
+  
+:root {--lion-gold: #c6a96a;}
+
 
 .disciplines{
   padding: 80px 20px;
@@ -7,6 +10,7 @@
 #disciplines {
   margin-top:-300px;
   margin-bottom: 100px;
+  visibility: hidden;
 }
 
 .disciplines-center{
@@ -45,6 +49,11 @@
   margin-left: 50px;
 }
 
+h2{
+  color: var(--lion-gold);
+}
+
+
 /* Positioning */
 .d1{ top: 0%; left: 50%; }
 .d2{ top: 25%; left: 85%; }
@@ -65,6 +74,11 @@
   margin-top:-200px;
   margin-bottom: 100px;
 }
+
+.d7{ top: 50%; left: 80%; }
+
+
+
 }
 }
 
