@@ -1,10 +1,13 @@
 <footer class="site-footer">
 
   <nav class="footer-nav">
-    <a href="/join">Join the Order</a>
-    <span class="divider">·</span>
+    <a href="/join" class="<%= currentPath === '/join' ? 'active' : '' %>">Join the Order</a>
 
-    <a href="/copyright">Trademarks & IP's</a>
+    <span class="divider">·</span>
+    <a href="/copyright" class="<%= currentPath === '/copyright' ? 'active' : '' %>">Trademarks & IP's</a>
+
+
+
 
   </nav>
 

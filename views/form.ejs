@@ -66,7 +66,19 @@
 <label for="p-give"><span class="label-initial">W</span>hat are you willing to give up?</label>
               <textarea id="p-give" name="give" placeholder="Write of what you're offering us and what are you willing to sacrifice..."></textarea>
             </div>
-    
+
+                            <div class="field">
+<label for="p-give"><span class="label-initial">W</span>hat are your areas of interest or study?</label>
+              <textarea id="p-areas" name="areas" placeholder=""></textarea>
+            </div>
+
+
+                                        <div class="field">
+<label for="p-give"><span class="label-initial">D</span>o you have any prior work or writing?</label>
+              <textarea id="p-work" name="work" placeholder=""></textarea>
+            </div>
+
+
             <div class="field">
 <label for="p-email"><span class="label-initial">E</span>mail address</label>
               <input id="p-email" name="email" type="email" placeholder="yourname@example.com" />
@@ -80,6 +92,8 @@
 
 
   </main>
+
+
 
 
 
@@ -103,6 +117,8 @@
           give: form.querySelector('textarea[name="give"]').value,
           gain: form.querySelector('textarea[name="gain"]').value,
           email: form.querySelector('input[name="email"]').value,
+          areas: form.querySelector('textarea[name="areas"]').value,
+          work: form.querySelector('input[name="work"]').value,
         };
 
         const status = document.createElement('div');

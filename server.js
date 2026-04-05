@@ -106,6 +106,10 @@ app.get("/form", (req, res) => {
   res.render("form");
 });
 
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
 app.get("/copyright", (req, res) => {
   res.render("copyrights");
 });
