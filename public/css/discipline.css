@@ -306,5 +306,32 @@ line-height:1.7;
 font-size: 1.3rem;
 }
 
+.plate{
+  text-align:center;
+  margin:80px 0 40px;
+  position:relative;
+}
 
+.plate img{
+  max-width:600px;
+  width:100%;
+  opacity:0.12;
+  filter:grayscale(100%) blur(0.5px);
+  transition:0.4s;
+}
+
+/* subtle “alive” feeling on hover */
+.plate img:hover{
+  opacity:0.2;
+  filter:grayscale(100%) blur(0px);
+}
+
+.plate-caption{
+  margin-top:12px;
+  font-size:0.65rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  opacity:0.6;
+}
 
