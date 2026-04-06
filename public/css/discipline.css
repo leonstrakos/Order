@@ -234,6 +234,8 @@ margin-bottom:40px;
 font-size:clamp(2.7rem,8vw,6rem);
 max-width: 95%;
 margin: auto;
+overflow-wrap:break-word;
+
   }
 
 }
