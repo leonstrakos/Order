@@ -234,8 +234,11 @@ margin-bottom:40px;
 font-size:clamp(2.4rem,8vw,6rem);
 max-width: 95%;
 margin: auto;
-
   }
+
+.squeeze {
+    letter-spacing:0.02em;
+}
 
 }
 
