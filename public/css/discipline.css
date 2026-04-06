@@ -306,23 +306,27 @@ line-height:1.7;
 font-size: 1.3rem;
 }
 
+
+
+
+
 .plate{
   text-align:center;
-  margin:80px 0 40px;
+  margin:60px 0px 30px;
   position:relative;
 }
 
 .plate img{
   max-width:600px;
   width:100%;
-  opacity:0.12;
+  opacity:0.2;
   filter:grayscale(100%) blur(0.5px);
   transition:0.4s;
 }
 
 /* subtle “alive” feeling on hover */
 .plate img:hover{
-  opacity:0.2;
+  opacity:0.4;
   filter:grayscale(100%) blur(0px);
 }
 
@@ -332,6 +336,6 @@ font-size: 1.3rem;
   letter-spacing:0.18em;
   text-transform:uppercase;
   color:var(--muted);
-  opacity:0.6;
+  opacity:1;
 }
 
