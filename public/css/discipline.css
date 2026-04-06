@@ -231,10 +231,9 @@ padding:4rem 0 2rem;
 margin-bottom:40px;
 
   h1 {
-font-size:clamp(2.7rem,8vw,6rem);
+font-size:clamp(2.4rem,8vw,6rem);
 max-width: 95%;
 margin: auto;
-overflow-wrap:break-word;
 
   }
 
