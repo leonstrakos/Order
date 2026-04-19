@@ -121,15 +121,22 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.get("/members", requireAuth, (req, res) => {
-  res.render("members");
-});
-
-
 app.get("/discipline", (req, res) => {
   res.render("discipline");
 });
 
+
+app.get("/archive", (req, res) => {
+  res.render("archive");
+});
+
+app.get("/bell", (req, res) => {
+  res.render("bellreports");
+});
+
+app.get("/heralds", (req, res) => {
+  res.render("heralds");
+});
 
 
 const disciplines = [

@@ -20,7 +20,7 @@ async function loadUser() {
 
     if (data.loggedIn) {
       userLink.textContent = data.chosen_name;
-      userLink.href = "/members";
+      userLink.href = "/archive";
     } else {
       userLink.textContent = "Login";
       userLink.href = "/login";
@@ -31,6 +31,8 @@ async function loadUser() {
 }
 
 loadUser();
+
+
 
 const enterBtn = document.getElementById("enter");
 if (enterBtn) {
