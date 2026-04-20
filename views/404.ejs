@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FILE NOT FOUND</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #e8e6e3;
+      font-family: "Courier New", monospace;
+      padding: 40px;
+    }
+
+    .stamp {
+      color: red;
+      border: 2px solid red;
+      display: inline-block;
+      padding: 10px;
+      transform: rotate(-10deg);
+      margin-bottom: 20px;
+    }
+
+    .redacted {
+      background: black;
+      color: black;
+    }
+
+    .content {z-index: 2;}
+    .overlay { 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  z-index: 0;
+  pointer-events: none;  
+}
+
+    .image {
+        opacity: 0.03;
+    }
+
+    
+
+
+
+  </style>
+</head>
+<body>
+
+    <div class="content">
+  <div class="stamp">MISSING</div>
+
+  <h1>404 — DOCUMENT NOT FOUND</h1>
+
+  <p>
+    The requested file has been 
+    <span class="">REDACTED</span> 
+    or does not exist in this archive.
+  </p>
+
+</div>
+
+    <div class="overlay"><img class="image" src="/images/404.png" alt="404 missing bell"></div>
+
+</body>
+</html>

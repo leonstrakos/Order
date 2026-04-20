@@ -167,6 +167,7 @@ body {
   }
 
   .motto {
+    margin-top: 90px;
     margin-bottom: 24px;
     font-size: 0.95rem;
   }
@@ -174,5 +175,9 @@ body {
   .login-form input,
   .login-form button {
     padding: 13px 14px;
+  }
+
+  .topline {
+    display: none;
   }
 }

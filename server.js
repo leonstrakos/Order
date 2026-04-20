@@ -67,95 +67,46 @@ function requireAuth(req, res, next) {
   next();
 }
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
 
-app.get("/home", (req, res) => {
-  res.render("index");
-});
+const routes = {
+  "/": "home",
+  "/home": "index",
+  "/test": "test",
+  "/test2": "test2",
+  "/test3": "test3",
+  "/about": "about",
+  "/constitution": "constitution",
+  "/document": "document",
+  "/discipline": "discipline",
+  "/form": "form",
+  "/contact": "contact",
+  "/copyright": "copyrights",
+  "/join": "join",
+  "/login": "login",
+  "/archive": "archive",
+  "/bell": "bellreports",
+  "/heralds": "heralds",
 
-app.get("/test", (req, res) => {
-  res.render("test");
-});
+    // disciplines:
+  "/philosophia": "philosophia",
+  "/scientia": "scientia",
+  "/cultura": "cultura",
+  "/traditio": "traditio",
+  "/conscientia": "conscientia",
+  "/information": "information",
+  "/phenomena": "phenomena"
+};
 
-app.get("/test2", (req, res) => {
-  res.render("test2");
-});
-
-app.get("/test3", (req, res) => {
-  res.render("test3");
-});
-
-
-app.get("/about", (req, res) => {
-  res.render("about");
-});
-
-app.get("/constitution", (req, res) => {
-  res.render("constitution");
-});
-
-app.get("/document", (req, res) => {
-  res.render("document");
-});
-
-
-app.get("/form", (req, res) => {
-  res.render("form");
-});
-
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
-
-app.get("/copyright", (req, res) => {
-  res.render("copyrights");
-});
-
-app.get("/join", (req, res) => {
-  res.render("join");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-app.get("/discipline", (req, res) => {
-  res.render("discipline");
-});
-
-
-app.get("/archive", (req, res) => {
-  res.render("archive");
-});
-
-app.get("/bell", (req, res) => {
-  res.render("bellreports");
-});
-
-app.get("/heralds", (req, res) => {
-  res.render("heralds");
-});
-
-
-const disciplines = [
-  "philosophia",
-  "scientia",
-  "cultura",
-  "traditio",
-  "conscientia",
-  "information",
-  "phenomena"
-];
-
-disciplines.forEach((route) => {
-  app.get(`/${route}`, (req, res) => {
-    res.render(route);
+Object.entries(routes).forEach(([route, view]) => {
+  app.get(route, (req, res) => {
+    res.render(view);
   });
 });
 
 
+app.use((req, res) => {
+  res.status(404).render("404");
+});
 
 
 

@@ -1,439 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order of the Lion & Sun Bell</title>
-  <style>
-    :root {
-      --sand: #c79a69;
-      --sand-light: #e4c59c;
-      --stone: #7a624d;
-      --gold: #d8b16a;
-      --ember: #ff5b2e;
-      --ember-bright: #ffcf6b;
-      --wine: #3b1012;
-      --night: #090714;
-      --night-2: #120d24;
-      --text: #f4e6c8;
-      --shadow: rgba(0, 0, 0, 0.45);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier Interface</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* BACKGROUND */
+body {
+  background: #0a0a0a;
+  font-family: "Courier New", monospace;
+}
 
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08), transparent 18%),
-        linear-gradient(to bottom, rgba(8,7,20,0.95) 0%, rgba(18,13,36,0.9) 22%, rgba(84,43,27,0.25) 38%, rgba(199,154,105,0.12) 52%, rgba(59,16,18,0.7) 100%),
-        linear-gradient(to bottom, #05040a, #130d25 30%, #2a1520 60%, #140a0a 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
+/* DOSSIER WRAP */
+.dossier {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(2px 2px at 8% 16%, rgba(255,255,255,0.9), transparent 60%),
-        radial-gradient(1.5px 1.5px at 22% 10%, rgba(255,255,255,0.55), transparent 60%),
-        radial-gradient(2px 2px at 36% 21%, rgba(255,255,255,0.85), transparent 60%),
-        radial-gradient(1.5px 1.5px at 44% 13%, rgba(255,255,255,0.45), transparent 60%),
-        radial-gradient(2px 2px at 58% 8%, rgba(255,255,255,0.8), transparent 60%),
-        radial-gradient(1.5px 1.5px at 74% 16%, rgba(255,255,255,0.5), transparent 60%),
-        radial-gradient(2px 2px at 87% 12%, rgba(255,255,255,0.8), transparent 60%),
-        radial-gradient(1.5px 1.5px at 93% 20%, rgba(255,255,255,0.45), transparent 60%);
-      opacity: 0.8;
-      z-index: 0;
-    }
+/* PAPER */
+.paper {
+  width: min(900px, 100%);
+  background: #f3f1e8;
+  color: #111;
+  padding: 50px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.2),
+    0 25px 60px rgba(0,0,0,0.6);
+}
 
-    .sky-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 50% 5%, rgba(116, 111, 224, 0.28), transparent 25%),
-        radial-gradient(circle at 20% 15%, rgba(84, 110, 224, 0.12), transparent 18%),
-        radial-gradient(circle at 80% 18%, rgba(84, 110, 224, 0.12), transparent 18%);
-      z-index: 0;
-    }
+/* PAPER TEXTURE */
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
 
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5rem 1.5rem 7rem;
-      isolation: isolate;
-    }
+/* STAMPS */
+.stamp {
+  position: absolute;
+  border: 2px solid #b30000;
+  color: #b30000;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+}
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 60%;
-      background:
-        radial-gradient(ellipse at 15% 70%, rgba(199,154,105,0.45), transparent 26%),
-        radial-gradient(ellipse at 42% 82%, rgba(199,154,105,0.55), transparent 30%),
-        radial-gradient(ellipse at 78% 74%, rgba(199,154,105,0.42), transparent 27%),
-        linear-gradient(to top, rgba(78,42,19,0.6), transparent 65%);
-      z-index: -1;
-      filter: blur(4px);
-    }
+.stamp-top {
+  top: 20px;
+  right: 20px;
+}
 
-    .temple-silhouette {
-      position: absolute;
-      inset: 20% 0 auto 0;
-      height: 45vh;
-      background:
-        linear-gradient(to top, rgba(14, 12, 16, 0.9), rgba(14, 12, 16, 0.15)),
-        polygon(0 100%);
-      z-index: -1;
-      opacity: 0.45;
-      pointer-events: none;
-      clip-path: polygon(
-        0% 100%, 0% 80%, 6% 77%, 10% 60%, 14% 61%, 16% 44%, 22% 44%, 24% 65%, 29% 63%,
-        31% 35%, 36% 35%, 38% 57%, 44% 58%, 46% 27%, 52% 28%, 54% 60%, 61% 60%, 64% 42%,
-        69% 44%, 72% 64%, 78% 62%, 82% 50%, 86% 51%, 89% 72%, 93% 71%, 100% 80%, 100% 100%
-      );
-    }
+.stamp-diag {
+  top: 120px;
+  left: 40px;
+  transform: rotate(-18deg);
+  font-size: 1.1rem;
+}
 
-    .content {
-      width: min(980px, 100%);
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+/* HEADER */
+.doc-title {
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
 
-    .crest {
-      margin: 0 auto 1.5rem;
-      width: min(680px, 100%);
-      padding: 1rem 1rem 0.5rem;
-      border-top: 1px solid rgba(216, 177, 106, 0.45);
-      border-bottom: 1px solid rgba(216, 177, 106, 0.25);
-      position: relative;
-    }
+.doc-meta {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
 
-    .crest::before,
-    .crest::after {
-      content: "✦";
-      position: absolute;
-      top: -0.85rem;
-      font-size: 1rem;
-      color: var(--gold);
-      opacity: 0.9;
-    }
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
 
-    .crest::before { left: 1rem; }
-    .crest::after { right: 1rem; }
+.tab {
+  padding: 6px 14px;
+  background: #ddd;
+  border: 1px solid #aaa;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
 
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.38rem;
-      color: var(--sand-light);
-      font-size: 0.8rem;
-      margin-bottom: 0.95rem;
-      opacity: 0.9;
-    }
+.tab.active {
+  background: #fff;
+  border-bottom: 1px solid #fff;
+}
 
-    h1 {
-      font-size: clamp(2.6rem, 7vw, 5.8rem);
-      line-height: 0.95;
-      font-weight: 600;
-      letter-spacing: 0.05rem;
-      color: #f2dfbc;
-      text-shadow:
-        0 0 18px rgba(216, 177, 106, 0.16),
-        0 8px 28px rgba(0,0,0,0.55);
-    }
+/* CONTENT */
+.content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
 
-    h1 .small {
-      display: block;
-      font-size: clamp(1rem, 2vw, 1.35rem);
-      letter-spacing: 0.45rem;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-    }
+/* REDACTION */
+.redacted {
+  display: inline-block;
+  background: #111;
+  height: 1em;
+  width: 140px;
+  vertical-align: middle;
+}
 
-    .subtitle {
-      width: min(720px, 100%);
-      margin: 1.5rem auto 0;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      line-height: 1.8;
-      color: rgba(244, 230, 200, 0.9);
-      text-shadow: 0 4px 18px rgba(0,0,0,0.5);
-    }
+.redacted.short {
+  width: 60px;
+}
 
-    .motto {
-      margin-top: 1.75rem;
-      color: var(--sand-light);
-      font-style: italic;
-      letter-spacing: 0.08rem;
-      opacity: 0.95;
-    }
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #222;
+  background: #eee;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
 
-    .cta-row {
-      margin-top: 2.25rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+.btn:hover {
+  background: #ddd;
+}
 
-    .btn {
-      text-decoration: none;
-      color: var(--text);
-      padding: 0.95rem 1.4rem;
-      border: 1px solid rgba(216, 177, 106, 0.45);
-      background: linear-gradient(to bottom, rgba(216,177,106,0.16), rgba(59,16,18,0.2));
-      box-shadow: 0 10px 22px rgba(0,0,0,0.3);
-      border-radius: 999px;
-      letter-spacing: 0.12rem;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
-    }
+/* SCANLINE EFFECT */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.4;
+}
 
-    .btn:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(to bottom, rgba(216,177,106,0.28), rgba(59,16,18,0.32));
-      border-color: rgba(255, 207, 107, 0.72);
-    }
+/* TYPEWRITER EFFECT */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #111;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+}
 
-    .btn.secondary {
-      background: rgba(9, 7, 20, 0.45);
-    }
+@keyframes typing {
+  to { width: 100% }
+}
 
+@keyframes blink {
+  50% { border-color: transparent }
+}
 
-
-    .section {
-      position: relative;
-      z-index: 2;
-      padding: 5rem 1.5rem;
-    }
-
-    .panel {
-      width: min(1100px, 100%);
-      margin: 0 auto;
-      background: linear-gradient(to bottom, rgba(19, 13, 27, 0.78), rgba(43, 23, 18, 0.72));
-      border: 1px solid rgba(216, 177, 106, 0.22);
-      border-radius: 28px;
-      padding: 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
-      backdrop-filter: blur(4px);
-    }
-
-    .panel h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin-bottom: 0.9rem;
-      color: #f2dfbc;
-      text-align: center;
-    }
-
-    .panel p.lead {
-      text-align: center;
-      color: rgba(244,230,200,0.84);
-      max-width: 760px;
-      margin: 0 auto 2rem;
-      line-height: 1.8;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      padding: 1.4rem;
-      border-radius: 22px;
-      background: linear-gradient(to bottom, rgba(216,177,106,0.08), rgba(9,7,20,0.22));
-      border: 1px solid rgba(216,177,106,0.15);
-      min-height: 210px;
-    }
-
-    .card .sigil {
-      font-size: 1.2rem;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-      display: inline-block;
-    }
-
-    .card h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.25rem;
-      color: #f3e0bb;
-    }
-
-    .card p {
-      color: rgba(244,230,200,0.82);
-      line-height: 1.7;
-      font-size: 0.98rem;
-    }
-
-    .footer {
-      padding: 2rem 1.5rem 4rem;
-      text-align: center;
-      color: rgba(244,230,200,0.7);
-      letter-spacing: 0.08rem;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    @keyframes sway {
-      0% { transform: translateX(-2px) scaleY(1) rotate(-2deg); }
-      50% { transform: translateX(2px) scaleY(1.05) rotate(1deg); }
-      100% { transform: translateX(-1px) scaleY(0.97) rotate(2deg); }
-    }
-
-    @keyframes rise {
-      0% {
-        transform: translate(-4px, 0) scale(0.6);
-        opacity: 0;
-      }
-      10% { opacity: 1; }
-      100% {
-        transform: translate(22px, -170px) scale(0.1);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .flame-pillar {
-        width: 120px;
-        height: 250px;
-        opacity: 0.92;
-      }
-
-      .altar {
-        width: 84px;
-        height: 62px;
-      }
-
-      .flame-core,
-      .flame-mid,
-      .flame-outer {
-        bottom: 48px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 6.5rem;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-      }
-
-      .eyebrow,
-      h1 .small {
-        letter-spacing: 0.24rem;
-      }
-
-      .flame-pillar {
-        width: 88px;
-        height: 220px;
-      }
-
-      .panel {
-        padding: 1.3rem;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="sky-glow"></div>
-  <div class="temple-silhouette"></div>
 
+<div class="dossier">
+  <div class="paper">
 
+    <!-- STAMPS -->
+    <div class="stamp stamp-top">TOP SECRET</div>
+    <div class="stamp stamp-diag">EYES ONLY</div>
 
-  <header class="hero" id="top">
+    <!-- HEADER -->
+    <h1 class="doc-title typewriter">ARCHIVE FILE</h1>
+
+    <p class="doc-meta">
+      FILE ID: LB-0427-A<br>
+      CLEARANCE: LEVEL IV<br>
+      STATUS: RESTRICTED
+    </p>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab active">REPORTS</div>
+      <div class="tab">HERALDS</div>
+      <div class="tab">INDEX</div>
+    </div>
+
+    <!-- CONTENT -->
     <div class="content">
-      <div class="crest">
-        <div class="eyebrow">Ancient Temple • Desert Sky • Hidden Order</div>
-        <h1>
-          <span class="small">The Order of the</span>
-          Lion &amp; Sun Bell
-        </h1>
-      </div>
-
-      <p class="subtitle">
-        Beneath the star-woven firmament and among the buried sanctuaries of sand,
-        the Heralds of the Lion guard the old wisdom, the sacred bell, and the fire that does not die.
+      <p>
+        Bell Reports contain <span class="redacted"></span> observational records
+        related to <span class="redacted short"></span> phenomena.
       </p>
 
-      <p class="motto">“From the temple of memory, the flame endures.”</p>
-
-      <div class="cta-row">
-        <a class="btn" href="#order">Enter the Order</a>
-        <a class="btn secondary" href="#heralds">The Heralds</a>
-      </div>
-    </div>
-  </header>
-
-  <section class="section" id="order">
-    <div class="panel">
-      <h2>The Hidden Order</h2>
-      <p class="lead">
-        A secret society shaped in the image of ancient courts, desert kingdoms, temple fires, and celestial omens.
-        This design leans into a Persian-inspired atmosphere with dunes, sacred stone, deep crimson flame, and a night sky alive with stars.
+      <p>
+        Initial findings suggest correlation between subject activity and
+        <span class="redacted"></span> patterns.
       </p>
 
-      <div class="grid">
-        <article class="card">
-          <div class="sigil">☉</div>
-          <h3>Order Name</h3>
-          <p>
-            <strong>Full title:</strong> Order of the Heralds of the Lion and Sun Bell.<br><br>
-            <strong>Short form:</strong> Order of Lions Bell.<br><br>
-            <strong>Members:</strong> Heralds of the Lion.
-          </p>
-        </article>
+      <p>
+        Further investigation required. Access to full dataset remains
+        <span class="redacted short"></span>.
+      </p>
 
-        <article class="card" id="heralds">
-          <div class="sigil">🜂</div>
-          <h3>Sacred Fire</h3>
-          <p>
-            Twin flames rise on either side like the burning guardians of a holy ark—ceremonial, watchful, and eternal.
-            They frame the page as living altars at the threshold of the order.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="sigil">✦</div>
-          <h3>Temple Atmosphere</h3>
-          <p>
-            Buried sanctuaries, carved stone silhouettes, drifting dunes, and a celestial vault above.
-            The whole landing page is meant to feel like an ancient initiation chamber uncovered in the desert at night.
-          </p>
-        </article>
-      </div>
+      <p>
+        “From the archive, truth is <span class="redacted short"></span>.”
+      </p>
     </div>
-  </section>
 
-  <footer class="footer">
-    Order of the Lion &amp; Sun Bell • Heralds of the Lion • Under the stars, beyond the dunes
-  </footer>
+    <div class="btn">OPEN FILE</div>
+
+  </div>
+</div>
+
 </body>
 </html>
