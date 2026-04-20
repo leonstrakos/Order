@@ -559,6 +559,14 @@ img, video {
 
 
 
+  #loginBtn {
+    font-size: 0.6rem;
+  }
+
+
+
+
+
 
   #header {
     grid-template-columns: 1fr auto 1fr;
@@ -586,6 +594,11 @@ img, video {
   .logo-img {
     width: 80px;
   }
+
+
+
+
+
 }
 
 

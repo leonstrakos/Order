@@ -68,51 +68,6 @@ function requireAuth(req, res, next) {
 }
 
 
-const routes = {
-  "/": "home",
-  "/home": "index",
-  "/test": "test",
-  "/test2": "test2",
-  "/test3": "test3",
-  "/about": "about",
-  "/constitution": "constitution",
-  "/document": "document",
-  "/discipline": "discipline",
-  "/form": "form",
-  "/contact": "contact",
-  "/copyright": "copyrights",
-  "/join": "join",
-  "/login": "login",
-  "/archive": "archive",
-  "/bell": "bellreports",
-  "/heralds": "heralds",
-
-    // disciplines:
-  "/philosophia": "philosophia",
-  "/scientia": "scientia",
-  "/cultura": "cultura",
-  "/traditio": "traditio",
-  "/conscientia": "conscientia",
-  "/information": "information",
-  "/phenomena": "phenomena"
-};
-
-Object.entries(routes).forEach(([route, view]) => {
-  app.get(route, (req, res) => {
-    res.render(view);
-  });
-});
-
-
-app.use((req, res) => {
-  res.status(404).render("404");
-});
-
-
-
-
-
-
 
 
 app.post("/login", async (req, res) => {
@@ -173,6 +128,63 @@ app.get("/api/me", (req, res) => {
     role: req.session.user.role
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+const routes = {
+  "/": "home",
+  "/home": "index",
+  "/test": "test",
+  "/test2": "test2",
+  "/test3": "test3",
+  "/about": "about",
+  "/constitution": "constitution",
+  "/document": "document",
+  "/discipline": "discipline",
+  "/form": "form",
+  "/contact": "contact",
+  "/copyright": "copyrights",
+  "/join": "join",
+  "/login": "login",
+  "/archive": "archive",
+  "/bell": "bellreports",
+  "/heralds": "heralds",
+
+    // disciplines:
+  "/philosophia": "philosophia",
+  "/scientia": "scientia",
+  "/cultura": "cultura",
+  "/traditio": "traditio",
+  "/conscientia": "conscientia",
+  "/information": "information",
+  "/phenomena": "phenomena"
+};
+
+Object.entries(routes).forEach(([route, view]) => {
+  app.get(route, (req, res) => {
+    res.render(view);
+  });
+});
+
+
+app.use((req, res) => {
+  res.status(404).render("404");
+});
+
+
+
+
+
+
 
 
 
