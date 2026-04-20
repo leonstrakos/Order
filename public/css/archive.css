@@ -198,55 +198,23 @@
 
 
 
+.content {
+  position: relative;
+  z-index: 2;
+}
 
 
 
 
+/* MOBILE */
+@media (max-width: 760px) {
+
+  
+.eyebrow {
+  letter-spacing: 0.18rem;
+    line-height: 1.2;
+  font-size: 0.6rem;
+}
 
 
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .flame-pillar {
-        width: 120px;
-        height: 250px;
-        opacity: 0.92;
-      }
-
-      .altar {
-        width: 84px;
-        height: 62px;
-      }
-
-      .flame-core,
-      .flame-mid,
-      .flame-outer {
-        bottom: 48px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 6.5rem;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-      }
-
-      .eyebrow,
-      h1 .small {
-        letter-spacing: 0.24rem;
-      }
-
-      .flame-pillar {
-        width: 88px;
-        height: 220px;
-      }
-
-      .panel {
-        padding: 1.3rem;
-      }
-    }
+}
