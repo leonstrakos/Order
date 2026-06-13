@@ -269,4 +269,16 @@
 }
 
 
+.notice {
+  font-size: 2rem;
+}
+
+.notice-p {
+  font-size: 1rem;
+}
+
+.accent {
+  font-size: 1.5rem;
+}
+
 }

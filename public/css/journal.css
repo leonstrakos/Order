@@ -40,4 +40,12 @@ img {
     margin-bottom: 0px;
 }
 
+/* MOBILE */
+@media (max-width: 760px) {
 
+    img {
+    width: 80%;
+    margin-bottom: 0px;
+}
+
+}
