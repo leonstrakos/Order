@@ -315,7 +315,7 @@ app.post(
 
 // see reports  http://localhost:3000/admin/reports
 app.get("/admin/reports", (req, res) => { if (!req.session.user) {
-  return res.redirect("/login");
+ // return res.redirect("/login");
 }
 
   const reports = db
