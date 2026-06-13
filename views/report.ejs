@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Bell Report</title>
+  <link rel="stylesheet" href="/css/submit-report.css">
+
+  <style>
+    
+
+:root{
+  --paper:#f4f0e4;
+  --ink:#111;
+  --line:#cfc8b8;
+  --red:#8d1f1f;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#0a0a0a;
+  padding:50px 20px;
+  font-family:"Courier New", monospace;
+}
+
+.paper{
+  max-width:900px;
+  margin:auto;
+  background:var(--paper);
+  color:var(--ink);
+  padding:50px;
+  position:relative;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.15),
+    0 20px 60px rgba(0,0,0,.5);
+}
+
+.paper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      rgba(0,0,0,.03) 1px,
+      transparent 1px
+    );
+
+  background-size:3px 3px;
+
+  pointer-events:none;
+}
+
+.stamp{
+  position:absolute;
+  top:25px;
+  right:25px;
+
+  border:2px solid var(--red);
+  color:var(--red);
+
+  padding:8px 14px;
+
+  transform:rotate(12deg);
+
+  letter-spacing:.15em;
+  font-size:.8rem;
+}
+
+.header{
+  margin-bottom:40px;
+}
+
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.25em;
+  font-size:.75rem;
+  opacity:.7;
+  margin-bottom:12px;
+}
+
+h1{
+  font-size:2.5rem;
+  margin-bottom:18px;
+}
+
+.intro{
+  max-width:700px;
+  line-height:1.7;
+}
+
+.section{
+  margin-bottom:40px;
+}
+
+.section h2{
+  font-size:1rem;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  padding-bottom:8px;
+  margin-bottom:18px;
+
+  border-bottom:1px solid var(--line);
+}
+
+label{
+  display:block;
+  margin-bottom:8px;
+  font-size:.85rem;
+}
+
+input,
+textarea,
+select{
+
+  width:100%;
+  padding:12px;
+
+  margin-bottom:18px;
+
+  border:1px solid var(--line);
+
+  background:#fff;
+
+  font-family:inherit;
+}
+
+textarea{
+  resize:vertical;
+}
+
+.checks{
+  display:grid;
+  gap:10px;
+}
+
+.checks label{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.checks input{
+  width:auto;
+  margin:0;
+}
+
+.small{
+  margin-bottom:10px;
+  opacity:.7;
+  font-size:.85rem;
+}
+
+.submit-btn{
+
+  width:100%;
+
+  padding:16px;
+
+  border:none;
+
+  background:#111;
+  color:white;
+
+  cursor:pointer;
+
+  letter-spacing:.2em;
+  text-transform:uppercase;
+
+  transition:.2s;
+}
+
+.submit-btn:hover{
+  background:#222;
+}
+
+@media(max-width:700px){
+
+  .paper{
+    padding:30px 20px;
+  }
+
+  h1{
+    font-size:1.8rem;
+  }
+
+}
+  </style>
+</head>
+<body>
+
+<div class="paper">
+
+  <div class="stamp">UNREVIEWED</div>
+
+  <header class="header">
+
+    <p class="eyebrow">
+      Bell Reports • Case Submission
+    </p>
+
+    <h1>SUBMIT A BELL REPORT</h1>
+
+    <p class="intro">
+      Reports are preserved for investigation, analysis, and future inquiry.
+      Submission does not imply endorsement, validation, or conclusion.
+    </p>
+
+  </header>
+
+  <form action="/reports/create" method="POST">
+
+    <!-- CLASSIFICATION -->
+
+    <section class="section">
+      <h2>Classification</h2>
+
+      <label>Topic</label>
+      <select name="discipline">
+        <option>Anomalous Phenomena</option>
+        <option>UFO's</option>
+        <option>ESP</option>
+      </select>
+    </section>
+
+    <!-- TITLE -->
+
+    <section class="section">
+      <h2>Record Information</h2>
+
+      <label>Title</label>
+      <input
+        type="text"
+        name="title"
+        placeholder="Unusual Dream With Verifiable Elements"
+      >
+
+      <label>Herald Name</label>
+      <input
+        type="text"
+        name="author"
+        placeholder="Optional pseudonym"
+      >
+    </section>
+
+    <!-- ABSTRACT -->
+
+    <section class="section">
+      <h2>Abstract</h2>
+
+      <textarea
+        name="abstract"
+        rows="4"
+        placeholder="Provide a concise summary of the report."
+      ></textarea>
+    </section>
+
+    <!-- MAIN BODY -->
+
+    <section class="section">
+      <h2>Main Record</h2>
+
+      <textarea
+        name="content"
+        rows="12"
+        placeholder="Describe observations, events, experiments, or inquiries."
+      ></textarea>
+    </section>
+
+    <!-- CASE DETAILS -->
+
+    <section class="section">
+      <h2>Case Details</h2>
+
+      <label>Date</label>
+      <input type="date" name="eventDate">
+
+      <label>Location</label>
+      <input
+        type="text"
+        name="location"
+        placeholder="Optional"
+      >
+
+      <label>Witnesses</label>
+      <select name="witnesses">
+        <option>Only Me</option>
+        <option>2 - 5</option>
+        <option>5+</option>
+      </select>
+    </section>
+
+    <!-- EVIDENCE -->
+
+    <section class="section">
+
+      <h2>Evidence</h2>
+
+      <div class="checks">
+
+        <label>
+          <input type="checkbox" name="evidence" value="Photos">
+          Photos
+        </label>
+
+        <label>
+          <input type="checkbox" name="evidence" value="Video">
+          Video
+        </label>
+
+        <label>
+          <input type="checkbox" name="evidence" value="Audio">
+          Audio
+        </label>
+
+        <label>
+          <input type="checkbox" name="evidence" value="Documents">
+          Documents
+        </label>
+
+      </div>
+
+    </section>
+
+    <!-- CONFIDENCE -->
+
+    <section class="section">
+
+      <h2>Confidence</h2>
+
+      <p class="small">
+        How accurately do you believe this report reflects the original event?
+      </p>
+
+      <input
+        type="range"
+        min="1"
+        max="10"
+        value="5"
+        name="confidence"
+      >
+
+    </section>
+
+    <!-- ALTERNATIVES -->
+
+    <section class="section">
+
+      <h2>Alternative Explanations Considered</h2>
+
+      <textarea
+        name="alternatives"
+        rows="6"
+        placeholder="Describe any ordinary explanations considered."
+      ></textarea>
+
+    </section>
+
+    <!-- QUESTIONS -->
+
+    <section class="section">
+
+      <h2>Questions For Further Inquiry</h2>
+
+      <textarea
+        name="questions"
+        rows="6"
+        placeholder="What remains unknown?"
+      ></textarea>
+
+    </section>
+
+    <button class="submit-btn">
+      RECORD TESTIMONY
+    </button>
+
+  </form>
+
+</div>
+
+</body>
+</html>

@@ -112,6 +112,8 @@ color:var(--muted);
 /* sections */
 section{margin-top:4rem}
 
+
+
 .section ul{
 list-style:none;
 padding-left:0;
@@ -147,9 +149,11 @@ border-radius:26px;
 padding:1.5rem;
 }
 
+
+
 /* accordion */
 .accordion{
-display:grid;
+display:block;
 gap:24px;
 margin-top:2rem;
 }
@@ -160,6 +164,7 @@ border:1px solid rgba(255,235,200,.12);
 border-radius:26px;
 overflow:hidden;
 transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
+margin-bottom: 20px;
 }
 
 .panel-box[open]{
@@ -199,6 +204,12 @@ color:var(--muted);
 line-height:1.8;
 }
 
+
+
+
+
+
+
 .records{
 display:grid;
 gap:14px;
@@ -224,6 +235,36 @@ margin:0;
 color:var(--muted);
 line-height:1.7;
 }
+
+
+        .records{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+gap:24px;
+}
+
+.panel-box h3{
+font-size:.95rem;
+letter-spacing:.18em;
+color:var(--gold);
+}
+
+.panel-box small{
+display:block;
+margin-top:4px;
+color:var(--muted);
+text-transform:uppercase;
+letter-spacing:.12em;
+font-size:.65rem;
+}
+
+
+
+
+
+
+
 
 @media(max-width:900px){
 .hero{
@@ -314,7 +355,9 @@ font-size: 1.3rem;
 }
 
 
-
+.veil-plate {
+  margin-bottom: 50px;
+}
 
 
 .plate{

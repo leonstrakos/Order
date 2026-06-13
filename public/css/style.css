@@ -26,6 +26,13 @@ html, body {
   z-index: 2;
 }
 
+
+#lionsbell-stamp {
+    width: 40%;
+    margin-bottom: 0px;
+    margin-top: -100px;
+}
+
 #loginBtn {
   display: inline-block;
   background: transparent;
@@ -179,6 +186,7 @@ body {
 
 a {
   text-decoration: none;
+  color: white;
 }
 
 

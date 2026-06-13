@@ -157,7 +157,9 @@ const routes = {
   "/login": "login",
   "/archive": "archive",
   "/bell": "bellreports",
-  "/heralds": "heralds",
+  "/heralds": "",
+  "/report": "report",
+  "/journal": "journal",
 
     // disciplines:
   "/philosophia": "philosophia",
