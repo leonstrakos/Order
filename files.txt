@@ -1,19 +1,9 @@
-    ✶ NOTICE FROM THE ARCHIVE ✶
 
-The Archive is undergoing its first stage of digital preservation.
+const reports = db
+.prepare("SELECT * FROM reports")
+.all();
 
-Records are being gathered, reviewed, and preserved for publication.
-
-The first Bell Reports and the inaugural volume of Beneath the Veil are expected to become available on [7.1.2026.].
-
-Visitors may encounter empty shelves, unfinished catalogs, and sealed records while this work continues.
-
-Those who wish to contribute may submit reports, observations, and research through the Bell Reports portal.
-
-✶
-Campana Sonat Omnibus.
-
-
+console.log(reports);
 
 
 

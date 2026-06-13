@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bell Reports</title>
+
+  <style>
+
+  body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    padding:40px;
+  }
+
+  .report{
+    border:1px solid #444;
+    padding:20px;
+    margin-bottom:20px;
+  }
+
+  a{
+    color:gold;
+  }
+
+  </style>
+
+</head>
+<body>
+
+<h1>Bell Reports</h1>
+
+<% reports.forEach(report => { %>
+
+<div class="report">
+
+  <h2>
+    <%= report.title %>
+  </h2>
+
+  <p>
+    <strong>Category:</strong>
+    <%= report.category %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= report.createdAt %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= report.status %>
+  </p>
+
+  <a href="/admin/reports/<%= report.id %>">
+    Open Report
+  </a>
+
+</div>
+
+<% }) %>
+
+</body>
+</html>

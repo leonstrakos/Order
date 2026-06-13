@@ -11,7 +11,36 @@ db.exec(`
     password_hash TEXT NOT NULL,
     role TEXT DEFAULT 'seeker',
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
-  )
+  );
+
+CREATE TABLE IF NOT EXISTS reports (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  category TEXT,
+
+  title TEXT,
+
+  author TEXT,
+  email TEXT,
+
+  age TEXT,
+  sex TEXT,
+
+  eventDate TEXT,
+  location TEXT,
+
+  witnesses TEXT,
+
+  report TEXT,
+
+  additionalNotes TEXT,
+
+  files TEXT,
+
+  status TEXT DEFAULT 'Pending',
+
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 `);
 
 module.exports = db;

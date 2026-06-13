@@ -616,63 +616,6 @@ img, video {
 }
 
 
-
-
-
-.footer-title {
-  font-family: "Cinzel", serif;
-  letter-spacing: 2px;
-  margin: 10px 0;
-}
-
-.footer-motto {
-  font-style: italic;
-  opacity: 0.8;
-  margin: 20px 0;
-  color: var(--lion-gold);
-}
-
-.footer-note {
-  font-style: italic;
-  font-size: 0.75rem;
-  opacity: 0.8;
-  margin: 20px 0;
-  line-height: 1.7;
-}
-
-.footer-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 25px;
-}
-
-.footer-nav a {
-  color: #c6a96a;
-  text-decoration: none;
-  letter-spacing: 1px;
-}
-
-.footer-nav a:hover {
-  opacity: .7;
-}
-
-.footer-nav .divider {
-  margin: 0 10px;
-  opacity: .4;
-}
-
-.footer-seal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-}
-
-
-
-
 }
 
 

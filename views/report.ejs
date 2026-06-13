@@ -214,168 +214,112 @@ textarea{
     </p>
 
   </header>
-
-  <form action="/reports/create" method="POST">
+<form
+action="/reports/create"
+method="POST"
+enctype="multipart/form-data">
 
     <!-- CLASSIFICATION -->
 
     <section class="section">
       <h2>Classification</h2>
 
-      <label>Topic</label>
-      <select name="discipline">
-        <option>Anomalous Phenomena</option>
-        <option>UFO's</option>
-        <option>ESP</option>
-      </select>
-    </section>
+    <select name="category">
+      <option>UFO / UAP</option>
+      <option>Parapsychology</option>
+      <option>Dreams & Precognition</option>
+      <option>Folklore & High-Strangeness</option>
+      <option>Religious / Mystical Experience</option>
+      <option>Other Anomalous Experience</option>
+    </select>
 
     <!-- TITLE -->
+<input type="text" name="author" placeholder="Name or pseudonym">
+
+<input type="email" name="email"
+placeholder="Optional contact email">
+
+
+
+
 
     <section class="section">
-      <h2>Record Information</h2>
+      <h2>Demographic information</h2>
 
-      <label>Title</label>
-      <input
-        type="text"
-        name="title"
-        placeholder="Unusual Dream With Verifiable Elements"
-      >
 
-      <label>Herald Name</label>
-      <input
-        type="text"
-        name="author"
-        placeholder="Optional pseudonym"
-      >
-    </section>
+      <input type="text"
+name="age"
+placeholder="Age">
 
-    <!-- ABSTRACT -->
+
+    <select name="sex">
+      <option>Male</option>
+      <option>Female</option>
+
+    </select>
 
     <section class="section">
-      <h2>Abstract</h2>
+      <h2>About the Event</h2>
 
-      <textarea
-        name="abstract"
-        rows="4"
-        placeholder="Provide a concise summary of the report."
-      ></textarea>
-    </section>
+<input type="text"
+name="title"
+placeholder="Brief title">
 
-    <!-- MAIN BODY -->
+<input type="date"
+name="eventDate">
 
-    <section class="section">
-      <h2>Main Record</h2>
+<input type="text"
+name="location"
+placeholder="Location">
 
-      <textarea
-        name="content"
-        rows="12"
-        placeholder="Describe observations, events, experiments, or inquiries."
-      ></textarea>
-    </section>
+<select name="witnesses">
+  <option>Only Me</option>
+  <option>2–5 Witnesses</option>
+  <option>More than 5 Witnesses</option>
+</select>
+<textarea
+name="report"
+rows="12"
+placeholder="Describe exactly what happened. Include times, observations, emotions, and anything unusual."
+></textarea>
 
-    <!-- CASE DETAILS -->
+<input
+type="file"
+name="evidenceFiles"
+multiple
+accept="
+image/*,
+video/*,
+audio/*,
+application/pdf">
+  
 
-    <section class="section">
-      <h2>Case Details</h2>
 
-      <label>Date</label>
-      <input type="date" name="eventDate">
 
-      <label>Location</label>
-      <input
-        type="text"
-        name="location"
-        placeholder="Optional"
-      >
+<textarea
+name="additionalNotes"
+rows="5"
+placeholder="Any additional details, theories, or observations."
+></textarea>
 
-      <label>Witnesses</label>
-      <select name="witnesses">
-        <option>Only Me</option>
-        <option>2 - 5</option>
-        <option>5+</option>
-      </select>
-    </section>
+<label>
+  <input
+  type="checkbox"
+  required>
+  I confirm this report is submitted
+  truthfully to the best of my knowledge.
+</label>
 
-    <!-- EVIDENCE -->
 
-    <section class="section">
+<label>
+  <input
+  type="checkbox"
+  required>
+  I give consent for "The Order of the Lion's Bell" to use and publishes this information if proven meaningful.
+</label>
 
-      <h2>Evidence</h2>
 
-      <div class="checks">
 
-        <label>
-          <input type="checkbox" name="evidence" value="Photos">
-          Photos
-        </label>
-
-        <label>
-          <input type="checkbox" name="evidence" value="Video">
-          Video
-        </label>
-
-        <label>
-          <input type="checkbox" name="evidence" value="Audio">
-          Audio
-        </label>
-
-        <label>
-          <input type="checkbox" name="evidence" value="Documents">
-          Documents
-        </label>
-
-      </div>
-
-    </section>
-
-    <!-- CONFIDENCE -->
-
-    <section class="section">
-
-      <h2>Confidence</h2>
-
-      <p class="small">
-        How accurately do you believe this report reflects the original event?
-      </p>
-
-      <input
-        type="range"
-        min="1"
-        max="10"
-        value="5"
-        name="confidence"
-      >
-
-    </section>
-
-    <!-- ALTERNATIVES -->
-
-    <section class="section">
-
-      <h2>Alternative Explanations Considered</h2>
-
-      <textarea
-        name="alternatives"
-        rows="6"
-        placeholder="Describe any ordinary explanations considered."
-      ></textarea>
-
-    </section>
-
-    <!-- QUESTIONS -->
-
-    <section class="section">
-
-      <h2>Questions For Further Inquiry</h2>
-
-      <textarea
-        name="questions"
-        rows="6"
-        placeholder="What remains unknown?"
-      ></textarea>
-
-    </section>
 
     <button class="submit-btn">
       RECORD TESTIMONY
@@ -384,6 +328,7 @@ textarea{
   </form>
 
 </div>
+
 
 </body>
 </html>

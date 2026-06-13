@@ -8,6 +8,8 @@ const { SitemapStream, streamToPromise } = require('sitemap');
 const { Readable } = require('stream');
 const { Resend } = require('resend');
 require("dotenv").config();
+const multer = require("multer");
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -178,23 +180,245 @@ Object.entries(routes).forEach(([route, view]) => {
 });
 
 
-app.use((req, res) => {
-  res.status(404).render("404");
+
+
+
+
+
+
+
+
+
+
+// uploads
+
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: (req, file, cb) => {
+
+    const safeName =
+      file.originalname.replace(/\s+/g, "-");
+
+    cb(
+      null,
+      Date.now() + "-" + safeName
+    );
+  }
+});
+
+const upload = multer({
+
+  storage,
+
+  fileFilter(req, file, cb) {
+
+    const allowed = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+
+      "video/mp4",
+
+      "audio/mpeg",
+      "audio/wav",
+
+      "application/pdf"
+    ];
+
+    if (allowed.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(
+        new Error(
+          "Only JPG, PNG, WEBP, MP4, MP3, WAV and PDF files are allowed."
+        )
+      );
+    }
+  },
+
+  limits: {
+    fileSize: 20 * 1024 * 1024, // 20MB
+    files: 10
+  }
+
 });
 
 
+app.post(
+  "/reports/create",
+  upload.array("evidenceFiles"),
+  (req, res) => {
+
+    try {
+
+      const files = req.files
+        ? JSON.stringify(
+            req.files.map(
+              file => file.filename
+            )
+          )
+        : null;
+
+      const stmt = db.prepare(`
+        INSERT INTO reports (
+          category,
+          title,
+          author,
+          email,
+          age,
+          sex,
+          eventDate,
+          location,
+          witnesses,
+          report,
+          additionalNotes,
+          files
+        )
+        VALUES (
+          ?,?,?,?,?,?,?,?,?,?,?,?
+        )
+      `);
+
+      stmt.run(
+        req.body.category,
+        req.body.title,
+        req.body.author,
+        req.body.email,
+        req.body.age,
+        req.body.sex,
+        req.body.eventDate,
+        req.body.location,
+        req.body.witnesses,
+        req.body.report,
+        req.body.additionalNotes,
+        files
+      );
+
+      res.send("Report saved.");
+
+    } catch (err) {
+
+      console.error(err);
+
+      res
+        .status(500)
+        .send("Failed to save report.");
+
+    }
+
+  }
+);
 
 
 
 
 
+// see reports  http://localhost:3000/admin/reports
+app.get("/admin/reports", (req, res) => { if (!req.session.user) {
+  return res.redirect("/login");
+}
 
+  const reports = db
+    .prepare(`
+      SELECT *
+      FROM reports
+      ORDER BY createdAt DESC
+    `)
+    .all();
 
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Bell Reports Admin</title>
 
+      <style>
+        body{
+          font-family:Arial,sans-serif;
+          max-width:1200px;
+          margin:auto;
+          padding:40px;
+          background:#111;
+          color:#eee;
+        }
 
+        .report{
+          border:1px solid #444;
+          padding:20px;
+          margin-bottom:30px;
+          border-radius:8px;
+          background:#1a1a1a;
+        }
 
+        h2{
+          margin-top:0;
+        }
 
+        .meta{
+          color:#aaa;
+          margin-bottom:15px;
+        }
 
+        pre{
+          white-space:pre-wrap;
+          word-wrap:break-word;
+          font-family:inherit;
+        }
+
+        a{
+          color:#8cc6ff;
+        }
+      </style>
+    </head>
+    <body>
+
+      <h1>Bell Report Submissions (${reports.length})</h1>
+
+      ${reports.map(report => `
+
+        <div class="report">
+
+          <h2>${report.title || "Untitled Report"}</h2>
+
+          <div class="meta">
+            <strong>Category:</strong> ${report.category || "-"}<br>
+            <strong>Author:</strong> ${report.author || "-"}<br>
+            <strong>Email:</strong> ${report.email || "-"}<br>
+            <strong>Age:</strong> ${report.age || "-"}<br>
+            <strong>Sex:</strong> ${report.sex || "-"}<br>
+            <strong>Date of Event:</strong> ${report.eventDate || "-"}<br>
+            <strong>Location:</strong> ${report.location || "-"}<br>
+            <strong>Witnesses:</strong> ${report.witnesses || "-"}<br>
+            <strong>Submitted:</strong> ${report.createdAt || "-"}
+          </div>
+
+          <h3>Report</h3>
+          <pre>${report.report || ""}</pre>
+
+          <h3>Additional Notes</h3>
+          <pre>${report.additionalNotes || ""}</pre>
+
+          <h3>Files</h3>
+
+          ${
+            report.files
+              ? JSON.parse(report.files)
+                  .map(file =>
+                    `<div><a href="/uploads/${file}" target="_blank">${file}</a></div>`
+                  )
+                  .join("")
+              : "No files uploaded"
+          }
+
+        </div>
+
+      `).join("")}
+
+    </body>
+    </html>
+  `);
+
+});
 
 
 
@@ -288,6 +512,19 @@ app.get('/sitemap.xml', async (req, res) => {
     console.error(error);
     res.status(500).end();
   }
+});
+
+
+
+
+
+
+
+
+
+
+app.use((req, res) => {
+  res.status(404).render("404");
 });
 
 
