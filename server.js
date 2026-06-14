@@ -259,25 +259,30 @@ app.post(
           )
         : null;
 
-      const stmt = db.prepare(`
-        INSERT INTO reports (
-          category,
-          title,
-          author,
-          email,
-          age,
-          sex,
-          eventDate,
-          location,
-          witnesses,
-          report,
-          additionalNotes,
-          files
-        )
-        VALUES (
-          ?,?,?,?,?,?,?,?,?,?,?,?
-        )
-      `);
+        const stmt = db.prepare(`
+      INSERT INTO reports (
+        category,
+        title,
+        author,
+        email,
+        age,
+        sex,
+        eventDate,
+        location,
+        witnesses,
+        duration,
+        weather,
+        timeOfDay,
+        effects,
+        report,
+        alternativeExplanations,
+        additionalNotes,
+        files
+      )
+      VALUES (
+        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+      )
+    `);
 
       stmt.run(
         req.body.category,
@@ -289,6 +294,11 @@ app.post(
         req.body.eventDate,
         req.body.location,
         req.body.witnesses,
+        req.body.duration,
+        req.body.weather,
+        req.body.timeOfDay,
+        req.body.effects,
+        req.body.alternativeExplanations,
         req.body.report,
         req.body.additionalNotes,
         files

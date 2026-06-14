@@ -294,13 +294,91 @@ audio/*,
 application/pdf">
   
 
+<label>Duration</label>
 
+<select name="duration">
+  <option>Less than 1 minute</option>
+  <option>1–5 minutes</option>
+  <option>5–30 minutes</option>
+  <option>More than 30 minutes</option>
+</select>
+
+<label>Weather</label>
+
+<select name="weather">
+  <option>Clear</option>
+  <option>Cloudy</option>
+  <option>Rain</option>
+  <option>Snow</option>
+  <option>Unknown</option>
+</select>
+
+<label>Time of Day</label>
+
+<select name="timeOfDay">
+  <option>Morning</option>
+  <option>Afternoon</option>
+  <option>Evening</option>
+  <option>Night</option>
+</select>
+
+
+<section class="section">
+<h2>Effects Experienced</h2>
+
+<div class="checks">
+
+<label>
+<input type="checkbox" name="effects" value="Fear">
+Fear
+</label>
+
+<label>
+<input type="checkbox" name="effects" value="Euphoria">
+Euphoria
+</label>
+
+<label>
+<input type="checkbox" name="effects" value="Missing Time">
+Missing Time
+</label>
+
+<label>
+<input type="checkbox" name="effects" value="Physical Sensation">
+Physical Sensation
+</label>
+
+<label>
+<input type="checkbox" name="effects" value="Dream Afterwards">
+Dream Afterwards
+</label>
+
+<label>
+<input type="checkbox" name="effects" value="Electrical Disturbance">
+Electrical Disturbance
+</label>
+
+</div>
+</section>
 
 <textarea
 name="additionalNotes"
 rows="5"
 placeholder="Any additional details, theories, or observations."
 ></textarea>
+
+
+<section class="section">
+
+<h2>Alternative Explanations Considered</h2>
+
+<textarea
+name="alternativeExplanations"
+rows="6"
+placeholder="Describe any ordinary explanations considered."
+></textarea>
+
+</section>
 
 <label>
   <input
