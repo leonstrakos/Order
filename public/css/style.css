@@ -617,12 +617,345 @@ img, video {
 
 
 }
+/* =========================
+   HERALDS RESEARCH SYSTEM
+   /hrs — HRS v1.0
+========================= */
 
+.hrs-site-page {
+  background: #07090d;
+}
 
+.hrs-hero {
+  position: relative;
+  min-height: calc(100vh - 110px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 90px 24px 100px;
+  border-bottom: 1px solid var(--border-soft);
+}
 
+.hrs-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(5, 8, 13, 0.72) 0%,
+      rgba(5, 8, 13, 0.90) 62%,
+      #07090d 100%
+    ),
+    url("/images/city.webp") center / cover no-repeat;
+  opacity: 0.58;
+  filter: saturate(0.72);
+}
 
+.hrs-hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 38%,
+    rgba(84, 119, 158, 0.08),
+    rgba(0, 0, 0, 0.48) 72%
+  );
+}
 
+.hrs-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(820px, 100%);
+  text-align: center;
+}
 
+.hrs-stamp {
+  width: min(260px, 64vw);
+  height: 118px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 30px;
+  opacity: 0.72;
+}
 
+.hrs-kicker {
+  margin: 0 0 18px;
+  color: var(--lion-gold);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
 
+.hrs-title {
+  margin: 0;
+  color: #c4d8ef;
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: clamp(2.55rem, 7vw, 5.3rem);
+  font-weight: normal;
+  line-height: 0.98;
+  letter-spacing: 0.08em;
+  animation: none;
+  text-shadow: 0 0 24px rgba(110, 152, 199, 0.12);
+}
 
+.hrs-version {
+  margin: 24px 0 0;
+  color: rgba(198, 169, 106, 0.86);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+}
+
+.hrs-intro {
+  width: min(680px, 100%);
+  margin: 34px auto 0;
+  color: rgba(238, 239, 241, 0.75);
+  font-family: "Cicero", Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.16rem);
+  line-height: 1.9;
+}
+
+.hrs-actions {
+  width: min(560px, 100%);
+  display: grid;
+  gap: 13px;
+  margin: 42px auto 0;
+}
+
+.hrs-action {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 15px 48px;
+  border: 1px solid rgba(198, 169, 106, 0.48);
+  color: var(--lion-gold);
+  background: rgba(5, 8, 12, 0.34);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.20em;
+  text-decoration: none;
+}
+
+.hrs-action span {
+  position: absolute;
+  right: 20px;
+  font-size: 1.2rem;
+}
+
+.hrs-action-primary {
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.hrs-action-primary:hover {
+  background: rgba(198, 169, 106, 0.10);
+  border-color: var(--lion-gold);
+  color: #f0d58e;
+}
+
+.hrs-action-disabled {
+  border-color: rgba(198, 169, 106, 0.18);
+  color: rgba(198, 169, 106, 0.42);
+  cursor: default;
+}
+
+.hrs-install-note {
+  margin: 17px 0 0;
+  color: rgba(255, 255, 255, 0.36);
+  font-family: "Cicero", Georgia, serif;
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
+.hrs-section {
+  padding: 105px 24px;
+  border-bottom: 1px solid rgba(198, 169, 106, 0.10);
+}
+
+.hrs-section-inner {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hrs-section h2 {
+  margin: 0;
+  color: #c4d8ef;
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: normal;
+  letter-spacing: 0.08em;
+}
+
+.hrs-rule {
+  width: 96px;
+  height: 1px;
+  margin: 30px auto;
+  background: rgba(198, 169, 106, 0.42);
+}
+
+.hrs-body {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.70);
+  font-family: "Cicero", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.hrs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 56px;
+  border: 1px solid rgba(198, 169, 106, 0.18);
+  background: rgba(198, 169, 106, 0.18);
+}
+
+.hrs-card {
+  min-height: 230px;
+  padding: 34px 30px;
+  text-align: left;
+  background: rgba(7, 9, 13, 0.97);
+}
+
+.hrs-card > span {
+  display: block;
+  margin-bottom: 24px;
+  color: rgba(198, 169, 106, 0.62);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.20em;
+}
+
+.hrs-card h3 {
+  margin: 0 0 15px;
+  color: #c4d8ef;
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: 0.13em;
+}
+
+.hrs-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.60);
+  font-family: "Cicero", Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.hrs-access-section {
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 12, 18, 0.94),
+    rgba(7, 9, 13, 1)
+  );
+}
+
+.hrs-secondary-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px 34px;
+  margin-top: 42px;
+}
+
+.hrs-secondary-actions a {
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(198, 169, 106, 0.38);
+  color: var(--lion-gold);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 0.70rem;
+  letter-spacing: 0.17em;
+  text-decoration: none;
+}
+
+.hrs-secondary-actions a:hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 900px) {
+  .hrs-hero {
+    min-height: auto;
+    padding: 82px 22px 90px;
+  }
+
+  .hrs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hrs-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .nav-left,
+  .nav-right {
+    gap: 9px;
+  }
+
+  .nav-left a,
+  .nav-right a {
+    font-size: 0.72rem;
+    letter-spacing: 0.35px;
+  }
+
+  #loginBtn {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .hrs-hero {
+    padding: 62px 20px 72px;
+  }
+
+  .hrs-stamp {
+    width: 210px;
+    height: 92px;
+    margin-bottom: 24px;
+  }
+
+  .hrs-kicker {
+    font-size: 0.60rem;
+    line-height: 1.7;
+  }
+
+  .hrs-title {
+    font-size: 2.55rem;
+  }
+
+  .hrs-version {
+    font-size: 0.62rem;
+    line-height: 1.8;
+  }
+
+  .hrs-intro {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .hrs-action {
+    padding: 14px 38px 14px 16px;
+    font-size: 0.64rem;
+  }
+
+  .hrs-section {
+    padding: 76px 20px;
+  }
+
+  .hrs-card {
+    padding: 28px 24px;
+  }
+
+  .hrs-secondary-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

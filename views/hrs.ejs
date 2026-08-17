@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Heralds Research System · HRS v1.0</title>
+  <%- include("partials/metadata") %>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="hrs-site-page">
+  <%- include("partials/header") %>
+
+  <main>
+    <section class="hrs-hero">
+      <div class="hrs-hero-bg" aria-hidden="true"></div>
+
+      <div class="hrs-hero-inner">
+        <img
+          class="hrs-stamp"
+          src="/images/lionsbell-stamp.png"
+          alt="Order of the Lion's Bell"
+        >
+
+        <p class="hrs-kicker">ORDER OF THE LION'S BELL · DIGITAL SYSTEM</p>
+
+        <h1 class="hrs-title">HERALDS<br>RESEARCH SYSTEM</h1>
+
+        <p class="hrs-version">HRS · VERSION 1.0 · ANDROID</p>
+
+        <p class="hrs-intro">
+          The research, archival and formation system of the Order.
+          HRS brings the living work of the Heralds into one institutional record:
+          research sources, investigations, correspondence, experience records,
+          formation and the work of the Bell.
+        </p>
+
+        <div class="hrs-actions">
+          <a class="hrs-action hrs-action-primary"
+             href="/downloads/hrs-v1.0.apk"
+             download>
+            DOWNLOAD FOR ANDROID
+            <span>›</span>
+          </a>
+
+          <span class="hrs-action hrs-action-disabled" id="google-play">
+            GOOGLE PLAY · COMING SOON
+          </span>
+        </div>
+
+        <p class="hrs-install-note">
+          Direct Android distribution · signed HRS v1.0 build
+        </p>
+      </div>
+    </section>
+
+    <section class="hrs-section">
+      <div class="hrs-section-inner">
+        <p class="hrs-kicker">ONE SYSTEM · ONE RECORD</p>
+        <h2>THE WORK OF THE ORDER</h2>
+        <div class="hrs-rule"></div>
+
+        <p class="hrs-body">
+          HRS is not a separate social platform. It is the working system behind
+          the Order's research and institutional life. The website remains the
+          public threshold; HRS is where records are organized, work is continued
+          and member access is applied according to standing and responsibility.
+        </p>
+
+        <div class="hrs-grid">
+          <article class="hrs-card">
+            <span>I</span>
+            <h3>RESEARCH ARCHIVE</h3>
+            <p>
+              The Heralds Research Library, sources, claims, evidence and
+              structured archival records.
+            </p>
+          </article>
+
+          <article class="hrs-card">
+            <span>II</span>
+            <h3>CASES & INVESTIGATIONS</h3>
+            <p>
+              Active files, submitted experiences, investigative records and
+              formal research outcomes.
+            </p>
+          </article>
+
+          <article class="hrs-card">
+            <span>III</span>
+            <h3>ORDER & FORMATION</h3>
+            <p>
+              Member record, formation progress, chapters, offices, Council
+              records and advancement.
+            </p>
+          </article>
+
+          <article class="hrs-card">
+            <span>IV</span>
+            <h3>THE BELL</h3>
+            <p>
+              Bell Reports, research correspondence and the publication record
+              of work preserved by the Order.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="hrs-section hrs-access-section">
+      <div class="hrs-section-inner">
+        <p class="hrs-kicker">ACCESS</p>
+        <h2>ENTER THROUGH ONE IDENTITY</h2>
+        <div class="hrs-rule"></div>
+
+        <p class="hrs-body">
+          The same HRS identity is used across the application and authenticated
+          areas of the Heralds website. Seekers may enter the system with their
+          own account; additional functions become available according to
+          membership, standing, office and permissions.
+        </p>
+
+        <div class="hrs-secondary-actions">
+          <% if (user) { %>
+            <a href="/profile">VIEW MY ORDER RECORD</a>
+          <% } else { %>
+            <a href="/login">ENTER THE ORDER</a>
+          <% } %>
+
+          <a href="/archive">EXPLORE THE PUBLIC ARCHIVE</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include("partials/footer") %>

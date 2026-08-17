@@ -1,19 +1,22 @@
-<header id="header"> 
+<header id="header">
   <nav class="nav-left">
-    <a href="/archive" class="<%= currentPath === '/archive' ? 'active' : '' %>">Archive</a>
+    <a href="/archive" class="<%= currentPath === '/archive' || currentPath.startsWith('/archive/') ? 'active' : '' %>">Archive</a>
     <a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a>
   </nav>
 
   <div class="logo-wrap">
-    <a href="/home">
-      <img class="logo-img" src="/images/logo-4-stars.webp" alt="logo">
+    <a href="/home" aria-label="Order of the Lion's Bell">
+      <img class="logo-img" src="/images/logo-4-stars.webp" alt="Order of the Lion's Bell">
     </a>
   </div>
 
   <nav class="nav-right">
-    <a id="loginBtn" href="/login" class="<%= currentPath === '/login' ? 'active' : '' %>">LOGIN</a>
+    <a href="/hrs" class="<%= currentPath === '/hrs' ? 'active' : '' %>">HRS</a>
+
+    <% if (user) { %>
+      <a id="loginBtn" href="/profile" class="<%= currentPath === '/profile' ? 'active' : '' %>">PROFILE</a>
+    <% } else { %>
+      <a id="loginBtn" href="/login" class="<%= currentPath === '/login' ? 'active' : '' %>">LOGIN</a>
+    <% } %>
   </nav>
 </header>
-
-
-
