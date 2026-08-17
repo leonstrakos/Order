@@ -1,18 +1,20 @@
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
-const bcrypt = require("bcrypt");
-const db = require("./db");
+const XLSX = require("xlsx");
+
 const helmet = require("helmet");
-const { SitemapStream, streamToPromise } = require('sitemap');
-const { Readable } = require('stream');
-const { Resend } = require('resend');
-require("dotenv").config();
+const { SitemapStream, streamToPromise } = require("sitemap");
+const { Readable } = require("stream");
+const { Resend } = require("resend");
 const multer = require("multer");
+
+require("dotenv").config();
+
 const hrsDb = require("./hrs-db");
 const disciplineContent = require("./discipline-content");
 const hrsAuth = require("./hrs-auth");
-
+const hrlImport = require("./hrl-import");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -280,20 +282,116 @@ const xlsxUpload = multer({
   }
 });
 
-app.post('/profile/archive/import', requireAuth, xlsxUpload.single('catalogue'), async (req, res) => {
-  let member;
-  try {
-    member = await hrsAuth.me(req.session.hrsToken);
-    if (!member.permissions?.includes('ARCHIVE_EDIT')) return res.status(403).render('profile', { member, importResult:null, importError:'Archive editing authority is required.' });
-    if (!req.file) return res.status(400).render('profile', { member, importResult:null, importError:'Choose an .xlsx catalogue first.' });
-    const result = await hrsAuth.importHrl(req.session.hrsToken, req.file);
-    return res.render('profile', { member, importResult:result || {message:'Catalogue accepted by HRS.'}, importError:null });
-  } catch (error) {
-    console.error('HRL import:', error.message);
-    member = member || req.session.user;
-    return res.status(502).render('profile', { member, importResult:null, importError:error.message });
+app.post(
+  "/profile/archive/import",
+  requireAuth,
+  xlsxUpload.single("catalogue"),
+  async (req, res) => {
+    let member;
+
+    try {
+      member = await hrsAuth.me(
+        req.session.hrsToken
+      );
+
+      if (
+        !member.permissions?.includes(
+          "ARCHIVE_EDIT"
+        )
+      ) {
+        return res.status(403).render(
+          "profile",
+          {
+            member,
+            importResult: null,
+            importError:
+              "Archive editing authority is required."
+          }
+        );
+      }
+
+      if (!req.file) {
+        return res.status(400).render(
+          "profile",
+          {
+            member,
+            importResult: null,
+            importError:
+              "Choose an .xlsx catalogue first."
+          }
+        );
+      }
+
+      const workbook = XLSX.read(
+        req.file.buffer,
+        {
+          type: "buffer"
+        }
+      );
+
+      const sheetName =
+        workbook.SheetNames.find((name) =>
+          /master library/i.test(name)
+        ) ||
+        workbook.SheetNames.find((name) =>
+          /library/i.test(name)
+        ) ||
+        workbook.SheetNames[0];
+
+      if (!sheetName) {
+        throw new Error(
+          "The workbook contains no worksheets."
+        );
+      }
+
+      const rows = XLSX.utils.sheet_to_json(
+        workbook.Sheets[sheetName],
+        {
+          defval: "",
+          raw: false
+        }
+      );
+
+      if (!rows.length) {
+        throw new Error(
+          "The selected worksheet contains no records."
+        );
+      }
+
+      const result =
+        await hrlImport.importCatalogue(rows);
+
+      return res.render("profile", {
+        member,
+
+        importResult: {
+          message:
+            "HRL catalogue imported successfully.",
+          sheet: sheetName,
+          ...result
+        },
+
+        importError: null
+      });
+    } catch (error) {
+      console.error("HRL import:", error);
+
+      return res.status(500).render(
+        "profile",
+        {
+          member:
+            member || req.session.user,
+
+          importResult: null,
+
+          importError:
+            error.message ||
+            "The catalogue could not be imported."
+        }
+      );
+    }
   }
-});
+);
 
 // Legacy SQLite report ingestion removed; public intake now writes to the HRS Experience Archive.
 
