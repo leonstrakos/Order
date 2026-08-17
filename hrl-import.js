@@ -1,185 +1,147 @@
 ﻿const { Pool } = require("pg");
 
 const pool = process.env.HRS_DB_URL
-  ? new Pool({ connectionString: process.env.HRS_DB_URL })
+  ? new Pool({
+      connectionString: process.env.HRS_DB_URL
+    })
   : null;
 
-function clean(value) {
-  return value === undefined || value === null
-    ? ""
-    : String(value).trim();
-}
-
-function first(row, names) {
-  for (const name of names) {
-    if (
-      Object.prototype.hasOwnProperty.call(row, name) &&
-      clean(row[name]) !== ""
-    ) {
-      return row[name];
-    }
+function text(value) {
+  if (value === undefined || value === null) {
+    return "";
   }
 
-  return "";
+  return String(value).trim();
 }
 
-function parseYear(value) {
-  const match = clean(value).match(/\d{4}/);
+function year(value) {
+  const match = text(value).match(/\d{4}/);
   return match ? Number.parseInt(match[0], 10) : null;
 }
 
-function parseInteger(value) {
-  const n = Number.parseInt(clean(value), 10);
-  return Number.isFinite(n) ? n : null;
+function integer(value) {
+  const parsed = Number.parseInt(text(value), 10);
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
 function normalize(row) {
   return {
-    hrl_id: clean(
-      first(row, [
-        "HRL ID",
-        "HRL_ID",
-        "hrl_id"
-      ])
-    ),
+    hrl_id: text(row["HRL ID"]),
 
-    author: clean(
-      first(row, [
-        "Author / Creator",
-        "Author",
-        "author"
-      ])
-    ),
+    author: text(row["Author / Creator"]),
 
-    title: clean(
-      first(row, [
-        "Title",
-        "title"
-      ])
-    ),
+    title: text(row["Title"]),
 
-    publication_year: parseYear(
-      first(row, [
-        "Year",
-        "Publication Year"
-      ])
-    ),
+    publication_year: year(row["Year"]),
 
-    source_type: clean(
-      first(row, [
-        "Type",
-        "Source Type"
-      ])
-    ),
+    source_type: text(row["Type"]),
 
-    collection: clean(
-      first(row, [
-        "Collection",
-        "Collection / Folder"
-      ])
-    ),
+    collection: text(row["Collection"]),
 
-    source_role: clean(
-      first(row, [
-        "Source Role",
-        "source_role"
-      ])
-    ),
+    source_role: text(row["Source Role"]),
 
-    project_role: clean(
-      first(row, [
-        "Role in Project",
-        "Project Role",
-        "project_role"
-      ])
-    ),
+    project_role: text(row["Role in Project"]),
 
-    credibility: clean(
-      first(row, [
-        "Credibility / Research Use",
-        "Credibility",
-        "Research Use"
-      ])
-    ),
+    credibility: text(row["Credibility / Research Use"]),
 
-    research_tracks: clean(
-      first(row, [
-        "Research Tracks",
-        "Topics / Research Tracks",
-        "Topics"
-      ])
-    ),
+    research_tracks: text(row["Research Tracks"]),
 
-    priority: clean(
-      first(row, [
-        "Priority",
-        "priority"
-      ])
-    ),
+    priority: text(row["Priority"]),
 
-    reading_number: parseInteger(
-      first(row, [
-        "Reading #",
-        "Reading Number"
-      ])
-    ),
+    reading_number: integer(row["Reading #"]),
 
-    reading_phase: clean(
-      first(row, [
-        "Reading Phase",
-        "Phase"
-      ])
-    ),
+    reading_phase: text(row["Reading Phase"]),
 
-    reading_status: clean(
-      first(row, [
-        "Status",
-        "Reading Status"
-      ])
-    )
+    reading_status: text(row["Status"]),
+
+    audit_flag: text(row["Audit Flag"]),
+
+    relative_path: text(row["Relative Path"])
   };
+}
+
+function validate(record, rowNumber) {
+  const required = {
+    "HRL ID": record.hrl_id,
+    "Author / Creator": record.author,
+    "Title": record.title,
+    "Type": record.source_type,
+    "Collection": record.collection,
+    "Source Role": record.source_role,
+    "Role in Project": record.project_role,
+    "Credibility / Research Use": record.credibility,
+    "Research Tracks": record.research_tracks,
+    "Priority": record.priority,
+    "Reading Phase": record.reading_phase,
+    "Status": record.reading_status,
+    "Relative Path": record.relative_path
+  };
+
+  const missing = Object.entries(required)
+    .filter(([, value]) => !value)
+    .map(([name]) => name);
+
+  if (missing.length) {
+    throw new Error(
+      `HRL row ${rowNumber} (${record.hrl_id || "NO HRL ID"}) is missing: ${missing.join(", ")}`
+    );
+  }
 }
 
 async function importCatalogue(rows) {
   if (!pool) {
-    throw new Error("HRS_DB_URL is not configured.");
+    throw new Error(
+      "HRS_DB_URL is not configured."
+    );
   }
 
-  if (!Array.isArray(rows) || !rows.length) {
-    throw new Error("The catalogue contains no records.");
+  if (!Array.isArray(rows) || rows.length === 0) {
+    throw new Error(
+      "The Qualitative Catalog contains no records."
+    );
   }
 
   const client = await pool.connect();
 
   let inserted = 0;
   let updated = 0;
-  let skipped = 0;
 
   try {
     await client.query("BEGIN");
 
-    for (const row of rows) {
-      const record = normalize(row);
+    for (let index = 0; index < rows.length; index++) {
+      const record = normalize(rows[index]);
 
-      if (
-        !record.hrl_id ||
-        !record.author ||
-        !record.title ||
-        !record.source_type ||
-        !record.collection
-      ) {
-        skipped++;
-        continue;
-      }
+      validate(record, index + 2);
 
       const existing = await client.query(
         `
         SELECT id
         FROM research_sources
         WHERE hrl_id = $1
+        LIMIT 1
         `,
         [record.hrl_id]
       );
+
+      const values = [
+        record.hrl_id,
+        record.author,
+        record.title,
+        record.publication_year,
+        record.source_type,
+        record.collection,
+        record.source_role,
+        record.project_role,
+        record.credibility,
+        record.research_tracks,
+        record.priority,
+        record.reading_number,
+        record.reading_phase,
+        record.reading_status,
+        record.audit_flag,
+        record.relative_path
+      ];
 
       if (existing.rowCount > 0) {
         await client.query(
@@ -199,25 +161,12 @@ async function importCatalogue(rows) {
             reading_number = $12,
             reading_phase = $13,
             reading_status = $14,
+            audit_flag = $15,
+            relative_path = $16,
             modified_at = CURRENT_TIMESTAMP
           WHERE hrl_id = $1
           `,
-          [
-            record.hrl_id,
-            record.author,
-            record.title,
-            record.publication_year,
-            record.source_type,
-            record.collection,
-            record.source_role || "UNCLASSIFIED",
-            record.project_role || "UNCLASSIFIED",
-            record.credibility || "UNASSESSED",
-            record.research_tracks || "GENERAL",
-            record.priority || "REFERENCE",
-            record.reading_number || 0,
-            record.reading_phase || "UNASSIGNED",
-            record.reading_status || "UNREAD"
-          ]
+          values
         );
 
         updated++;
@@ -240,30 +189,32 @@ async function importCatalogue(rows) {
             priority,
             reading_number,
             reading_phase,
-            reading_status
+            reading_status,
+            audit_flag,
+            relative_path
           )
           VALUES (
             CURRENT_TIMESTAMP,
             CURRENT_TIMESTAMP,
-            $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14
+            $1,
+            $2,
+            $3,
+            $4,
+            $5,
+            $6,
+            $7,
+            $8,
+            $9,
+            $10,
+            $11,
+            $12,
+            $13,
+            $14,
+            $15,
+            $16
           )
           `,
-          [
-            record.hrl_id,
-            record.author,
-            record.title,
-            record.publication_year,
-            record.source_type,
-            record.collection,
-            record.source_role || "UNCLASSIFIED",
-            record.project_role || "UNCLASSIFIED",
-            record.credibility || "UNASSESSED",
-            record.research_tracks || "GENERAL",
-            record.priority || "REFERENCE",
-            record.reading_number || 0,
-            record.reading_phase || "UNASSIGNED",
-            record.reading_status || "UNREAD"
-          ]
+          values
         );
 
         inserted++;
@@ -276,7 +227,7 @@ async function importCatalogue(rows) {
       total: rows.length,
       inserted,
       updated,
-      skipped
+      skipped: 0
     };
   } catch (error) {
     await client.query("ROLLBACK");
