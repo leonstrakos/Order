@@ -20,8 +20,17 @@ function year(value) {
 }
 
 function integer(value) {
-  const parsed = Number.parseInt(text(value), 10);
-  return Number.isFinite(parsed) ? parsed : 0;
+  const raw = text(value);
+
+  if (!raw || raw.toUpperCase() === "TBD") {
+    return null;
+  }
+
+  const parsed = Number.parseInt(raw, 10);
+
+  return Number.isFinite(parsed)
+    ? parsed
+    : null;
 }
 
 function normalize(row) {
