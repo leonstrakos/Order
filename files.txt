@@ -21,6 +21,245 @@ Files
 
 
 
+
+
+
+
+
+
+      <h3 class="about-title order-title">The History of our traditions</h3>
+                  <hr class="order-rule">
+
+      <p class="about-text">
+      Our traditions begin in the Temple of Sais and other temples of the ancient Mediterranean.
+      </p>  
+
+      <p class="about-text">
+      The earliest accounts speak of a priestly brotherhood in Egypt, guardians of knowledge said to be preserved beneath the great pyramids and temples along the Nile.
+      </p>  
+
+      <p class="about-text">
+      These priests preserved and heralded the lost knowledge of the old continent,
+      the sacred knowledge that was given to us as a gift to all humanity.
+      </p>  
+
+
+          <div class="divider-symbol">✶✶</div>
+
+
+
+      <p class="about-subtitle">
+      Solon and the Egyptian Priests
+      </p>
+
+
+      <p class="about-text">
+      One of the earliest references that informs our traditions appears in the writings of Plato, 
+      who recounts the story of the Athenian lawgiver Solon and his accounts of knowledge preserved in Egypt.
+      </p>  
+
+      <p class="about-text">
+        In the dialogues Timaeus and Critias, Solon traveled to Egypt and spoke with priests at the Temple of Sais. 
+        These priests told Solon that while the Greeks had forgotten much of the ancient past, 
+        the Egyptians preserved knowledge stretching back thousands of years.
+      </p>  
+
+      <p class="about-text">
+        The Order maintains that fragments of the ancient guardian tradition endure to this day, 
+        though such claims belong to the domain of inherited tradition rather than public proof.
+      </p>  
+
+
+
+          <div class="divider-symbol">✶✶</div>
+
+
+
+      <p class="about-subtitle">
+      The Pythagorean Influence
+      </p>
+
+      <p class="about-text">
+      Centuries later, the philosopher Pythagoras, traveled widely in the eastern Mediterranean and Egypt.
+      </p>  
+
+      <p class="about-text">
+      Pythagoras studied with Egyptian priests and initiates for many years.
+      The Order maintains that Pythagoras encountered the same temple tradition that had once instructed Solon.
+      Through him, elements of this knowledge entered the Pythagorean brotherhood.
+      </p>  
+
+
+          <div class="divider-symbol">✶✶</div>
+
+
+
+
+      <p class="about-subtitle">
+       Cult of Hermes and Hermeticism
+      </p>
+
+      <p class="about-text">
+        In ancient Greece there existed a pastoral tradition centered in the region of Arcadia on mount Cyllene that worshipped Hermes. 
+        Hermes was known as the divine messenger, wielding the kerykeion, he served as the ultimate mediator 
+        and communicator for Zeus and the Olympian gods.
+      </p>
+
+      <p class="about-text">
+        Later, around the 1 st century CE in Egypt appears Hermeticism, ancient esoteric traditions centered around Hermes Trismegistus, a syncretic figure combining the Greek god Hermes and the Egyptian god Thoth.
+        The writings attributed to Hermes became some of the most influential texts of late antiquity and shaped later traditions of philosophy, alchemy, cosmology, and spiritual inquiry.
+      </p>
+
+        <p class="about-text">
+        The Hermetic corpus preserved a vision of humanity as capable of awakening to deeper levels of reality through knowledge, discipline, and direct experience.
+        The Order regards the Hermetic tradition as one of the principal vessels through which fragments of the ancient temple teachings were transmitted into the modern world.
+      </p>
+
+         <div class="divider-symbol">✶✶</div>
+
+
+
+
+      <p class="about-subtitle">
+      The Middle Ages
+      </p>
+
+      <p class="about-text">
+      Fragments of the temple tradition survived through various philosophical and esoteric groups in the Mediterranean world.        
+      </p>
+      
+      <p class="about-text">
+        During the Middle Ages, 
+        some of these ideas resurfaced among knightly and scholarly circles 
+        interested in sacred geometry, astronomy, and the symbolism of ancient temples.
+      </p>  
+
+      <p class="about-text">
+        In this period, the tradition took on a new chivalric form dedicated not only to preserving ancient knowledge,
+         but also to the embodiment of virtue, discipline, and the highest ideals of humanity.
+      </p>  
+
+      <p class="about-text">
+        The Order preserves fragments of this tradition, and its purpose is to find and solve the ultimate mystery of humankind, 
+        its creation, and the nature of consciousness.
+      </p>  
+
+
+                <div class="divider-symbol">✶✶</div>
+
+
+
+
+
+
+
+                <div class="divider-symbol">✶✶</div>
+
+
+
+
+
+
+    <p class="about-subtitle">
+      Symbolism
+    </p>
+
+      <p class="about-text">
+       The <span class="accent">Lion</span> appears throughout numerous philosophical, religious, and esoteric traditions, including the symbolism of Sekhmet, Yaldabaoth, Chnoubis, and the alchemical Green and Red Lions, among many others that the Herald will encounter in their studies. 
+      </p>  
+      
+      <p class="about-text">
+        The <span class="accent">Bell</span> is the central symbol of the Order of the Lion's Bell.
+        It rings for all. The sound of it symbolizes the universal possibility of awakening. 
+        Every human being lives within reach of the same call toward knowledge, understanding, and truth.
+      </p>  
+
+      <p class="about-text">
+        The ringing of a bell also reminds us of the passage of time. 
+        Every moment carries the possibility of awakening, yet time is finite. 
+        The Bell therefore serves as a reminder of both opportunity and urgency.
+      </p>  
+      
+      <p class="about-text">
+        The Bell is a call to gather, to listen, and to awaken, just as the Sun illuminates and removes the Veil of Isis. 
+        As vibration is the primordial creator and the bell its symbol,
+        it stands as a reminder of the race between knowledge and the mortality of man, until the final death of Sol.
+      </p>  
+
+
+           <p class="about-text">
+        Members of the Order are known as <span class="accent">Heralds</span>.
+        The title reflects the influence of the Hermetic tradition. Hermes, from whom Hermeticism derives its name,
+        served as messenger, guide, intermediary, and revealer of hidden knowledge. 
+        In many traditions he stood at the boundary between worlds, 
+        carrying information between realms separated by distance, language, or understanding.
+      </p>  
+
+      <p class="about-text">
+      Many traditions associate Hermes not only with wisdom and communication, 
+      but also with paradox, ambiguity, and with the figure known in parapsychological literature as the Trickster,
+      the very word hermeneutics, the study of interpretation, derives from Hermes. 
+      </p>
+
+      <p class="about-text">
+      Throughout history, unusual and anomalous phenomena have frequently appeared at boundaries, and the Trickster is often described as their guardian.
+      </p>
+
+      <p class="about-quote"> 
+      For this reason the Order approaches extraordinary claims with caution. 
+      The investigator of anomalous phenomena must be prepared not only for uncertainty, but for contradiction, symbolism, misunderstanding, and the limitations of perception itself.
+      <br><br></p>
+
+
+
+          <div class="divider-symbol">✶✶</div>
+
+
+
+
+        <p class="about-quote">
+        ὁ ἔχων ὦτα ἀκούειν ἀκουέτω<br>
+        <span>"He who has ears to hear, let him hear."</span>
+        </p>
+
+
+
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+
+
+
+  <%- include("partials/footer") %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const reports = db
 .prepare("SELECT * FROM reports")
 .all();

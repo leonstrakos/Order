@@ -1,9 +1,2 @@
-Heralds Website — HRS Public Bridge v0.9
-
-- Archive aligned with HRS public architecture
-- Research Library backed by bell PostgreSQL
-- Experience Archive backed by reviewed/public-consent HRS records
-- Public Bell Reports backed by published HRS Bell Report versions
-- Bell Report public intake retired in favor of Experience Archive submission
-- Seven discipline pages retain their intellectual canon and gain live HRS record linkage
-- About page updated with the operational work of the Order
+Heralds Web HRS Bridge v0.9.1
+Identity + Profile + Archive Office bridge

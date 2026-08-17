@@ -11,6 +11,7 @@ require("dotenv").config();
 const multer = require("multer");
 const hrsDb = require("./hrs-db");
 const disciplineContent = require("./discipline-content");
+const hrsAuth = require("./hrs-auth");
 
 
 const app = express();
@@ -33,12 +34,6 @@ app.use(
 
 
 app.use((req, res, next) => {
-  res.locals.currentPath = req.path;
-  res.locals.user = req.session?.user || null;
-  next();
-});
-
-app.use((req, res, next) => {
   if (req.headers.host === "www.heraldsofthelion.org") {
     return res.redirect(301, "https://heraldsofthelion.org" + req.url);
   }
@@ -53,14 +48,20 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: false,
+      httpOnly: true,
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      maxAge: 1000 * 60 * 60 * 4
+      maxAge: 1000 * 60 * 60 * 12
     }
   })
 );
 
+
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+  res.locals.user = req.session?.user || null;
+  next();
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -76,63 +77,48 @@ function requireAuth(req, res, next) {
 
 app.post("/login", async (req, res) => {
   try {
-    const { identity, password } = req.body;
+    const username = String(req.body.identity || '').trim();
+    const password = String(req.body.password || '');
+    if (!username || !password) return res.status(400).render('login', { error: 'Enter your HRS username and password.' });
 
-    if (!identity || !password) {
-      return res.status(400).send("Missing credentials.");
-    }
-
-    const user = db
-      .prepare(
-        `SELECT id, chosen_name, email, password_hash, role
-         FROM users
-         WHERE email = ? OR chosen_name = ?`
-      )
-      .get(identity, identity);
-
-    if (!user) {
-      return res.status(401).send("Invalid credentials.");
-    }
-
-    const passwordOk = await bcrypt.compare(password, user.password_hash);
-
-    if (!passwordOk) {
-      return res.status(401).send("Invalid credentials.");
-    }
-
-    req.session.user = {
-      id: user.id,
-      chosen_name: user.chosen_name,
-      email: user.email,
-      role: user.role
-    };
-
-    res.redirect("/members");
+    const sessionData = await hrsAuth.login(username, password);
+    req.session.hrsToken = sessionData.token;
+    req.session.user = sessionData.member;
+    req.session.hrsExpiresAt = sessionData.expiresAt;
+    return res.redirect('/profile');
   } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).send("Server error.");
+    console.error('HRS login error:', error.message);
+    return res.status(error.status === 401 ? 401 : 502).render('login', { error: error.status === 401 ? 'The credentials were not recognized.' : 'The HRS identity service is temporarily unavailable.' });
   }
 });
 
-
-app.get("/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("/");
-  });
+app.get('/logout', async (req, res) => {
+  const token = req.session?.hrsToken;
+  try { if (token) await hrsAuth.logout(token); } catch (error) { console.warn('HRS logout:', error.message); }
+  req.session.destroy(() => res.redirect('/'));
 });
 
-app.get("/api/me", (req, res) => {
-  if (!req.session.user) {
-    return res.json({ loggedIn: false });
+app.get('/api/me', async (req, res) => {
+  if (!req.session?.hrsToken) return res.json({ loggedIn:false });
+  try {
+    const member = await hrsAuth.me(req.session.hrsToken);
+    req.session.user = member;
+    return res.json({ loggedIn:true, ...member });
+  } catch {
+    return res.status(401).json({ loggedIn:false });
   }
-
-  res.json({
-    loggedIn: true,
-    chosen_name: req.session.user.chosen_name,
-    role: req.session.user.role
-  });
 });
 
+app.get('/profile', requireAuth, async (req, res) => {
+  try {
+    const member = await hrsAuth.me(req.session.hrsToken);
+    req.session.user = member;
+    res.locals.user = member;
+    return res.render('profile', { member, importResult:null, importError:null });
+  } catch (error) {
+    req.session.destroy(() => res.redirect('/login'));
+  }
+});
 
 
 
@@ -161,7 +147,7 @@ const routes = {
 };
 
 Object.entries(routes).forEach(([route, view]) => {
-  app.get(route, (req, res) => res.render(view));
+  app.get(route, (req, res) => res.render(view, route === "/login" ? { error: null } : {}));
 });
 
 // Public HRS / bell database surfaces. These intentionally expose only curated/public data.
@@ -284,6 +270,30 @@ const upload = multer({
 
 });
 
+
+const xlsxUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 15 * 1024 * 1024, files: 1 },
+  fileFilter(req, file, cb) {
+    const ok = file.originalname.toLowerCase().endsWith('.xlsx') || file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    cb(ok ? null : new Error('Only .xlsx catalogues are accepted.'), ok);
+  }
+});
+
+app.post('/profile/archive/import', requireAuth, xlsxUpload.single('catalogue'), async (req, res) => {
+  let member;
+  try {
+    member = await hrsAuth.me(req.session.hrsToken);
+    if (!member.permissions?.includes('ARCHIVE_EDIT')) return res.status(403).render('profile', { member, importResult:null, importError:'Archive editing authority is required.' });
+    if (!req.file) return res.status(400).render('profile', { member, importResult:null, importError:'Choose an .xlsx catalogue first.' });
+    const result = await hrsAuth.importHrl(req.session.hrsToken, req.file);
+    return res.render('profile', { member, importResult:result || {message:'Catalogue accepted by HRS.'}, importError:null });
+  } catch (error) {
+    console.error('HRL import:', error.message);
+    member = member || req.session.user;
+    return res.status(502).render('profile', { member, importResult:null, importError:error.message });
+  }
+});
 
 // Legacy SQLite report ingestion removed; public intake now writes to the HRS Experience Archive.
 
