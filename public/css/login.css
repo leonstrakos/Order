@@ -1,1 +1,236 @@
-@font-face{font-family:Cicero;src:url('/fonts/HamletCicero12.otf')}@font-face{font-family:Tertia;src:url('/fonts/HamletTertia18.otf')}*{box-sizing:border-box}body{margin:0;background:#07101c;color:#eef3fb;font-family:Cicero,Georgia,serif}.login-hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;padding:28px}.login-bg{position:absolute;inset:0;background:linear-gradient(rgba(5,12,24,.87),rgba(5,12,24,.95)),url('/images/background.webp') center/cover no-repeat;opacity:.58}.login-bg:after{content:'';position:absolute;inset:0;background:url('/images/stars.png') center/cover;opacity:.12}.login-shell{position:relative;width:min(520px,94vw);padding:46px 42px 40px;border:1px solid rgba(191,159,87,.28);background:rgba(6,16,31,.72);backdrop-filter:blur(8px);box-shadow:0 28px 90px rgba(0,0,0,.34);text-align:center}.seal-link img{width:112px;height:112px;object-fit:contain;opacity:.72;filter:drop-shadow(0 5px 16px rgba(0,0,0,.35))}.kicker{font:11px Tertia,serif;letter-spacing:.23em;color:#c6a96a;margin:18px 0 12px}h1{font:42px Tertia,serif;letter-spacing:.06em;color:#b9d7ff;margin:0}.motto{font-style:italic;color:#829bc4;opacity:.72;margin:10px 0 34px}.login-form{display:grid;gap:22px;text-align:left}.login-form label{font:10px Tertia,serif;letter-spacing:.18em;color:#c6a96a}.login-form input{display:block;width:100%;margin-top:8px;padding:13px 2px;background:transparent;border:0;border-bottom:1px solid rgba(185,215,255,.32);outline:0;color:white;font:16px Cicero,serif}.login-form input:focus{border-color:#c6a96a}.login-form button,.archive-office button{margin-top:8px;padding:15px 4px;border:0;border-top:1px solid rgba(198,169,106,.35);border-bottom:1px solid rgba(198,169,106,.35);background:transparent;color:#d6b96f;font:12px Tertia,serif;letter-spacing:.22em;cursor:pointer}.login-form button span{float:right}.sigil-line{height:1px;margin:34px auto 20px;background:linear-gradient(90deg,transparent,rgba(198,169,106,.45),transparent)}.login-note{font-size:12px;color:#8290a5;font-style:italic}.login-error{padding:11px;border:1px solid rgba(174,87,87,.45);color:#e7b2b2;font-size:12px;margin:0 0 24px}@media(max-width:560px){.login-shell{padding:34px 22px}h1{font-size:32px}}
+
+@font-face {
+  font-family: "Cicero";
+  src: url("/fonts/HamletCicero12.otf");
+}
+
+@font-face {
+  font-family: "Tertia";
+  src: url("/fonts/HamletTertia18.otf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #030405;
+}
+
+.hrs-login {
+  min-height: 100vh;
+  color: #eee8db;
+  font-family: "Cicero", Georgia, serif;
+  overflow: hidden;
+}
+
+/* YOUR ENGRAVING — extremely restrained */
+.login-background {
+  position: fixed;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      rgba(2, 5, 8, .78),
+      rgba(2, 5, 8, .91)
+    ),
+    url("/images/city.webp");
+
+  background-size: cover;
+  background-position: center;
+
+  filter: saturate(.68);
+  opacity: .34;
+
+  pointer-events: none;
+}
+
+/* dark veil so image never competes with the Order */
+.login-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(7, 15, 27, .20),
+      rgba(0, 0, 0, .72) 78%
+    );
+}
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 54px 24px;
+}
+
+.login-content {
+  width: 100%;
+  max-width: 520px;
+
+  text-align: center;
+
+  padding: 36px 28px;
+
+  /* intentionally NOT a big card */
+  background: rgba(3, 6, 10, .18);
+}
+
+.order-stamp {
+  width: 150px;
+  max-height: 82px;
+  object-fit: contain;
+
+  margin-bottom: 28px;
+
+  opacity: .78;
+}
+
+.login-kicker {
+  margin: 0;
+
+  color: #b7964d;
+
+  font-family: "Tertia", Georgia, serif;
+  font-size: 9px;
+  letter-spacing: .24em;
+}
+
+h1 {
+  margin: 22px 0 12px;
+
+  color: #c4d6ee;
+
+  font-family: "Tertia", Georgia, serif;
+  font-size: clamp(38px, 5vw, 56px);
+  font-weight: normal;
+
+  letter-spacing: .07em;
+}
+
+.login-copy {
+  margin: 0 0 40px;
+
+  color: rgba(232, 226, 213, .62);
+
+  font-size: 14px;
+  font-style: italic;
+}
+
+form {
+  width: 100%;
+}
+
+form input {
+  display: block;
+
+  width: 100%;
+
+  padding: 17px 4px;
+
+  margin-bottom: 15px;
+
+  border: 0;
+  border-bottom: 1px solid rgba(198, 169, 106, .35);
+
+  background: transparent;
+
+  color: #f1ece2;
+
+  font-family: "Cicero", Georgia, serif;
+  font-size: 16px;
+
+  outline: none;
+}
+
+form input::placeholder {
+  color: rgba(220, 215, 202, .40);
+}
+
+form input:focus {
+  border-bottom-color: #c6a96a;
+}
+
+form button {
+  width: 100%;
+
+  margin-top: 26px;
+  padding: 15px;
+
+  border: 1px solid rgba(198, 169, 106, .55);
+
+  background: rgba(8, 9, 11, .30);
+
+  color: #d2b366;
+
+  font-family: "Tertia", Georgia, serif;
+  font-size: 10px;
+  letter-spacing: .26em;
+
+  cursor: pointer;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease;
+}
+
+form button:hover {
+  border-color: #d4b868;
+  background: rgba(198, 169, 106, .055);
+}
+
+.login-error {
+  padding: 11px 0;
+  margin: 0 0 20px;
+
+  color: #d89b9b;
+
+  font-size: 13px;
+}
+
+.login-rule {
+  width: 80px;
+  height: 1px;
+
+  margin: 38px auto 18px;
+
+  background: rgba(198, 169, 106, .4);
+}
+
+.login-foot {
+  color: rgba(198, 169, 106, .58);
+
+  font-family: "Tertia", Georgia, serif;
+  font-size: 8px;
+  letter-spacing: .23em;
+}
+
+@media (max-width: 600px) {
+
+  .login-page {
+    align-items: center;
+    padding: 30px 22px;
+  }
+
+  .login-content {
+    padding: 26px 4px;
+  }
+
+  .order-stamp {
+    width: 125px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+}

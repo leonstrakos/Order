@@ -1,4 +1,21 @@
 <!DOCTYPE html><html lang="en"><head><title>The Bell Archive</title><%- include("partials/metadata") %><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/archive-v2.css"></head><body><%- include("partials/header") %>
-<main class="archive-page listing-page"><section class="archive-hero compact"><p class="archive-kicker">THE ARCHIVE · I</p><h1>THE BELL</h1><p class="archive-intro">The recurring voice of the Order. Bell Reports are formal research outputs; they are not raw public submissions. Experiences enter through the Experience Archive and may later contribute to investigation and publication.</p><a class="archive-action" href="/report">SUBMIT AN EXPERIENCE</a></section>
+<main class="archive-page listing-page"><section class="archive-hero compact"><p class="archive-kicker">THE ARCHIVE · I</p><h1>THE BELL</h1>
+    
+    <img
+  src="/images/lionsbell-stamp.png"
+  alt="The Order of the Lion's Bell"
+  style="
+    width: 180px;
+    max-height: 90px;
+    object-fit: contain;
+    opacity: .72;
+    margin: 0 auto 28px;
+    display: block;
+  "
+>
+    
+    
+    
+    <p class="archive-intro">The recurring voice of the Order. Bell Reports are formal research outputs; they are not raw public submissions. Experiences enter through the Experience Archive and may later contribute to investigation and publication.</p><a class="archive-action" href="/report">SUBMIT AN EXPERIENCE</a></section>
 <section class="library-grid"><% if (reports.length) { reports.forEach(item => { %><article class="library-record"><p class="code"><%= item.report_code %> · v<%= item.version %> · <%= item.bell_status %></p><h2><%= item.title %></h2><% if(item.subtitle){%><p class="author"><%= item.subtitle %></p><%}%><p class="excerpt"><%= item.abstract_text || item.research_question || 'Formal report record.' %></p><p class="meta"><%= item.publication_date %><%= item.discipline_codes ? ` · ${item.discipline_codes}` : '' %></p></article><% }) } else { %><p class="empty-record">No Bell Reports have yet been formally published from HRS.</p><% } %></section>
 <p class="archive-footnote">Case File = working record · Bell Report = structured publication · The Bell = recurring journal of the Order.</p></main></body></html>
