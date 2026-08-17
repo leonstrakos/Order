@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head>
+  <title>Research Library | The Archive</title><%- include("partials/metadata") %>
+  <link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/archive-v2.css">
+</head><body><%- include("partials/header") %>
+<main class="archive-page listing-page">
+  <section class="archive-hero compact"><p class="archive-kicker">THE ARCHIVE · II</p><h1>RESEARCH LIBRARY</h1><p class="archive-intro">The public catalogue of the Heralds Research Library. Presence in the archive does not imply endorsement of a source or its claims.</p></section>
+  <form class="archive-search" method="get"><input name="q" value="<%= q %>" placeholder="Title, author, or HRL ID"><button>SEARCH</button></form>
+  <section class="library-grid">
+    <% if (sources.length) { sources.forEach(source => { %>
+      <article class="library-record"><p class="code"><%= source.hrl_id %> · <%= source.source_type %></p><h2><%= source.title %></h2><p class="author"><%= source.author %><%= source.publication_year ? ` · ${source.publication_year}` : '' %></p><p class="meta"><%= source.collection %> · <%= source.research_tracks %></p></article>
+    <% }) } else { %><p class="empty-record">No catalogue records match this query.</p><% } %>
+  </section>
+</main></body></html>

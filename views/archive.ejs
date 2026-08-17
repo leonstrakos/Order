@@ -1,86 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order of the Lion & Sun Bell</title>
-            <link rel="stylesheet" href="/css/archive.css">
-</head>
-<body>
-  <div class="flame-pillars"></div>
-  <div class="sky-glow"></div>
-  <div class="temple-silhouette"></div>
-
-
-
-  <header class="hero" id="top">
-    <div class="content">
-                
-         <div class="eyebrow"> Praecones ✦ Leonis ✦ Campanaeque ✦ Solis</div>
-        
-
-    <div class="crest">
-        <h1>THE ARCHIVE </h1>
-    </div>
-
-<!--    <p class="subtitle">
-        Bell Reports are structured records of observation, inquiry, and analysis produces by The Order of the Lion's Bell.
-      </p>-->  
-
-      <p class="subtitle">
-            The central repository of records, investigations,
-    case files, experiments, and publications maintained
-    by the Order of the Lion's Bell.
-      </p>
-
-
-           <a href="/home"><img src="/images/seal2.png" alt="Seal of the Order"></a> 
-
-
-        <p class="notice">    ✶ NOTICE FROM THE ARCHIVE ✶ </p>
-
-          <p class="notice-p">
-          The Archive is undergoing its first stage of digital preservation. 
-          </p>
-
-         <p class="notice-p"> 
-          Records are being gathered, reviewed, and preserved for publication. 
-          </p>
-          
-         <p class="notice-p">
-          The first Bell Reports and the inaugural volume of
-          Beneath the Veil are expected to become available on <br><br><span class="accent">07/01/2026</span></p>
-
-
-
-
-  
-
-
-
-          <div class="cta-row">
-            <a class="btn" href="/bell">Bell Reports <p class="motto">Public submissions </p> </a>
-          </div>
-
-      <div class="cta-row">
-        <a class="btn loginLink" href="/journal" id="journalLink">Beneath the Veil
-          <p class="motto">The journal of the Order<br> </p>
-        </a>
+<!DOCTYPE html><html lang="en"><head>
+  <title>The Archive | Order of the Lion's Bell</title>
+  <%- include("partials/metadata") %>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/archive-v2.css">
+</head><body>
+  <%- include("partials/header") %>
+  <main class="archive-page">
+    <section class="archive-hero">
+      <p class="archive-kicker">THE PRESERVED MEMORY OF THE ORDER</p>
+      <h1>THE ARCHIVE</h1>
+      <p class="archive-intro">Research sources, public reports, preserved experience records and the published work of the Order of the Lion's Bell. Internal case work and correspondence remain sealed unless formally released.</p>
+      <img class="archive-seal" src="/images/seal2.png" alt="Seal of the Order">
+      <div class="archive-stats">
+        <span><strong><%= overview.sources %></strong> RESEARCH SOURCES</span>
+        <span><strong><%= overview.publishedReports %></strong> PUBLISHED BELL REPORTS</span>
+        <span><strong><%= overview.publicExperiences %></strong> PUBLIC EXPERIENCE RECORDS</span>
+        <span><strong><%= overview.openInvestigations %></strong> OPEN INVESTIGATIONS</span>
       </div>
+    </section>
 
-        <div class="cta-row">
-      <a class="btn secondary loginLink" href="/heralds" id="heraldsLink">Herald Registry <p class="motto">information about the members</p></a>
-        </div>
-    
-    
-      </div>
-    </div>
-  </header>
+    <section class="archive-index">
+      <a href="/bell" class="archive-entry"><span>I</span><div><h2>THE BELL ARCHIVE</h2><p>The recurring voice of the Order and its formal Bell Reports.</p></div></a>
+      <a href="/archive/library" class="archive-entry"><span>II</span><div><h2>RESEARCH LIBRARY</h2><p>Books, papers, journals, government documents and archival sources preserved in HRL.</p></div></a>
+      <a href="/archive/experiences" class="archive-entry"><span>III</span><div><h2>EXPERIENCE ARCHIVE</h2><p>Reviewed records of submitted anomalous experiences whose contributors consented to public preservation.</p></div></a>
+      <a href="/archive/cases" class="archive-entry"><span>IV</span><div><h2>CASE ARCHIVE</h2><p>Public-facing index of the Order's case-file work. Internal working material remains sealed.</p></div></a>
+      <a href="/report" class="archive-entry submit"><span>V</span><div><h2>SUBMIT AN EXPERIENCE</h2><p>Record an unusual event without presuming its explanation. Raw narrative is preserved separately from interpretation.</p></div></a>
+    </section>
 
-
-<script src="/js/archive.js"></script>
-
-
-
-</body>
-</html>
+    <p class="archive-footnote">Record first. Interpret second. Test where possible. Preserve uncertainty where necessary.</p>
+  </main>
+</body></html>

@@ -9,6 +9,8 @@ const { Readable } = require('stream');
 const { Resend } = require('resend');
 require("dotenv").config();
 const multer = require("multer");
+const hrsDb = require("./hrs-db");
+const disciplineContent = require("./discipline-content");
 
 
 const app = express();
@@ -145,49 +147,88 @@ app.get("/api/me", (req, res) => {
 const routes = {
   "/": "home",
   "/home": "index",
-  "/test": "test",
-  "/test2": "test2",
   "/test3": "test3",
   "/about": "about",
   "/constitution": "constitution",
   "/document": "document",
-  "/discipline": "discipline",
   "/form": "form",
   "/contact": "contact",
   "/copyright": "copyrights",
   "/join": "join",
   "/login": "login",
-  "/archive": "archive",
-  "/bell": "bellreports",
   "/heralds": "",
-  "/report": "report",
-  "/journal": "journal",
-
-    // disciplines:
-  "/philosophia": "philosophia",
-  "/scientia": "scientia",
-  "/cultura": "cultura",
-  "/traditio": "traditio",
-  "/conscientia": "conscientia",
-  "/information": "information",
-  "/phenomena": "phenomena"
+  "/journal": "journal"
 };
 
 Object.entries(routes).forEach(([route, view]) => {
-  app.get(route, (req, res) => {
-    res.render(view);
+  app.get(route, (req, res) => res.render(view));
+});
+
+// Public HRS / bell database surfaces. These intentionally expose only curated/public data.
+app.get("/archive", async (req, res) => {
+  const overview = await hrsDb.archiveOverview();
+  res.render("archive", { overview });
+});
+
+app.get("/archive/library", async (req, res) => {
+  const q = String(req.query.q || "");
+  const sources = await hrsDb.publicLibrary({ q, limit: 150 });
+  res.render("research-library", { sources, q });
+});
+
+app.get("/archive/experiences", async (req, res) => {
+  const experiences = await hrsDb.publicExperiences(80);
+  res.render("experience-archive", { experiences });
+});
+
+app.get("/archive/cases", (req, res) => res.render("case-archive"));
+
+app.get("/bell", async (req, res) => {
+  const reports = await hrsDb.publishedBellReports(80);
+  res.render("bellreports", { reports });
+});
+
+const disciplineSlugs = Object.keys(disciplineContent);
+disciplineSlugs.forEach(slug => {
+  app.get(`/${slug}`, async (req, res) => {
+    const snapshot = await hrsDb.disciplineSnapshot(slug);
+    res.render("discipline-live", { discipline: disciplineContent[slug], snapshot });
   });
 });
 
+app.get("/report", async (req, res) => {
+  const taxonomy = await hrsDb.taxonomy();
+  res.render("report", { taxonomy, error: null });
+});
 
+const submissionWindows = new Map();
+function allowExperienceSubmission(ip) {
+  const now = Date.now();
+  const hour = 60 * 60 * 1000;
+  const recent = (submissionWindows.get(ip) || []).filter(t => now - t < hour);
+  if (recent.length >= 5) return false;
+  recent.push(now);
+  submissionWindows.set(ip, recent);
+  return true;
+}
 
+app.post("/experiences/submit", async (req, res) => {
+  const taxonomy = await hrsDb.taxonomy();
+  try {
+    if (req.body.website) return res.status(204).end(); // honeypot
+    if (!allowExperienceSubmission(req.ip)) {
+      return res.status(429).render("report", { taxonomy, error: "Too many submissions from this connection. Please try again later." });
+    }
+    const code = await hrsDb.submitExperience(req.body);
+    return res.status(201).render("experience-submitted", { code });
+  } catch (error) {
+    console.error("Experience submission error:", error);
+    return res.status(400).render("report", { taxonomy, error: error.message || "The experience could not be recorded." });
+  }
+});
 
-
-
-
-
-
-
+// Legacy public Bell Report intake is retired. Bell Reports are formal outputs of HRS.
+app.post("/reports/create", (req, res) => res.status(410).send("Public Bell Report intake has moved to /report as Experience Archive intake."));
 
 
 // uploads
@@ -244,192 +285,12 @@ const upload = multer({
 });
 
 
-app.post(
-  "/reports/create",
-  upload.array("evidenceFiles"),
-  (req, res) => {
+// Legacy SQLite report ingestion removed; public intake now writes to the HRS Experience Archive.
 
-    try {
-
-      const files = req.files
-        ? JSON.stringify(
-            req.files.map(
-              file => file.filename
-            )
-          )
-        : null;
-
-        const stmt = db.prepare(`
-      INSERT INTO reports (
-        category,
-        title,
-        author,
-        email,
-        age,
-        sex,
-        eventDate,
-        location,
-        witnesses,
-        duration,
-        weather,
-        timeOfDay,
-        effects,
-        report,
-        alternativeExplanations,
-        additionalNotes,
-        files
-      )
-      VALUES (
-        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
-      )
-    `);
-
-      stmt.run(
-        req.body.category,
-        req.body.title,
-        req.body.author,
-        req.body.email,
-        req.body.age,
-        req.body.sex,
-        req.body.eventDate,
-        req.body.location,
-        req.body.witnesses,
-        req.body.duration,
-        req.body.weather,
-        req.body.timeOfDay,
-        req.body.effects,
-        req.body.alternativeExplanations,
-        req.body.report,
-        req.body.additionalNotes,
-        files
-      );
-
-      res.send("Report saved.");
-
-    } catch (err) {
-
-      console.error(err);
-
-      res
-        .status(500)
-        .send("Failed to save report.");
-
-    }
-
-  }
-);
-
-
-
-
-
-// see reports  http://localhost:3000/admin/reports
-app.get("/admin/reports", (req, res) => { if (!req.session.user) {
- // return res.redirect("/login");
-}
-
-  const reports = db
-    .prepare(`
-      SELECT *
-      FROM reports
-      ORDER BY createdAt DESC
-    `)
-    .all();
-
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Bell Reports Admin</title>
-
-      <style>
-        body{
-          font-family:Arial,sans-serif;
-          max-width:1200px;
-          margin:auto;
-          padding:40px;
-          background:#111;
-          color:#eee;
-        }
-
-        .report{
-          border:1px solid #444;
-          padding:20px;
-          margin-bottom:30px;
-          border-radius:8px;
-          background:#1a1a1a;
-        }
-
-        h2{
-          margin-top:0;
-        }
-
-        .meta{
-          color:#aaa;
-          margin-bottom:15px;
-        }
-
-        pre{
-          white-space:pre-wrap;
-          word-wrap:break-word;
-          font-family:inherit;
-        }
-
-        a{
-          color:#8cc6ff;
-        }
-      </style>
-    </head>
-    <body>
-
-      <h1>Bell Report Submissions (${reports.length})</h1>
-
-      ${reports.map(report => `
-
-        <div class="report">
-
-          <h2>${report.title || "Untitled Report"}</h2>
-
-          <div class="meta">
-            <strong>Category:</strong> ${report.category || "-"}<br>
-            <strong>Author:</strong> ${report.author || "-"}<br>
-            <strong>Email:</strong> ${report.email || "-"}<br>
-            <strong>Age:</strong> ${report.age || "-"}<br>
-            <strong>Sex:</strong> ${report.sex || "-"}<br>
-            <strong>Date of Event:</strong> ${report.eventDate || "-"}<br>
-            <strong>Location:</strong> ${report.location || "-"}<br>
-            <strong>Witnesses:</strong> ${report.witnesses || "-"}<br>
-            <strong>Submitted:</strong> ${report.createdAt || "-"}
-          </div>
-
-          <h3>Report</h3>
-          <pre>${report.report || ""}</pre>
-
-          <h3>Additional Notes</h3>
-          <pre>${report.additionalNotes || ""}</pre>
-
-          <h3>Files</h3>
-
-          ${
-            report.files
-              ? JSON.parse(report.files)
-                  .map(file =>
-                    `<div><a href="/uploads/${file}" target="_blank">${file}</a></div>`
-                  )
-                  .join("")
-              : "No files uploaded"
-          }
-
-        </div>
-
-      `).join("")}
-
-    </body>
-    </html>
-  `);
-
+// Legacy SQLite report administration is retired. Experience review now belongs inside HRS.
+app.get("/admin/reports", (req, res) => {
+  res.status(410).send("Legacy report administration has been retired. Review Experience Archive records inside HRS.");
 });
-
 
 
 // mailinggg
@@ -504,7 +365,12 @@ app.get('/sitemap.xml', async (req, res) => {
     const links = [
       { url: '/', changefreq: 'daily', priority: 1.0 },
       { url: '/about', changefreq: 'monthly', priority: 0.7 },
-      { url: '/contact', changefreq: 'monthly', priority: 0.7 }
+      { url: '/contact', changefreq: 'monthly', priority: 0.7 },
+      { url: '/archive', changefreq: 'weekly', priority: 0.9 },
+      { url: '/archive/library', changefreq: 'weekly', priority: 0.8 },
+      { url: '/archive/experiences', changefreq: 'weekly', priority: 0.7 },
+      { url: '/bell', changefreq: 'weekly', priority: 0.8 },
+      { url: '/report', changefreq: 'monthly', priority: 0.7 }
     ];
 
     const stream = new SitemapStream({

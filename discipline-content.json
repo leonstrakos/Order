@@ -1,0 +1,238 @@
+{
+  "philosophia": {
+    "title": "PHILOSOPHIA",
+    "subtitle": "This discipline concerns the examination of fundamental questions regarding reality, knowledge, and existence. It approaches such questions through structured reasoning, conceptual analysis, and critical reflection.",
+    "fields": [
+      "The nature of truth independent of perception",
+      "The limits of human reasoning and logical systems",
+      "The relationship between belief, knowledge, and certainty",
+      "The foundations of ethics and conduct",
+      "The problem of meaning and existence",
+      "The distinction between appearance and reality",
+      "The role of doubt as a tool of inquiry",
+      "The structure of arguments and validity of conclusions",
+      "The possibility of objective knowledge"
+    ],
+    "questions": [
+      "Can truth exist independently of perception or interpretation?",
+      "Is certainty achievable, or only approximated?",
+      "What justifies belief in the absence of complete knowledge?",
+      "Are logical systems complete, or inherently limited?",
+      "What is the role of contradiction in understanding?"
+    ],
+    "frontiers": [
+      "Limits of formal logic systems",
+      "Intersection of philosophy and cognitive science",
+      "Epistemology under uncertainty",
+      "Analysis of paradox and self-reference",
+      "Foundations of ethical systems beyond tradition"
+    ],
+    "hrs": [
+      "ONT",
+      "LIM"
+    ]
+  },
+  "scientia": {
+    "title": "SCIENCE",
+    "subtitle": "This discipline concerns the systematic investigation of the natural world through observation, measurement, and reproducible experimentation. It approaches phenomena with methodological rigor and skepticism, prioritizing evidence over interpretation. Its purpose is not to preserve existing models, but to test, refine, or replace them where necessary.",
+    "fields": [
+      "The structure and behavior of physical reality",
+      "The development and limits of scientific models",
+      "The role of measurement, instrumentation, and error",
+      "The boundary between established science and emerging hypotheses",
+      "The reproducibility of experimental results",
+      "The relationship between theory and observation",
+      "The history and evolution of scientific paradigms",
+      "The influence of funding, institutions, and consensus on research directions",
+      "The integration of interdisciplinary knowledge"
+    ],
+    "questions": [
+      "Where do current models fail to describe observed reality?",
+      "How dependent is science on its instruments?",
+      "Can all phenomena be measured, or only approximated?",
+      "What defines the boundary of scientific legitimacy?"
+    ],
+    "frontiers": [
+      "Instrumentation limits and error analysis",
+      "Cross-disciplinary model integration",
+      "Reproducibility crisis and methodological reform",
+      "Exploration of fringe hypotheses under controlled conditions",
+      "Data interpretation frameworks"
+    ],
+    "hrs": [
+      "AER",
+      "PSY"
+    ]
+  },
+  "cultura": {
+    "title": "CULTURE & ART",
+    "subtitle": "This discipline concerns the study of symbolic systems, artistic expression, and cultural narratives across societies. It approaches works of art, myth, and ritual as structured representations of human perception and meaning.",
+    "fields": [
+      "The formation and transmission of cultural systems",
+      "The symbolic language of myth, ritual, and art",
+      "The relationship between collective belief and identity",
+      "The preservation and transformation of traditions over time",
+      "The role of narrative in shaping reality",
+      "The interpretation of artistic expression across contexts",
+      "The influence of culture on perception and knowledge",
+      "The emergence of subcultures and alternative frameworks",
+      "The intersection between art, meaning, and truth"
+    ],
+    "questions": [
+      "How do narratives shape perceived reality?",
+      "What role does symbolism play in transmitting knowledge?",
+      "Are myths distortions, or encoded information?",
+      "How does culture influence what is considered “real”?",
+      "Can art function as a form of inquiry?"
+    ],
+    "frontiers": [
+      "Comparative mythology and symbolic systems",
+      "Cultural pattern replication across geography",
+      "Narrative structures and cognition",
+      "Art as a medium of encoded knowledge",
+      "Evolution of belief systems"
+    ],
+    "hrs": [
+      "FOL",
+      "LIM"
+    ]
+  },
+  "traditio": {
+    "title": "HUMAN TRADITION",
+    "subtitle": "This discipline concerns the reconstruction and interpretation of past events, beliefs, and practices through available records, artifacts, and transmitted accounts. It approaches sources with attention to context, bias, symbolic structure, and incompleteness. Its purpose is not to affirm or deny belief, but to examine how traditions emerge, transform, and persist across time.",
+    "fields": [
+      "The transmission of knowledge across generations",
+      "The preservation and alteration of historical records",
+      "The distinction between oral and written traditions",
+      "The role of institutions in shaping historical narratives",
+      "The loss, distortion, or suppression of knowledge",
+      "The interpretation of ancient texts and symbolic systems",
+      "The continuity and rupture of civilizations",
+      "The methods used to authenticate historical sources",
+      "The influence of memory, myth, and translation"
+    ],
+    "questions": [
+      "How reliable are transmitted records over long time scales?",
+      "What mechanisms distort historical information?",
+      "What knowledge has been lost, and why?",
+      "Are there consistent patterns in suppressed knowledge?",
+      "How do translation and interpretation alter meaning?"
+    ],
+    "frontiers": [
+      "Textual comparison across time periods",
+      "Reconstruction of fragmented historical records",
+      "Study of oral vs written transmission accuracy",
+      "Detection of systematic alteration or omission",
+      "Preservation techniques and decay analysis"
+    ],
+    "hrs": [
+      "ARC",
+      "FOL",
+      "INT"
+    ]
+  },
+  "conscientia": {
+    "title": "CONSCIOUSNESS",
+    "subtitle": "This discipline concerns the study of human cognition, behavior, and subjective experience. It approaches the mind through observation, experimentation, and comparative analysis.",
+    "fields": [
+      "The nature and structure of consciousness",
+      "The relationship between mind and physical reality",
+      "The limits of perception and subjective experience",
+      "The study of altered states of awareness",
+      "The reliability of introspection",
+      "The relationship between attention, memory, and identity",
+      "The possibility of non-local or extended consciousness",
+      "The distinction between awareness and interpretation",
+      "The mechanisms underlying cognition and experience"
+    ],
+    "questions": [
+      "What is the nature of subjective experience?",
+      "Can consciousness be fully explained physically?",
+      "Where does perception end and interpretation begin?",
+      "Are altered states revealing or distorting reality?",
+      "Is identity continuous or constructed?"
+    ],
+    "frontiers": [
+      "Study of altered states and cognition",
+      "Neural correlates of awareness",
+      "Attention and perception modeling",
+      "Memory reliability and reconstruction",
+      "Consciousness beyond individual systems"
+    ],
+    "hrs": [
+      "PSY",
+      "APP",
+      "LIM"
+    ]
+  },
+  "information": {
+    "title": "NATURE OF INFORMATION",
+    "subtitle": "This discipline concerns the nature, limits, and role of information as a fundamental aspect of reality. It approaches the subject through analysis of physical systems, cognition, and communication. Its purpose is not to prematurely assert a unified theory, but to explore whether information can be understood as a primary constituent linking physical processes and conscious experience.",
+    "fields": [
+      "The nature of information as a fundamental structure",
+      "The distinction between signal and noise",
+      "The transmission and degradation of information",
+      "The role of pattern recognition in knowledge formation",
+      "The relationship between data, interpretation, and meaning",
+      "The encoding and decoding of information systems",
+      "The limits of communication across systems",
+      "The influence of information environments on perception",
+      "The emergence of complexity from simple informational rules"
+    ],
+    "questions": [
+      "What defines meaningful information?",
+      "How is signal distinguished from noise?",
+      "Can information exist independently of interpretation?",
+      "What are the limits of communication?",
+      "How do systems encode and lose information?"
+    ],
+    "frontiers": [
+      "Information theory applied to perception",
+      "Pattern recognition limits",
+      "Signal degradation and reconstruction",
+      "Data vs meaning frameworks",
+      "Emergence of complexity from simple systems"
+    ],
+    "hrs": [
+      "ONT",
+      "INT"
+    ]
+  },
+  "phenomena": {
+    "title": "ANOMALOUS  PHENOMENA",
+    "subtitle": "This discipline concerns the investigation of phenomena not fully explained by current scientific frameworks. It approaches such subjects through disciplined observation, critical analysis, and resistance to both blind belief and premature dismissal. Its purpose is not to affirm the extraordinary, but to examine it.",
+    "fields": [
+      "The nature and origin of celestial bodies and anomalies within our solar system",
+      "The limits and potential of human perception, including claims of extrasensory awareness",
+      "The reliability and transparency of institutional knowledge and authority",
+      "The possibility of non-human intelligence and its relationship to humanity",
+      "The historical accuracy and interpretation of ancient texts and traditions",
+      "The existence of lost or undiscovered civilizations",
+      "The question of whether humanity has reached its peak or forgotten previous heights"
+    ],
+    "questions": [
+      "To what extent is perception a reliable representation of external reality?",
+      "Can anomalous experiences be fully reduced to error, or do some indicate overlooked structures?",
+      "What distinguishes coincidence from meaningful pattern?",
+      "Are there forms of intelligence not yet adequately recognized by current models?",
+      "Do ancient records preserve observations that remain insufficiently understood?",
+      "Why do similar anomalous reports recur across distant cultures?",
+      "What is ignored when a phenomenon is dismissed before structured examination?"
+    ],
+    "frontiers": [
+      "Cross-analysis of historical and modern reports of unexplained phenomena",
+      "Integration of anomalous claims with cognitive science and perception studies",
+      "Structured documentation of subjective experience without surrendering analytical rigor",
+      "Investigation of institutional bias toward unconventional data",
+      "Pattern mapping across independent anomalous events",
+      "Comparative study of mythic, historical, and contemporary reports of non-human intelligence",
+      "Examination of frontier questions concerning memory, signal, pattern, and interpretation"
+    ],
+    "hrs": [
+      "AER",
+      "APP",
+      "PSY",
+      "LIM"
+    ]
+  }
+}
