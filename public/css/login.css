@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: "Cicero";
   src: url("/fonts/HamletCicero12.otf");
@@ -20,217 +19,189 @@ body {
   background: #030405;
 }
 
-.hrs-login {
+body.hrs-login {
   min-height: 100vh;
   color: #eee8db;
   font-family: "Cicero", Georgia, serif;
   overflow: hidden;
 }
 
-/* YOUR ENGRAVING — extremely restrained */
 .login-background {
   position: fixed;
   inset: 0;
-
+  z-index: 0;
   background:
     linear-gradient(
-      rgba(2, 5, 8, .78),
-      rgba(2, 5, 8, .91)
+      rgba(2, 5, 8, 0.72),
+      rgba(2, 5, 8, 0.88)
     ),
-    url("/images/city.webp");
-
-  background-size: cover;
-  background-position: center;
-
-  filter: saturate(.68);
-  opacity: .34;
-
+    url("/images/city.webp") center / cover no-repeat;
+  filter: saturate(0.72);
+  opacity: 0.52;
   pointer-events: none;
 }
 
-/* dark veil so image never competes with the Order */
 .login-background::after {
   content: "";
   position: absolute;
   inset: 0;
-
   background:
     radial-gradient(
-      circle at center,
-      rgba(7, 15, 27, .20),
-      rgba(0, 0, 0, .72) 78%
+      circle at 50% 45%,
+      rgba(7, 15, 27, 0.06) 0%,
+      rgba(0, 0, 0, 0.68) 82%
     );
 }
 
 .login-page {
   position: relative;
+  z-index: 1;
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  padding: 54px 24px;
+  padding: 40px 24px;
 }
 
 .login-content {
-  width: 100%;
-  max-width: 520px;
-
+  width: min(100%, 470px);
   text-align: center;
-
-  padding: 36px 28px;
-
-  /* intentionally NOT a big card */
-  background: rgba(3, 6, 10, .18);
+  padding: 24px 24px 30px;
 }
 
 .order-stamp {
-  width: 150px;
-  max-height: 82px;
+  display: block;
+  width: min(230px, 60vw);
+  height: 96px;
   object-fit: contain;
-
-  margin-bottom: 28px;
-
-  opacity: .78;
+  margin: 0 auto 28px;
+  opacity: 0.72;
 }
 
 .login-kicker {
   margin: 0;
-
   color: #b7964d;
-
   font-family: "Tertia", Georgia, serif;
   font-size: 9px;
-  letter-spacing: .24em;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
 }
 
-h1 {
-  margin: 22px 0 12px;
-
+.login-title {
+  margin: 20px 0 10px;
   color: #c4d6ee;
-
   font-family: "Tertia", Georgia, serif;
-  font-size: clamp(38px, 5vw, 56px);
+  font-size: clamp(34px, 5vw, 48px);
   font-weight: normal;
-
-  letter-spacing: .07em;
+  letter-spacing: 0.07em;
 }
 
 .login-copy {
-  margin: 0 0 40px;
-
-  color: rgba(232, 226, 213, .62);
-
-  font-size: 14px;
+  margin: 0 0 34px;
+  color: rgba(232, 226, 213, 0.62);
+  font-size: 13px;
   font-style: italic;
 }
 
-form {
+.login-error {
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  border: 1px solid rgba(173, 94, 94, 0.42);
+  color: #dca6a6;
+  font-size: 12px;
+  text-align: left;
+}
+
+.login-form {
   width: 100%;
 }
 
-form input {
+.login-field {
   display: block;
+  margin-bottom: 18px;
+  text-align: left;
+}
 
+.login-field-label {
+  display: block;
+  margin-bottom: 3px;
+  color: #b7964d;
+  font-family: "Tertia", Georgia, serif;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.login-field input {
+  display: block;
   width: 100%;
-
-  padding: 17px 4px;
-
-  margin-bottom: 15px;
-
+  padding: 13px 2px 12px;
   border: 0;
-  border-bottom: 1px solid rgba(198, 169, 106, .35);
-
+  border-bottom: 1px solid rgba(198, 169, 106, 0.36);
   background: transparent;
-
   color: #f1ece2;
-
   font-family: "Cicero", Georgia, serif;
-  font-size: 16px;
-
+  font-size: 15px;
   outline: none;
 }
 
-form input::placeholder {
-  color: rgba(220, 215, 202, .40);
+.login-field input::placeholder {
+  color: rgba(220, 215, 202, 0.38);
 }
 
-form input:focus {
+.login-field input:focus {
   border-bottom-color: #c6a96a;
 }
 
-form button {
+.login-submit {
   width: 100%;
-
-  margin-top: 26px;
-  padding: 15px;
-
-  border: 1px solid rgba(198, 169, 106, .55);
-
-  background: rgba(8, 9, 11, .30);
-
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(198, 169, 106, 0.52);
+  background: rgba(8, 9, 11, 0.24);
   color: #d2b366;
-
   font-family: "Tertia", Georgia, serif;
-  font-size: 10px;
-  letter-spacing: .26em;
-
+  font-size: 9px;
+  letter-spacing: 0.24em;
   cursor: pointer;
-
-  transition:
-    border-color .2s ease,
-    background .2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-form button:hover {
+.login-submit:hover {
   border-color: #d4b868;
-  background: rgba(198, 169, 106, .055);
-}
-
-.login-error {
-  padding: 11px 0;
-  margin: 0 0 20px;
-
-  color: #d89b9b;
-
-  font-size: 13px;
+  background: rgba(198, 169, 106, 0.055);
 }
 
 .login-rule {
-  width: 80px;
+  width: 76px;
   height: 1px;
-
-  margin: 38px auto 18px;
-
-  background: rgba(198, 169, 106, .4);
+  margin: 34px auto 16px;
+  background: rgba(198, 169, 106, 0.38);
 }
 
 .login-foot {
-  color: rgba(198, 169, 106, .58);
-
+  margin: 0;
+  color: rgba(198, 169, 106, 0.56);
   font-family: "Tertia", Georgia, serif;
   font-size: 8px;
-  letter-spacing: .23em;
+  letter-spacing: 0.22em;
 }
 
 @media (max-width: 600px) {
-
   .login-page {
-    align-items: center;
-    padding: 30px 22px;
+    padding: 28px 20px;
   }
 
   .login-content {
-    padding: 26px 4px;
+    padding: 20px 0 26px;
   }
 
   .order-stamp {
-    width: 125px;
+    width: 190px;
+    height: 82px;
   }
 
-  h1 {
-    font-size: 36px;
+  .login-title {
+    font-size: 34px;
   }
-
 }

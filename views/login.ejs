@@ -1,8 +1,74 @@
-<!DOCTYPE html><html lang="en"><head><title>Enter the Order</title><%- include("partials/metadata") %><link rel="stylesheet" href="/css/login.css"></head>
-<body class="login-page"><main class="login-hero"><div class="login-bg"></div><section class="login-shell">
-  <a class="seal-link" href="/"><img src="/images/lionsbell-stamp.png" alt="Order of the Lion's Bell"></a>
-  <p class="kicker">HERALDS RESEARCH SYSTEM · ORDER ACCESS</p><h1>ENTER THE ORDER</h1><p class="motto">Campana Sonat Omnibus</p>
-  <% if (error) { %><p class="login-error"><%= error %></p><% } %>
-  <form class="login-form" action="/login" method="POST"><label>HRS IDENTITY<input type="text" name="identity" autocomplete="username" placeholder="Username" required></label><label>PASSWORD<input type="password" name="password" autocomplete="current-password" placeholder="••••••••" required></label><button type="submit">ENTER THE HALL <span>›</span></button></form>
-  <div class="sigil-line"></div><p class="login-note">One identity for the Order and the Research System.</p>
-</section></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Enter the Order</title>
+  <%- include("partials/metadata") %>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body class="hrs-login">
+  <div class="login-background" aria-hidden="true"></div>
+
+  <main class="login-page">
+    <section class="login-content">
+
+      <a href="/" aria-label="Return to the Heralds website">
+        <img
+          class="order-stamp"
+          src="/images/lionsbell-stamp.png"
+          alt="The Order of the Lion's Bell"
+        >
+      </a>
+
+      <p class="login-kicker">
+        HERALDS RESEARCH SYSTEM · ORDER ACCESS
+      </p>
+
+      <h1 class="login-title">ENTER THE ORDER</h1>
+
+      <p class="login-copy">
+        Campana Sonat Omnibus
+      </p>
+
+      <% if (typeof error !== "undefined" && error) { %>
+        <p class="login-error"><%= error %></p>
+      <% } %>
+
+      <form class="login-form" action="/login" method="POST">
+        <label class="login-field">
+          <span class="login-field-label">HRS IDENTITY</span>
+          <input
+            type="text"
+            name="identity"
+            autocomplete="username"
+            placeholder="Username"
+            required
+          >
+        </label>
+
+        <label class="login-field">
+          <span class="login-field-label">PASSWORD</span>
+          <input
+            type="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="••••••••"
+            required
+          >
+        </label>
+
+        <button class="login-submit" type="submit">
+          ENTER THE HALL
+        </button>
+      </form>
+
+      <div class="login-rule"></div>
+
+      <p class="login-foot">
+        ONE IDENTITY · ORDER AND RESEARCH SYSTEM
+      </p>
+
+    </section>
+  </main>
+</body>
+</html>
