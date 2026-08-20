@@ -32,25 +32,54 @@ html, body {
     margin-bottom: 0px;
     margin-top: -100px;
 }
+.nav-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-#loginBtn {
-  display: inline-block;
+  min-width: 86px;
+  padding: 10px 22px;
+
   background: transparent;
-  border: 1px solid #c6a96a;
+
+  border: 1px solid rgba(198, 169, 106, 0.75);
+
   color: #c6a96a;
-  padding: 10px 25px;
-  font-family: "Cinzel", serif;
-  letter-spacing: 2px;
+
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+
   text-decoration: none;
+
   cursor: pointer;
-  transition: 0.3s ease;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-#loginBtn:hover {
-  background: #c8dbde;
-  color: #0b0b0f;
+.nav-box:hover {
+  background: rgba(198, 169, 106, 0.08);
+
+  border-color: #d6b86f;
+
+  color: #e1c77f;
+
+  box-shadow:
+    0 0 10px rgba(198, 169, 106, 0.10),
+    inset 0 0 10px rgba(198, 169, 106, 0.025);
 }
 
+.nav-box.active {
+  border-color: #d6b86f;
+
+  background: rgba(198, 169, 106, 0.07);
+
+  color: #e3cb8d;
+}
 
 .divider-symbol{
 display:flex;
