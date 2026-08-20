@@ -11,7 +11,7 @@
   </div>
 
   <nav class="nav-right">
-    <a href="/hrs" class="<%= currentPath === '/hrs' ? 'active' : '' %>">HRS</a>
+    <a href="<%= user ? '/hrs/open' : '/hrs' %>" class="<%= currentPath === '/hrs' || currentPath.startsWith('/hrs/') ? 'active' : '' %>">HRS</a>
 
     <% if (user) { %>
       <a id="loginBtn" href="/profile" class="<%= currentPath === '/profile' ? 'active' : '' %>">PROFILE</a>

@@ -4,6 +4,7 @@
   <title>Enter the Order</title>
   <%- include("partials/metadata") %>
   <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/auth-bridge.css">
 </head>
 
 <body class="hrs-login">
@@ -11,50 +12,38 @@
 
   <main class="login-page">
     <section class="login-content">
-
+      <p class="auth-eyebrow">HRS IDENTITY</p>
       <h1 class="login-title">ENTER THE ORDER</h1>
-
-      <p class="login-copy">
-        Campana Sonat Omnibus
-      </p>
+      <p class="login-copy">Campana Sonat Omnibus</p>
 
       <% if (typeof error !== "undefined" && error) { %>
         <p class="login-error"><%= error %></p>
       <% } %>
 
       <form class="login-form" action="/login" method="POST">
+        <input type="hidden" name="next" value="<%= typeof next !== 'undefined' ? next : '/profile' %>">
+
         <label class="login-field">
           <span class="login-field-label">IDENTITY</span>
-          <input
-            type="text"
-            name="identity"
-            autocomplete="username"
-            placeholder="Username"
-            required
-          >
+          <input type="text" name="identity" autocomplete="username" placeholder="Username" required>
         </label>
 
         <label class="login-field">
           <span class="login-field-label">PASSWORD</span>
-          <input
-            type="password"
-            name="password"
-            autocomplete="current-password"
-            placeholder="••••••••"
-            required
-          >
+          <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
         </label>
 
-        <button class="login-submit" type="submit">
-          ENTER THE HALL
-        </button>
+        <button class="login-submit" type="submit">ENTER THE HALL</button>
       </form>
 
       <div class="login-rule"></div>
 
-      <p class="login-foot">
-      </p>
+      <div class="auth-switch">
+        <span>NEW TO HRS?</span>
+        <a href="/register?next=<%= encodeURIComponent(typeof next !== 'undefined' ? next : '/app/') %>">CREATE A SEEKER ACCOUNT</a>
+      </div>
 
+      <p class="auth-fineprint">One identity for the website, HRS web client and native application.</p>
     </section>
   </main>
 </body>

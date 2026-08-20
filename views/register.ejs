@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Create a Seeker Identity · HRS</title>
+  <%- include("partials/metadata") %>
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/auth-bridge.css">
+</head>
+
+<body class="hrs-login">
+  <div class="login-background" aria-hidden="true"></div>
+
+  <main class="login-page register-page">
+    <section class="login-content register-content">
+      <p class="auth-eyebrow">PUBLIC THRESHOLD · HRS</p>
+      <h1 class="login-title register-title">BECOME A SEEKER</h1>
+      <p class="login-copy">Create the identity you will use across HRS.</p>
+
+      <div class="auth-threshold-note">
+        A Seeker account opens the public research halls, The Bell and the forms of
+        correspondence available to Seekers. Registration is not initiation and does
+        not confer internal membership, office or authority.
+      </div>
+
+      <% if (typeof error !== "undefined" && error) { %>
+        <p class="login-error"><%= error %></p>
+      <% } %>
+
+      <form class="login-form" action="/register" method="POST">
+        <input type="hidden" name="next" value="<%= typeof next !== 'undefined' ? next : '/app/' %>">
+
+        <div class="auth-field-grid">
+          <label class="login-field">
+            <span class="login-field-label">NAME</span>
+            <input type="text" name="displayName" autocomplete="name" maxlength="160" value="<%= values?.displayName || '' %>" required>
+          </label>
+
+          <label class="login-field">
+            <span class="login-field-label">USERNAME</span>
+            <input type="text" name="username" autocomplete="username" minlength="3" maxlength="80" pattern="[A-Za-z0-9._-]+" value="<%= values?.username || '' %>" required>
+          </label>
+
+          <label class="login-field auth-field-wide">
+            <span class="login-field-label">EMAIL</span>
+            <input type="email" name="email" autocomplete="email" maxlength="254" value="<%= values?.email || '' %>" required>
+          </label>
+
+          <label class="login-field">
+            <span class="login-field-label">COUNTRY CODE · OPTIONAL</span>
+            <input type="text" name="countryCode" autocomplete="country" maxlength="8" placeholder="HR" value="<%= values?.countryCode || '' %>">
+          </label>
+
+          <label class="login-field">
+            <span class="login-field-label">PASSWORD · 12+ CHARACTERS</span>
+            <input type="password" name="password" autocomplete="new-password" minlength="12" required>
+          </label>
+
+          <label class="login-field auth-field-wide">
+            <span class="login-field-label">CONFIRM PASSWORD</span>
+            <input type="password" name="passwordConfirm" autocomplete="new-password" minlength="12" required>
+          </label>
+        </div>
+
+        <button class="login-submit" type="submit">CREATE SEEKER IDENTITY</button>
+      </form>
+
+      <div class="login-rule"></div>
+
+      <div class="auth-switch">
+        <span>ALREADY HAVE AN IDENTITY?</span>
+        <a href="/login?next=<%= encodeURIComponent(typeof next !== 'undefined' ? next : '/app/') %>">SIGN IN</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

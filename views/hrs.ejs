@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Heralds Research System · HRS v1.0</title>
+  <title>Heralds Research System · HRS v1.5</title>
   <%- include("partials/metadata") %>
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -14,41 +14,91 @@
       <div class="hrs-hero-bg" aria-hidden="true"></div>
 
       <div class="hrs-hero-inner">
-        <img
-          class="hrs-stamp"
-          src="/images/lionsbell-stamp.png"
-          alt="Order of the Lion's Bell"
-        >
+        <img class="hrs-stamp" src="/images/lionsbell-stamp.png" alt="Order of the Lion's Bell">
 
         <p class="hrs-kicker">ORDER OF THE LION'S BELL · DIGITAL SYSTEM</p>
-
         <h1 class="hrs-title">HERALDS<br>RESEARCH SYSTEM</h1>
-
-        <p class="hrs-version">HRS · VERSION 1.0 · ANDROID</p>
+        <p class="hrs-version">HRS · VERSION 1.5 · UNIVERSAL ACCESS</p>
 
         <p class="hrs-intro">
-          The research, archival and formation system of the Order.
-          HRS brings the living work of the Heralds into one institutional record:
-          research sources, investigations, correspondence, experience records,
-          formation and the work of the Bell.
+          The research, archival, correspondence and formation system of the Order.
+          Enter HRS in the browser, install the web application, or use the native
+          Android client. Every client reaches the same HRS identity and record.
         </p>
 
-        <div class="hrs-actions">
-          <a class="hrs-action hrs-action-primary"
-             href="/downloads/hrs-v1.0.apk"
-             download>
-            DOWNLOAD FOR ANDROID
-            <span>›</span>
-          </a>
+        <div class="hrs-entry-box">
+          <p class="hrs-entry-label"><%= user ? 'IDENTITY RECOGNIZED' : 'ENTER THROUGH ONE IDENTITY' %></p>
 
-          <span class="hrs-action hrs-action-disabled" id="google-play">
-            GOOGLE PLAY · COMING SOON
-          </span>
+          <% if (user) { %>
+            <p class="hrs-entry-member"><%= user.registryLabel || user.displayName || user.memberCode %></p>
+            <a class="hrs-action hrs-action-primary" href="/hrs/open">
+              OPEN HRS WEB <span>›</span>
+            </a>
+            <a class="hrs-entry-secondary" href="/profile">VIEW MY ORDER RECORD</a>
+          <% } else { %>
+            <div class="hrs-entry-actions">
+              <a class="hrs-action hrs-action-primary" href="/login?next=%2Fapp%2F">
+                SIGN IN TO HRS <span>›</span>
+              </a>
+              <a class="hrs-action" href="/register?next=%2Fapp%2F">
+                CREATE SEEKER ACCOUNT <span>›</span>
+              </a>
+            </div>
+            <p class="hrs-entry-note">Registration opens a Seeker identity. It is not initiation or internal membership.</p>
+          <% } %>
         </div>
+      </div>
+    </section>
 
-        <p class="hrs-install-note">
-          Direct Android distribution · signed HRS v1.0 build
-        </p>
+    <section class="hrs-section hrs-client-section">
+      <div class="hrs-section-inner">
+        <p class="hrs-kicker">CHOOSE YOUR CLIENT</p>
+        <h2>ONE HRS · THREE WAYS IN</h2>
+        <div class="hrs-rule"></div>
+
+        <div class="hrs-platform-grid">
+          <article class="hrs-platform-card hrs-platform-featured">
+            <span class="hrs-platform-number">I</span>
+            <p class="hrs-platform-kicker">WEB · PWA</p>
+            <h3>HRS IN THE BROWSER</h3>
+            <p>
+              The complete HRS client at <strong>heraldsofthelion.org/app/</strong>.
+              On supported devices it can be installed to the home screen and opened
+              in standalone mode.
+            </p>
+            <a class="hrs-platform-button" href="<%= user ? '/hrs/open' : '/login?next=%2Fapp%2F' %>">
+              <%= user ? 'OPEN WEB HRS' : 'SIGN IN & OPEN' %> <span>›</span>
+            </a>
+          </article>
+
+          <article class="hrs-platform-card">
+            <span class="hrs-platform-number">II</span>
+            <p class="hrs-platform-kicker">ANDROID</p>
+            <h3>NATIVE HRS</h3>
+            <p>
+              Signed Android build for direct installation. The native client uses
+              the same HRS account, permissions and live research system.
+            </p>
+            <a class="hrs-platform-button" href="/downloads/hrs-v1.5.apk" download>
+              DOWNLOAD HRS v1.5 APK <span>›</span>
+            </a>
+            <small>Google Play distribution will follow separately.</small>
+          </article>
+
+          <article class="hrs-platform-card">
+            <span class="hrs-platform-number">III</span>
+            <p class="hrs-platform-kicker">iPHONE · iPAD</p>
+            <h3>HRS FOR iOS</h3>
+            <p>
+              Use the complete HRS web application now. In Safari, open HRS and use
+              <em>Add to Home Screen</em> for an app-like standalone client. Native
+              iOS sideload distribution can be added later without changing your account.
+            </p>
+            <a class="hrs-platform-button" href="<%= user ? '/hrs/open' : '/login?next=%2Fapp%2F' %>">
+              OPEN HRS FOR iOS <span>›</span>
+            </a>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -59,76 +109,22 @@
         <div class="hrs-rule"></div>
 
         <p class="hrs-body">
-          HRS is not a separate social platform. It is the working system behind
-          the Order's research and institutional life. The website remains the
-          public threshold; HRS is where records are organized, work is continued
-          and member access is applied according to standing and responsibility.
+          HRS is not a separate social platform. It is the working system behind the
+          Order's research and institutional life. Research, correspondence, formation,
+          archive work and member standing remain attached to one HRS identity regardless
+          of which client is used.
         </p>
 
         <div class="hrs-grid">
-          <article class="hrs-card">
-            <span>I</span>
-            <h3>RESEARCH ARCHIVE</h3>
-            <p>
-              The Heralds Research Library, sources, claims, evidence and
-              structured archival records.
-            </p>
-          </article>
-
-          <article class="hrs-card">
-            <span>II</span>
-            <h3>CASES & INVESTIGATIONS</h3>
-            <p>
-              Active files, submitted experiences, investigative records and
-              formal research outcomes.
-            </p>
-          </article>
-
-          <article class="hrs-card">
-            <span>III</span>
-            <h3>ORDER & FORMATION</h3>
-            <p>
-              Member record, formation progress, chapters, offices, Council
-              records and advancement.
-            </p>
-          </article>
-
-          <article class="hrs-card">
-            <span>IV</span>
-            <h3>THE BELL</h3>
-            <p>
-              Bell Reports, research correspondence and the publication record
-              of work preserved by the Order.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="hrs-section hrs-access-section">
-      <div class="hrs-section-inner">
-        <p class="hrs-kicker">ACCESS</p>
-        <h2>ENTER THROUGH ONE IDENTITY</h2>
-        <div class="hrs-rule"></div>
-
-        <p class="hrs-body">
-          The same HRS identity is used across the application and authenticated
-          areas of the Heralds website. Seekers may enter the system with their
-          own account; additional functions become available according to
-          membership, standing, office and permissions.
-        </p>
-
-        <div class="hrs-secondary-actions">
-          <% if (user) { %>
-            <a href="/profile">VIEW MY ORDER RECORD</a>
-          <% } else { %>
-            <a href="/login">ENTER THE ORDER</a>
-          <% } %>
-
-          <a href="/archive">EXPLORE THE PUBLIC ARCHIVE</a>
+          <article class="hrs-card"><span>I</span><h3>RESEARCH ARCHIVE</h3><p>The Heralds Research Library, sources, claims, evidence and structured archival records.</p></article>
+          <article class="hrs-card"><span>II</span><h3>CASES & INVESTIGATIONS</h3><p>Active files, submitted experiences, investigative records and formal research outcomes.</p></article>
+          <article class="hrs-card"><span>III</span><h3>ORDER & FORMATION</h3><p>Member record, formation progress, chapters, offices, Council records and advancement.</p></article>
+          <article class="hrs-card"><span>IV</span><h3>CORRESPONDENCE & THE BELL</h3><p>Institutional letters, Bell Reports and the publication record of work preserved by the Order.</p></article>
         </div>
       </div>
     </section>
   </main>
 
   <%- include("partials/footer") %>
+</body>
+</html>

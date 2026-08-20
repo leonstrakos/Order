@@ -959,3 +959,172 @@ img, video {
     align-items: center;
   }
 }
+
+/* =========================
+   HRS v1.5 ACCESS GATE
+========================= */
+.hrs-entry-box {
+  width: min(590px, 100%);
+  margin: 42px auto 0;
+  padding: 26px 28px 24px;
+  border: 1px solid rgba(198,169,106,.35);
+  background: rgba(2,6,11,.52);
+  backdrop-filter: blur(4px);
+}
+
+.hrs-entry-label,
+.hrs-platform-kicker {
+  margin: 0 0 12px;
+  color: rgba(198,169,106,.78);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: .62rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.hrs-entry-member {
+  margin: 0 0 22px;
+  color: #c4d8ef;
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 1.05rem;
+  letter-spacing: .09em;
+}
+
+.hrs-entry-actions {
+  display: grid;
+  gap: 11px;
+}
+
+.hrs-entry-box .hrs-action {
+  margin: 0;
+}
+
+.hrs-entry-secondary {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(198,169,106,.35);
+  color: rgba(198,169,106,.78);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: .64rem;
+  letter-spacing: .16em;
+}
+
+.hrs-entry-note {
+  margin: 17px 0 0;
+  color: rgba(238,239,241,.46);
+  font-family: "Cicero", Georgia, serif;
+  font-size: .82rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.hrs-client-section {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(67,95,130,.08), transparent 48%),
+    #07090d;
+}
+
+.hrs-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 54px;
+  text-align: left;
+}
+
+.hrs-platform-card {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px 26px;
+  border: 1px solid rgba(198,169,106,.20);
+  background: rgba(3,7,12,.68);
+}
+
+.hrs-platform-featured {
+  border-color: rgba(198,169,106,.48);
+  box-shadow: inset 0 0 45px rgba(92,132,176,.035);
+}
+
+.hrs-platform-number {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  color: rgba(198,169,106,.38);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: .66rem;
+  letter-spacing: .18em;
+}
+
+.hrs-platform-card h3 {
+  margin: 4px 0 18px;
+  color: #c4d8ef;
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: 1.08rem;
+  font-weight: normal;
+  letter-spacing: .10em;
+}
+
+.hrs-platform-card p:not(.hrs-platform-kicker) {
+  margin: 0 0 24px;
+  color: rgba(255,255,255,.61);
+  font-family: "Cicero", Georgia, serif;
+  font-size: .97rem;
+  line-height: 1.72;
+}
+
+.hrs-platform-card strong {
+  color: rgba(255,255,255,.82);
+  font-weight: normal;
+}
+
+.hrs-platform-button {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 47px;
+  padding: 13px 38px 13px 16px;
+  border: 1px solid rgba(198,169,106,.42);
+  color: var(--lion-gold);
+  background: rgba(5,8,12,.28);
+  font-family: "Tertia", "Cinzel", serif;
+  font-size: .64rem;
+  letter-spacing: .15em;
+  text-align: center;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.hrs-platform-button span {
+  position: absolute;
+  right: 16px;
+}
+
+.hrs-platform-button:hover {
+  border-color: var(--lion-gold);
+  background: rgba(198,169,106,.06);
+}
+
+.hrs-platform-card small {
+  display: block;
+  margin-top: 12px;
+  color: rgba(255,255,255,.35);
+  font-family: "Cicero", Georgia, serif;
+  font-size: .73rem;
+  font-style: italic;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .hrs-platform-grid { grid-template-columns: 1fr; }
+  .hrs-platform-card { min-height: 0; }
+}
+
+@media (max-width: 520px) {
+  .hrs-entry-box { padding: 22px 18px 20px; }
+  .hrs-platform-card { padding: 26px 22px 22px; }
+}
+

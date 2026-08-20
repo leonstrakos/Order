@@ -1,0 +1,85 @@
+.auth-eyebrow {
+  margin: 0 0 10px;
+  color: rgba(198,169,106,.72);
+  font-family: "Tertia", Georgia, serif;
+  font-size: 9px;
+  letter-spacing: .25em;
+  text-align: center;
+}
+
+.auth-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.auth-switch span {
+  color: rgba(235,231,219,.40);
+  font-family: "Tertia", Georgia, serif;
+  font-size: 8px;
+  letter-spacing: .20em;
+}
+
+.auth-switch a {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(198,169,106,.36);
+  color: #c6a96a;
+  font-family: "Tertia", Georgia, serif;
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-decoration: none;
+}
+
+.auth-fineprint {
+  margin: 20px 0 0;
+  color: rgba(235,231,219,.32);
+  font-family: "Cicero", Georgia, serif;
+  font-size: 11px;
+  font-style: italic;
+  text-align: center;
+}
+
+.register-page {
+  min-height: 100vh;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  overflow-y: auto;
+}
+
+.register-content {
+  max-width: 680px;
+}
+
+.register-title {
+  font-size: clamp(32px, 5vw, 48px);
+}
+
+.auth-threshold-note {
+  margin: 0 0 24px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(198,169,106,.20);
+  border-bottom: 1px solid rgba(198,169,106,.20);
+  color: rgba(235,231,219,.55);
+  font-family: "Cicero", Georgia, serif;
+  font-size: 13px;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.auth-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 22px;
+}
+
+.auth-field-wide {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 620px) {
+  .auth-field-grid { grid-template-columns: 1fr; }
+  .auth-field-wide { grid-column: auto; }
+  .register-page { padding-top: 24px; padding-bottom: 24px; }
+}
