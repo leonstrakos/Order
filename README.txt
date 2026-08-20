@@ -1,39 +1,31 @@
-HRS WEB ACCESS + SHARED IDENTITY PATCH — v1.5
+HRS website/PWA follow-up patch
 
-WHAT THIS DOES
-- /hrs becomes the public HRS distribution/access threshold.
-- Logged-in website members go directly to /app/ through /hrs/open.
-- Visitors can sign in or create a Seeker account on the website.
-- Website registration uses the EXISTING Spring /api/auth/register endpoint; no JAR/backend change required.
-- Website login/registration and the PWA share the same HRS token through same-origin bridge endpoints.
-- PWA login/registration also adopts a website session, so /profile recognizes the same identity.
-- Existing Archive Administration XLSX upload on profile is preserved.
-- Android APK stays at /downloads/hrs-v1.5.apk.
-- iPhone/iPad users use /app/ PWA now; native sideload distribution can be added later.
+CHANGED
+1) server.js
+   - Adds isKeeperOfBell(member)
+   - /profile/archive/import is now enforced server-side for Keeper of the Bell stage only.
+   - ARCHIVE_EDIT alone no longer grants website HRL catalogue upload access.
 
-WEBSITE FILES
-server.js                         -> website root/server.js
-views/hrs.ejs                     -> website views/hrs.ejs
-views/login.ejs                   -> website views/login.ejs
-views/register.ejs                -> website views/register.ejs (NEW)
-views/profile.ejs                 -> website views/profile.ejs
-views/partials/header.ejs         -> website views/partials/header.ejs
-public/css/style.css              -> website public/css/style.css
-public/css/auth-bridge.css        -> website public/css/auth-bridge.css (NEW)
+2) views/profile.ejs
+   - Archive Administration is only rendered for stageCode KEEPER_OF_BELL
+     (with stageName "Keeper of the Bell" as a compatibility fallback).
+   - Upload note now says Keeper of the Bell only.
 
-PWA FILE
-mobile/src/auth/AuthContext.tsx   -> your HRS v1.5 PWA/mobile/src/auth/AuthContext.tsx
+3) mobile/src/auth/AuthContext.tsx
+   - Website <-> PWA HRS session bridge.
+   - Required to remove the second login when entering /app/ from an authenticated website session.
 
-IMPORTANT
-The PWA AuthContext change requires a new web export and upload to /srv/hrs/web/app/.
-The native Android behavior is unchanged because the bridge code runs only when Platform.OS === 'web'.
+WEBSITE DEPLOY
+- Copy server.js and views/profile.ejs into BRAND SOCIETY.
+- node --check server.js
+- git add .
+- git commit -m "Restrict archive administration to Keeper and bridge PWA login"
+- git pull --rebase origin master
+- git push origin master
+- server: git pull origin master && pm2 restart heralds --update-env
 
-AFTER COPYING WEBSITE FILES
-node --check server.js
-pm2 restart heralds
-
-AFTER COPYING THE PWA AUTHCONTEXT
-cd mobile
-npm run typecheck
-npx expo export --platform web
-# clear old server PWA files, then upload dist and normalize permissions
+PWA DEPLOY
+- Copy mobile/src/auth/AuthContext.tsx into the HRS v1.5 PWA mobile project.
+- npm run typecheck
+- npx expo export --platform web
+- Replace /srv/hrs/web/app with the new dist contents, chmod dirs 755 and files 644.

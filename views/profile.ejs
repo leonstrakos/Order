@@ -32,7 +32,7 @@
       <div><span>CIRCLE</span><strong><%= member.circle || '—' %></strong></div>
     </section>
 
-    <% if ((member.permissions || []).includes('ARCHIVE_EDIT')) { %>
+    <% if (String(member.stageCode || '').toUpperCase() === 'KEEPER_OF_BELL' || String(member.stageName || '').toLowerCase() === 'keeper of the bell') { %>
       <section class="archive-office">
         <p class="kicker">OFFICE OF THE ARCHIVE</p>
         <h3>ARCHIVE ADMINISTRATION</h3>
@@ -53,7 +53,7 @@
           </label>
           <button>IMPORT TO HRS <span>›</span></button>
         </form>
-        <small>Requires ARCHIVE_EDIT. Maximum file size: 15 MB.</small>
+        <small>Keeper of the Bell only · Maximum file size: 15 MB.</small>
       </section>
     <% } %>
 

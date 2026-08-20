@@ -82,6 +82,16 @@ function requireAuth(req, res, next) {
   next();
 }
 
+function isKeeperOfBell(member) {
+  const stageCode = String(member?.stageCode || "").trim().toUpperCase();
+  const stageName = String(member?.stageName || "").trim().toLowerCase();
+
+  return (
+    stageCode === "KEEPER_OF_BELL" ||
+    stageName === "keeper of the bell"
+  );
+}
+
 function safeNextPath(value, fallback = "/profile") {
   const candidate = String(value || "").trim();
   if (!candidate.startsWith("/") || candidate.startsWith("//")) return fallback;
@@ -494,18 +504,14 @@ app.post(
         req.session.hrsToken
       );
 
-      if (
-        !member.permissions?.includes(
-          "ARCHIVE_EDIT"
-        )
-      ) {
+      if (!isKeeperOfBell(member)) {
         return res.status(403).render(
           "profile",
           {
             member,
             importResult: null,
             importError:
-              "Archive editing authority is required."
+              "Only a Keeper of the Bell may administer the Heralds Research Library catalogue."
           }
         );
       }
