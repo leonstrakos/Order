@@ -1157,3 +1157,7 @@ img, video {
   .hrs-platform-card { padding: 26px 22px 22px; }
 }
 
+
+/* HRS access hierarchy polish */
+.hrs-entry-note a { color:#c6a96a; text-decoration:none; border-bottom:1px solid rgba(198,169,106,.34); }
+.hrs-entry-note a:hover,.hrs-entry-note a:focus-visible { color:#e3cb8d; border-bottom-color:#c6a96a; }

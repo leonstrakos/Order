@@ -27,24 +27,24 @@
         </p>
 
         <div class="hrs-entry-box">
-          <p class="hrs-entry-label"><%= user ? 'IDENTITY RECOGNIZED' : 'ENTER THROUGH ONE IDENTITY' %></p>
+          <p class="hrs-entry-label"><%= user ? 'IDENTITY RECOGNIZED' : 'ONE HRS IDENTITY' %></p>
 
           <% if (user) { %>
             <p class="hrs-entry-member"><%= user.registryLabel || user.displayName || user.memberCode %></p>
+
             <a class="hrs-action hrs-action-primary" href="/hrs/open">
-              OPEN HRS WEB <span>›</span>
+              OPEN HRS <span>&rsaquo;</span>
             </a>
+
             <a class="hrs-entry-secondary" href="/profile">VIEW MY ORDER RECORD</a>
           <% } else { %>
-            <div class="hrs-entry-actions">
-              <a class="hrs-action hrs-action-primary" href="/login?next=%2Fapp%2F">
-                SIGN IN TO HRS <span>›</span>
-              </a>
-              <a class="hrs-action" href="/register?next=%2Fapp%2F">
-                CREATE SEEKER ACCOUNT <span>›</span>
-              </a>
-            </div>
-            <p class="hrs-entry-note">Registration opens a Seeker identity. It is not initiation or internal membership.</p>
+            <a class="hrs-action hrs-action-primary" href="/login?next=%2Fapp%2F">
+              SIGN IN TO HRS <span>&rsaquo;</span>
+            </a>
+
+            <p class="hrs-entry-note">
+              New to HRS? <a href="/register?next=%2Fapp%2F">Create a Seeker account</a>
+            </p>
           <% } %>
         </div>
       </div>
