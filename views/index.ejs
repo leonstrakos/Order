@@ -63,13 +63,57 @@
 
 
 
-  <section class="content" id="content">
-    <h2>Inner Chamber</h2>
-    <p>This section contains the hidden teachings of the order...</p>
-    <br> <br> <br>
+  
+<section class="inner-chamber-preview" id="content">
+  <div class="inner-chamber-mark" aria-hidden="true">✦</div>
 
-    <span class="accent">Please login or seek membership</span> 
-  </section>
+  <p class="inner-chamber-kicker">THE INWARD TRADITION</p>
+  <h2>INNER CHAMBER</h2>
+
+  <div class="inner-chamber-rule"></div>
+
+  <p class="inner-chamber-copy">
+    The Inner Chamber preserves the protected philosophical and symbolic
+    tradition of the Order — its doctrine, virtues, Lekistra, contemplative
+    study and advanced formation.
+  </p>
+
+  <div class="inner-chamber-status">
+    <div>
+      <span>IDENTITY</span>
+      <strong><%= (typeof user !== 'undefined' && user) ? 'RECOGNIZED' : 'NOT ESTABLISHED' %></strong>
+    </div>
+
+    <div>
+      <span>ACCESS</span>
+      <strong><%= (typeof user !== 'undefined' && user) ? 'DETERMINED BY HRS' : 'IDENTIFICATION REQUIRED' %></strong>
+    </div>
+
+    <div>
+      <span>CHAMBER</span>
+      <strong>RESTRICTED</strong>
+    </div>
+  </div>
+
+  <p class="inner-chamber-note">
+    Research remains distinct from the inward tradition.
+    Access to the Chamber follows formation and institutional permissions.
+  </p>
+
+  <% if (typeof user !== 'undefined' && user) { %>
+    <a class="inner-chamber-enter" href="/hrs/open">
+      ENTER THROUGH HRS <span>&rsaquo;</span>
+    </a>
+  <% } else { %>
+    <a class="inner-chamber-enter" href="/login?next=%2Fhrs">
+      IDENTIFY YOURSELF <span>&rsaquo;</span>
+    </a>
+
+    <a class="inner-chamber-secondary" href="/register">
+      SEEK MEMBERSHIP
+    </a>
+  <% } %>
+</section>
 
 
 
