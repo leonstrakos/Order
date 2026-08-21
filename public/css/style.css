@@ -996,9 +996,7 @@ img, video {
   width: min(590px, 100%);
   margin: 42px auto 0;
   padding: 26px 28px 24px;
-  border: 1px solid rgba(198,169,106,.35);
-  background: rgba(2,6,11,.52);
-  backdrop-filter: blur(4px);
+  border: none;
 }
 
 .hrs-entry-label,
