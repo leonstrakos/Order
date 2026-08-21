@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const XLSX = require("xlsx");
@@ -170,6 +170,44 @@ app.post("/login", async (req, res) => {
     req.session.user = sessionData.member;
     req.session.hrsExpiresAt = sessionData.expiresAt;
 
+    const applicationStatement = String(req.body.applicationStatement || "").trim();
+const areas = String(req.body.areas || "").trim();
+
+void (async () => {
+  try {
+    const { error: mailError } = await resend.emails.send({
+      from: "Order of the Lions Bell <info@heraldsofthelion.org>",
+      to: ["apply@heraldsofthelion.org"],
+      reply_to: values.email.trim(),
+      subject: `New Seeker Registration - ${values.displayName.trim()}`,
+      html: `
+        <div style="font-family: Georgia, serif; line-height: 1.6;">
+          <h2>New Seeker Registration</h2>
+
+          <p><strong>Name:</strong> ${escapeHtml(values.displayName.trim())}</p>
+          <p><strong>Username:</strong> ${escapeHtml(values.username.trim())}</p>
+          <p><strong>Email:</strong> ${escapeHtml(values.email.trim())}</p>
+          <p><strong>Country:</strong> ${escapeHtml(values.countryCode.trim() || "—")}</p>
+
+          <hr>
+
+          <p><strong>What brings you to the Order?</strong></p>
+          <p>${nl2br(escapeHtml(applicationStatement || "—"))}</p>
+
+          <p><strong>Areas of interest or study</strong></p>
+          <p>${nl2br(escapeHtml(areas || "—"))}</p>
+        </div>
+      `
+    });
+
+    if (mailError) {
+      console.warn("Seeker registration mail:", mailError);
+    }
+  } catch (mailError) {
+    console.warn("Seeker registration mail:", mailError);
+  }
+})();
+
     return res.redirect(nextPath);
   } catch (error) {
     console.error("HRS login error:", error.message);
@@ -186,7 +224,7 @@ app.post("/login", async (req, res) => {
 app.get("/register", (req, res) => {
   if (req.session?.user) return res.redirect("/hrs/open");
 
-  return res.render("register", {
+  return res.render("form", {
     error: null,
     next: safeNextPath(req.query.next, "/app/"),
     values: registrationValues()
@@ -201,7 +239,7 @@ app.post("/register", async (req, res) => {
 
   try {
     if (!values.displayName.trim() || !values.username.trim() || !values.email.trim() || !password) {
-      return res.status(400).render("register", {
+      return res.status(400).render("form", {
         error: "Complete the required fields.",
         next: nextPath,
         values
@@ -209,7 +247,7 @@ app.post("/register", async (req, res) => {
     }
 
     if (password.length < 12) {
-      return res.status(400).render("register", {
+      return res.status(400).render("form", {
         error: "Password must contain at least 12 characters.",
         next: nextPath,
         values
@@ -217,7 +255,7 @@ app.post("/register", async (req, res) => {
     }
 
     if (password !== passwordConfirm) {
-      return res.status(400).render("register", {
+      return res.status(400).render("form", {
         error: "The passwords do not match.",
         next: nextPath,
         values
@@ -239,7 +277,7 @@ app.post("/register", async (req, res) => {
     return res.redirect(nextPath);
   } catch (error) {
     console.error("HRS registration error:", error.message);
-    return res.status(error.status >= 400 && error.status < 500 ? 400 : 502).render("register", {
+    return res.status(error.status >= 400 && error.status < 500 ? 400 : 502).render("form", {
       error: error.message || "The Seeker account could not be created.",
       next: nextPath,
       values
@@ -612,49 +650,11 @@ app.get("/admin/reports", (req, res) => {
 //const nodemailer = require('nodemailer');
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-app.post('/form', async (req, res) => {
-  try {
-    const { day, life, email, gain, give } = req.body;
 
-    if (!day || !life || !email || !gain || !give) {
-      return res.status(400).json({ message: 'All fields are required.' });
-    }
-
-    const { data, error } = await resend.emails.send({
-      from: 'Order of the Lions Bell <info@heraldsofthelion.org>',
-      to: ['apply@heraldsofthelion.org'],
-      reply_to: email,
-      subject: 'New Seeker Application',
-      html: `
-        <div style="font-family: Georgia, serif; line-height: 1.6;">
-          <h2>New Secret Society Application</h2>
-          <p><strong>Applicant email:</strong> ${escapeHtml(email)}</p>
-          <hr />
-          <p><strong>Describe your day</strong></p>
-          <p>${nl2br(escapeHtml(day))}</p>
-          <p><strong>Describe your life</strong></p>
-          <p>${nl2br(escapeHtml(life))}</p>
-          <p><strong>What do you expect to gain?</strong></p>
-          <p>${nl2br(escapeHtml(gain))}</p>
-          <p><strong>What are you willing to give up?</strong></p>
-          <p>${nl2br(escapeHtml(give))}</p>
-        </div>
-      `,
-    });
-
-    if (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Failed to send application.' });
-    }
-
-    return res.json({
-      message: 'Your petition has been delivered.',
-      id: data?.id,
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ message: 'Something went wrong.' });
-  }
+app.post('/form', (req, res) => {
+  return res.status(410).json({
+    message: 'This legacy application endpoint has been retired. Apply through the Seeker registration form.'
+  });
 });
 
 function escapeHtml(str = '') {
@@ -722,5 +722,5 @@ app.use((req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`⚜ Server running at http://localhost:${PORT}`);
+  console.log(`âšś Server running at http://localhost:${PORT}`);
 });

@@ -41,122 +41,142 @@
 
 
 
+            <form class="application-form" action="/register" method="post">
 
+  <input
+    type="hidden"
+    name="next"
+    value="<%= typeof next !== 'undefined' ? next : '/app/' %>"
+  >
 
-          
-        <form class="application-form" action="/form" method="post">
-            <div class="field">
+  <% if (typeof error !== "undefined" && error) { %>
+    <div class="seal form-status"><%= error %></div>
+  <% } %>
 
-<label for="p-day"><span class="label-initial">D</span>escribe your day</label>
-              <textarea id="p-day" name="day" placeholder="Tell us how your day unfolded and what brought you here..."></textarea>
-            </div>
+  <div class="field">
+    <label for="p-name">
+      <span class="label-initial">N</span>ame
+    </label>
+    <input
+      id="p-name"
+      name="displayName"
+      type="text"
+      autocomplete="name"
+      maxlength="160"
+      value="<%= typeof values !== 'undefined' ? values.displayName || '' : '' %>"
+      required
+    >
+  </div>
 
+  <div class="field">
+    <label for="p-username">
+      <span class="label-initial">U</span>sername
+    </label>
+    <input
+      id="p-username"
+      name="username"
+      type="text"
+      autocomplete="username"
+      minlength="3"
+      maxlength="80"
+      pattern="[A-Za-z0-9._-]+"
+      value="<%= typeof values !== 'undefined' ? values.username || '' : '' %>"
+      required
+    >
+  </div>
 
-            <div class="field">
-<label for="p-life"><span class="label-initial">D</span>escribe your life</label>
-              <textarea id="p-life" name="life" placeholder="Write of your path, your nature, and your ambitions..."></textarea>
-            </div>
+  <div class="field">
+    <label for="p-email">
+      <span class="label-initial">E</span>mail address
+    </label>
+    <input
+      id="p-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      maxlength="254"
+      value="<%= typeof values !== 'undefined' ? values.email || '' : '' %>"
+      required
+    >
+  </div>
 
-                <div class="field">
-<label for="p-gain"><span class="label-initial">W</span>hat do you seek to gain?</label>
-              <textarea id="p-gain" name="gain" placeholder="Write of your desires, expectations and what it is you think we offer..."></textarea>
-            </div>
+  <div class="field">
+    <label for="p-country">
+      <span class="label-initial">C</span>ountry code
+      <small> — optional</small>
+    </label>
+    <input
+      id="p-country"
+      name="countryCode"
+      type="text"
+      maxlength="8"
+      placeholder="HR"
+      value="<%= typeof values !== 'undefined' ? values.countryCode || '' : '' %>"
+    >
+  </div>
 
-                <div class="field">
-<label for="p-give"><span class="label-initial">W</span>hat can you offer us?</label>
-              <textarea id="p-give" name="give" placeholder="Write of how can you contribute to the Order and what are you willing to give..."></textarea>
-            </div>
+  <div class="field">
+    <label for="p-password">
+      <span class="label-initial">P</span>assword
+      <small> — 12+ characters</small>
+    </label>
+    <input
+      id="p-password"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      minlength="12"
+      required
+    >
+  </div>
 
-                            <div class="field">
-<label for="p-give"><span class="label-initial">W</span>hat are your areas of interest or study?</label>
-              <textarea id="p-areas" name="areas" placeholder="Write of your field of inquiry..."></textarea>
-            </div>
+  <div class="field">
+    <label for="p-password-confirm">
+      <span class="label-initial">C</span>onfirm password
+    </label>
+    <input
+      id="p-password-confirm"
+      name="passwordConfirm"
+      type="password"
+      autocomplete="new-password"
+      minlength="12"
+      required
+    >
+  </div>
 
+  <div class="field">
+    <label for="p-reason">
+      <span class="label-initial">W</span>hat brings you to the Order?
+    </label>
+    <textarea
+      id="p-reason"
+      name="applicationStatement"
+      placeholder="A few words are enough..."
+    ></textarea>
+  </div>
 
-                                        <div class="field">
-<label for="p-give"><span class="label-initial">D</span>o you have any prior work or writing?</label>
-              <textarea id="p-work" name="work" placeholder="Cite your works.. or write no."></textarea>
-            </div>
+  <div class="field">
+    <label for="p-areas">
+      <span class="label-initial">A</span>reas of interest or study
+    </label>
+    <textarea
+      id="p-areas"
+      name="areas"
+      placeholder="Research, philosophy, history, consciousness, anomalous phenomena, art..."
+    ></textarea>
+  </div>
 
+  <button type="submit">Create Seeker Identity</button>
 
-            <div class="field">
-<label for="p-email"><span class="label-initial">E</span>mail address</label>
-              <input id="p-email" name="email" type="email" placeholder="yourname@example.com" />
-            </div>
-            <button type="submit">Submit Application</button>
-            <div class="seal">By submitting, you seek entry into the Order.</div>
-          </form>
+  <div class="seal">
+    Registration establishes a Seeker record. It is not initiation or advancement.
+    <br><br>
+    Already registered? <a href="/login">Sign in.</a>
+  </div>
 
+</form>
         </section>
       </article>
-
-
-  </main>
-
-
-
-
-
-
-
-
-  <script>
-    const forms = document.querySelectorAll('.application-form');
-
-    forms.forEach((form) => {
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const button = form.querySelector('button');
-        const existingStatus = form.querySelector('.form-status');
-        if (existingStatus) existingStatus.remove();
-
-        const data = {
-          day: form.querySelector('textarea[name="day"]').value,
-          life: form.querySelector('textarea[name="life"]').value,
-          give: form.querySelector('textarea[name="give"]').value,
-          gain: form.querySelector('textarea[name="gain"]').value,
-          email: form.querySelector('input[name="email"]').value,
-          areas: form.querySelector('textarea[name="areas"]').value,
-          work: form.querySelector('input[name="work"]').value,
-        };
-
-        const status = document.createElement('div');
-        status.className = 'form-status seal';
-        status.textContent = 'Sending your petition...';
-        form.appendChild(status);
-
-        button.disabled = true;
-        button.style.opacity = '0.7';
-        button.style.cursor = 'wait';
-
-        try {
-          const response = await fetch(form.action, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          });
-
-          const result = await response.json();
-
-          if (!response.ok) {
-            throw new Error(result.message || 'The ritual failed.');
-          }
-
-          status.textContent = result.message || 'Your petition has been delivered.';
-          form.reset();
-        } catch (error) {
-          status.textContent = error.message || 'Something went wrong while sending the form.';
-        } finally {
-          button.disabled = false;
-          button.style.opacity = '1';
-          button.style.cursor = 'pointer';
-        }
-      });
-    });
-  </script>
+</main>
 </body>
-
 </html>
